@@ -1,0 +1,39 @@
+.file-item {
+  height: 40px;
+  border: 1px solid var(--bg-color-intense);
+}
+
+.index-column {
+  min-width: 40px;
+}
+
+.highlighted {
+  color: #c35cc3;
+}
+
+.example-box {
+  font-family: "Roboto", sans-serif;
+}
+
+.example-box:hover {
+  background-color: var(--bg-color-highlight);
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-custom-placeholder {
+  height: 38px;
+  border: 2px solid var(--bg-color-highlight);
+}
+
+.user-select-none {
+  user-select: none;
+  -webkit-user-select: none; /* für Safari */
+  -moz-user-select: none;    /* für Firefox */
+}

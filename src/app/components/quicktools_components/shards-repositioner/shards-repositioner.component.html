@@ -1,0 +1,49 @@
+<div class="basic-border padding-medium">
+  <div class="font-size-medium">
+
+  </div>
+  <div class="display-flex">
+    {{ searchShardsString }}
+    <input
+      class="basic-input-field width-100-percent"
+      #searchField
+      placeholder="Search ..."
+      type="text"
+      [disabled]="store.selectionSignal() < 1"
+      [value]="searchShardsString"
+      (input)="setShardsSearchString(searchField.value)"
+      (keyup.enter)="searchForGroups()">
+    <button
+      class="basic-button basic-input-field basic-input-field-button"
+      (click)="resetShardsSearch()">
+      Clear
+    </button>
+  </div>
+  <div class="display-flex">
+    <div>
+      <button
+        class="basic-button basic-button-red"
+        [disabled]="store.selectionSignal() < 1"
+        (click)="searchForGroups()">
+        Search
+      </button>
+    </div>
+    <div>
+      <button
+        class="basic-button basic-button-purple"
+        [disabled]="store.selectionSignal() < 1"
+        (click)="setTestRegex()">
+        => REGEX
+      </button>
+    </div>
+  </div>
+  <div class="display-flex">
+    <ng-content *ngFor="let shard of store.matchingShards(); index as i">
+      @if (i > -5) {
+        <div class="font-size-small basic-border border-radius-medium margin-xsmall padding-xsmall bg-color-violet">
+          {{ shard }}
+        </div>
+      }
+    </ng-content>
+  </div>
+</div>

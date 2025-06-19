@@ -1,0 +1,206 @@
+/* HELPERS */
+/*
+For every project identically
+=> no project specific dependencies => keep it copy+paste-able!
+ */
+
+.border-radius-none {
+  border-radius: 0 !important;
+}
+
+.border-radius-small {
+  border-radius: 2px !important;
+}
+
+.border-radius-medium {
+  border-radius: 5px !important;
+}
+
+.height-100-percent {
+  height: 100%;
+}
+
+.width-100-percent {
+  width: 100%;
+}
+
+.width-50-percent {
+  width: 50%;
+}
+
+.scroll-container-y {
+  overflow-y: auto;
+}
+
+.scroll-container-x {
+  overflow-x: auto;
+}
+
+.scroll-container-y-scroll {
+  overflow-y: scroll;
+}
+
+.scroll-container-x-scroll {
+  overflow-x: scroll;
+}
+
+.font-weight-bold {
+  font-weight: bold;
+}
+
+.font-weight-boldcompact {
+  font-weight: 500;
+}
+
+.details-area-height {
+  max-height: 85px;
+}
+
+.font-size-xxsmall {
+  font-size: 8px;
+}
+
+.font-size-xsmall {
+  font-size: 10px;
+}
+
+.font-size-small {
+  font-size: 12px;
+}
+
+.font-size-medium {
+  font-size: 16px;
+}
+
+.font-size-large {
+  font-size: 20px;
+}
+
+.font-size-xlarge {
+  font-size: 24px;
+}
+
+.font-size-xxlarge {
+  font-size: 28px;
+}
+
+/* FLEX */
+
+.display-flex {
+  display: flex;
+}
+
+.flex-centralize-h {
+  display: flex;
+  justify-content: center;
+}
+
+.flex-centralize-v {
+  display: flex;
+  align-items: center;
+}
+
+.flex-space-between-v {
+  justify-content: space-between;
+}
+
+.flex-space-between-h {
+  align-content: space-between;
+}
+
+.flex-flex-end {
+  justify-content: flex-end;
+}
+
+.flex-flex-start {
+  justify-content: flex-start;
+}
+
+.basic-flex-1 {
+  flex: 1;
+}
+
+.basic-flex-4 {
+  flex: 4;
+}
+
+.flex-direction-col {
+  flex-direction: column;
+}
+
+.flex-direction-row {
+  flex-direction: row;
+}
+
+.small-event {
+  height: 100px !important;
+}
+
+.medium-event {
+  height: 200px;
+}
+
+.large-event {
+  height: 300px !important;
+}
+
+.delete-icon-addition {
+  scale: 0.8;
+  cursor: pointer;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.material-box-shadow {
+  box-shadow: var(--shadow-black) !important;
+}
+
+.material-box-shadow-intense {
+  box-shadow: var(--shadow-black-intense) !important;
+}
+
+.material-box-shadow-inset {
+  box-shadow: 1px 4px 8px 0 rgba(0, 0, 0, 0.3) inset, 1px 4px 8px 0 rgba(0, 0, 0, 0.22) inset;
+}
+
+.material-box-shadow-lowkey {
+  box-shadow: var(--shadow-black-lowkey);
+}
+
+.spacer-xsmall {
+  width: 3px;
+}
+
+.spacer-small {
+  width: 5px;
+}
+
+.spacer-medium {
+  width: 10px;
+}
+
+.spacer-large {
+  width: 15px;
+}
+
+.z-index-emperor {
+  z-index: 999;
+}
+
+.z-index-king {
+  z-index: 99;
+}
+
+.z-index-lord {
+  z-index: 9;
+}
+
+.cursor-grab {
+  cursor: grab;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

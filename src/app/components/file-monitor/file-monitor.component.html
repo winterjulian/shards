@@ -1,0 +1,114 @@
+<div>
+  <div class="display-flex">
+    <div class="padding-small">
+      <button mat-flat-button
+        [disabled]="store.filesSignal().length === 0 || store.selectionSignal() === store.visibilitySignal()"
+        (click)="selectAll()">Select All</button>
+    </div>
+    <div class="padding-small">
+      <button mat-flat-button
+        [disabled]="store.filesSignal().length === 0 || store.selectionSignal() === 0"
+        (click)="deselectAll()">Deselect All</button>
+    </div>
+    <div class="padding-small">
+      <button mat-flat-button
+        [disabled]="store.filesSignal().length === 0"
+        (click)="invertSelection()">Invert selection</button>
+    </div>
+    <div class="display-flex">
+      <div class="padding-small">
+        <input
+          class="basic-input-field material-box-shadow-inset"
+          #searchField
+          placeholder="Search"
+          type="text"
+          style="width: 300px"
+          [disabled]="store.filesSignal().length === 0"
+          [value]="store.searchStringSignal()"
+          (input)="store.searchStringSignal.set(searchField.value)"
+          (keyup.enter)="store.filterFilesWithRegex(store.searchStringSignal())">
+        <button
+          class="basic-button basic-input-field basic-input-field-button"
+          [disabled]="!store.isClearable()"
+          (click)="clearSearchString()">
+          Clear
+        </button>
+      </div>
+      <div class="padding-small">
+        <button mat-flat-button
+          [disabled]="store.filesSignal().length === 0 || searchField.value ===''"
+          (click)="store.filterFilesWithRegex(store.searchStringSignal())">
+          Search
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="display-flex font-size-medium">
+    <div class="display-flex flex-direction-col margin-small monitor-col-width flex-space-between-v">
+      <div
+        class="display-flex flex-centralize-v hoverable-font font-weight-bold cursor-pointer"
+        (click)="showAllFiles()">
+        Total <i class="material-icons font-size-medium margin-small-left">visibility</i>
+      </div>
+      <div>
+        Displayed
+      </div>
+      <div
+        (click)="showSelectedFiles()"
+        class="display-flex flex-centralize-v hoverable-font font-weight-bold cursor-pointer">
+        Selected <i class="material-icons font-size-medium margin-small-left">visibility</i>
+      </div>
+    </div>
+    <div class="display-flex flex-direction-col margin-small monitor-col-width flex-space-between-v">
+      <div class="font-weight-bold">
+        {{ store.filesSignal().length }}
+      </div>
+      <div>
+        {{ store.visibilitySignal() }}
+      </div>
+      <div>
+        {{ store.selectionSignal() }}
+      </div>
+    </div>
+    <div class="display-flex flex-direction-col margin-small monitor-col-width flex-space-between-v">
+      <div class="font-weight-bold">
+        100%
+      </div>
+      <div>
+        {{ store.visibilityPercentageSignal() }}%
+      </div>
+      <div>
+        {{ store.selectionPercentageSignal() }}%
+      </div>
+    </div>
+    <div class="display-flex flex-direction-col margin-small width-100-percent">
+      <div class="display-flex height-100-percent">
+        <app-percentage-display
+          class="width-100-percent"
+          [property]="'isVisible'"
+          [color]="1"
+        ></app-percentage-display>
+      </div>
+      <div class="display-flex height-100-percent">
+        <app-percentage-display
+          class="width-100-percent"
+          [property]="'isSelected'"
+          [color]="1"
+        ></app-percentage-display>
+      </div>
+    </div>
+<!--    <div class="display-flex flex-direction-col margin-small monitor-col-width flex-space-between-v">-->
+<!--      <div class="display-flex">-->
+<!--        <button (click)="showAllFiles()" class="basic-button basic-button-small basic-button-purple width-100-percent">-->
+<!--          Show-->
+<!--        </button>-->
+<!--      </div>-->
+<!--      <div class="display-flex">-->
+<!--        <button (click)="showSelectedFiles()" class="basic-button basic-button-small basic-button-purple width-100-percent">-->
+<!--          Show <i class="material-icons">visibility</i>-->
+<!--        </button>-->
+<!--      </div>-->
+<!--    </div>-->
+  </div>
+</div>

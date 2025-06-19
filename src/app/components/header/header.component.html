@@ -1,0 +1,54 @@
+<div
+  style="min-height: 80px"
+  class="display-flex flex-centralize-h flex-centralize-v flex-space-between-v material-box-shadow-intense basic-element-background">
+  <div class="padding-small">
+    @if (themeService.darkMode()) {
+      <img ngSrc="assets/shardsLogo-dark.png" priority alt="shardsLogo-dark" width="285" height="60">
+    } @else {
+      <img ngSrc="assets/shardsLogo.png" priority alt="shardsLogo" width="285" height="60">
+    }
+  </div>
+  <div class="display-flex flex-centralize-h flex-centralize-v height-100-percent">
+    <div class="test-class flex-centralize-h flex-centralize-v" (click)="testFunc(true)">Text</div>
+  </div>
+  <div class="display-flex flex-centralize-h flex-centralize-v height-100-percent" style="filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.3));">
+    <div class="test-class-2 flex-centralize-h flex-centralize-v" (click)="testFunc(false)">Text</div>
+  </div>
+  <div class="display-flex flex-centralize-h flex-centralize-v height-100-percent">
+    <button mat-flat-button>Basic</button>
+  </div>
+  <div class="display-flex flex-centralize-h flex-centralize-v height-100-percent">
+    <button mat-raised-button>Basic2</button>
+  </div>
+  <div class="display-flex flex-centralize-h flex-centralize-v height-100-percent">
+    <button [disabled]="true" mat-flat-button>Basic</button>
+  </div>
+  <div class="padding-small">
+    <div class="display-flex flex-centralize-v flex-centralize-h">
+      <div class="display-flex flex-centralize-v padding-small-right">
+        <i class="material-icons basic-font-color-inverted-light font-size-xxlarge">wb_sunny</i>
+      </div>
+      <div class="display-flex flex-centralize-h">
+        <label class="switch" [ngClass]="themeService.darkMode() ? 'dark' : 'light'">
+          <input
+            #darkModeSwitch
+            type="checkbox"
+            [checked]="themeService.darkMode()"
+            (input)="themeService.setDisplayMode(darkModeSwitch.checked)">
+          <span class="slider"></span>
+        </label>
+<!--        <mat-slide-toggle-->
+<!--          style="padding-left:0"-->
+<!--          #darkModeSwitch-->
+<!--          [checked]="themeService.darkMode()"-->
+<!--          (change)="themeService.setDisplayMode(darkModeSwitch.checked)">-->
+<!--        </mat-slide-toggle>-->
+      </div>
+      <div class="display-flex flex-centralize-h flex-centralize-v padding-small-left">
+        <i class="material-icons basic-font-color-inverted-light font-size-xxlarge">brightness_2</i>
+      </div>
+    </div>
+
+
+  </div>
+</div>

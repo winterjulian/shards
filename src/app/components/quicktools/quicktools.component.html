@@ -1,0 +1,16 @@
+<div class="quicktools-position-css width-100-percent height-100-percent basic-element-background">
+  <div class="display-flex" [ngClass]="{'flex-direction-col': !verticalPosition}">
+
+    <div [ngClass]="{'font-color-disabled': this.store.selectionSignal() === 0}" class="router-bg-color margin-medium material-box-shadow-lowkey">
+      <app-replace-tool></app-replace-tool>
+    </div>
+
+    <div [ngClass]="{'font-color-disabled': this.store.selectionSignal() === 0}" class="router-bg-color margin-medium material-box-shadow-lowkey">
+      <app-indexer-tool></app-indexer-tool>
+    </div>
+
+    <div class="margin-medium-left material-box-shadow-intense" style="height: 50px; width: 50px">
+      X
+    </div>
+  </div>
+</div>

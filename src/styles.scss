@@ -1,0 +1,163 @@
+@use '@angular/material' as mat;
+@use 'sass:map';
+@use 'styles/_theme-colors' as custom-theme;
+@use "styles/helpers";
+@use "styles/margins";
+@use "styles/specifics";
+@use "styles/toggle";
+
+$primary-palette-light: custom-theme.$primary-palette;
+$primary-color-forced: map.get($primary-palette-light, 60);
+$app-font: "Roboto", sans-serif;
+
+html,body{
+  height: 100%;
+  margin:0;
+  padding:0;
+}
+
+.basic-font {
+  font-family: $app-font;
+  color: var(--font-color);
+}
+
+.mdc-button {
+  box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.5);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+html {
+  --bg-color-intense: #f3f3f3;
+  --bg-color-smooth: #dfdfdf;
+  --bg-color-highlight: #c693c6;
+  --font-color: #2e2e30;
+  --font-color-lowkey: #565659;
+  --font-color-inverted: #e1e1e1;
+  --shadow-black: 1px 1px 2px 0 rgba(0, 0, 0, 0.3), 0 2px 5px 0 rgba(0, 0, 0, 0.3);
+  --shadow-black-intense: 2px 2px 2px 0 rgba(0, 0, 0, 0.4), -2px 2px 2px 0 rgba(0, 0, 0, 0.4);
+  --shadow-black-lowkey: 1px 1px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+
+  color-scheme: light;
+  @include mat.theme((
+    typography: Roboto,
+    density: -2,
+    color: (
+      primary: custom-theme.$primary-palette,
+      tertiary: custom-theme.$tertiary-palette,
+    ),
+  ));
+}
+
+html.dark-mode {
+  --bg-color-intense: #202020;
+  --bg-color-smooth: #2c2c2c;
+  --bg-color-highlight: #5d285d;
+  --font-color: #d8d8d8;
+  --font-color-lowkey: #9f9f9f;
+  --font-color-inverted: #2e2e30;
+  --shadow-black: 1px 1px 2px 0 rgba(0, 0, 0, 0.6), 0 2px 5px 0 rgba(0, 0, 0, 0.6);
+  --shadow-black-intense: 1px 1px 3px 0 rgba(0, 0, 0, 0.8), -1px -1px 3px 0 rgba(0, 0, 0, 0.8);
+  --shadow-black-lowkey: 1px 1px 2px 0 rgba(0, 0, 0, 0.4), 0 2px 5px 0 rgba(0, 0, 0, 0.4);
+
+  color-scheme: dark;
+  @include mat.theme((
+    typography: Roboto,
+    density: -2,
+    color: (
+      primary: custom-theme.$primary-palette,
+      tertiary: custom-theme.$tertiary-palette,
+    ),
+  ));
+}
+
+:root {
+  @include mat.slide-toggle-overrides((
+    handle-shape: 0%,
+    track-shape: 0%,
+  ));
+  @include mat.button-overrides((
+    filled-container-shape: 0%,
+    outlined-container-shape: 0%,
+    protected-container-shape: 0%,
+    text-label-text-color: violet,
+    ripple-color: red,
+    filled-ripple-color: blue,
+    outlined-ripple-color: gold,
+    protected-ripple-color: green,
+    text-ripple-color: orange,
+    protected-container-elevation-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.5),
+    protected-disabled-container-elevation-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.5),
+    protected-focus-container-elevation-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.5),
+    protected-hover-container-elevation-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.5),
+    protected-pressed-container-elevation-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.5),
+  ));
+  @include mat.ripple-overrides((
+    color: red,
+  ))
+}
+
+.router-bg-color {
+  background-color: var(--bg-color-intense);
+}
+
+.header-bg-color {
+  background-color: var(--bg-color-smooth);
+}
+
+.highlight-bg-color {
+  background-color: var(--bg-color-highlight);
+}
+
+.basic-input-field {
+  font-weight: bold;
+  height: 28px;
+  border: 2px solid grey;
+  padding-left: 10px;
+  color: var(--font-color);
+}
+
+.basic-input-field:focus {
+  outline: 2px solid $primary-color-forced;
+}
+
+.basic-input-field-button {
+  font-weight: bold;
+  height: 100%;
+  padding-right: 10px;
+  border-left: none;
+  background-color: var(--bg-color-intense);
+}
+
+.basic-input-field-button:hover {
+  cursor: pointer;
+  background-color: var(--bg-color-highlight);
+}
+
+.basic-input-field-button:disabled {
+  color: grey;
+  background-color: var(--bg-color-smooth);
+}
+
+.font-color {
+  color: var(--font-color) !important;
+}
+
+.font-color-disabled {
+  color: var(--font-color-lowkey) !important;
+}
+
+.font-color-inverted {
+  color: var(--font-color-inverted)
+}
+
+.monitor-col-width {
+  width: 150px;
+}
+
+.quicktools-position-css {
+  position: sticky;
+}
+
+.hoverable-font:hover {
+  color: $primary-color-forced;
+}

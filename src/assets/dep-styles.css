@@ -1,0 +1,210 @@
+@import "styles/helpers";
+@import "styles/margins";
+@import "styles/specifics";
+@import "styles/toggle";
+
+html,body{
+  height: 100%;
+  margin:0;
+  padding:0;
+  background-image: var(--bg-image);
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.basic-font {
+  font-family: "Roboto",
+  "Segoe UI",
+  "GeezaPro",
+  "DejaVu Serif",
+  "sans-serif",
+  "-apple-system",
+  "BlinkMacSystemFont";
+}
+
+body {
+  --bg-image: url(assets/background.jpg);
+  --logo-image: url(assets/shardsLogo.png);
+  --bg-color: whitesmoke;
+  --bg-color-2: #e6e6e6;
+  --bg-color-3: #b1b1b1;
+
+
+  /*--font-color-inverted: whitesmoke;*/
+  --font-color-inverted-light: #9e9e9e;
+  --angular-red-dark: #c00f59;
+  --angular-red: #d1588c;
+  --angular-red-light: #d58aaa;
+  --angular-purple-dark: #75129a;
+  --angular-purple: #9e50bc;
+  --angular-purple-light: #c384dc;
+  --angular-violet-dark: #5026aa;
+  --angular-violet: #6645ac;
+  --angular-violet-light: #ae89ff;
+  --angular-blue-dark: #2f3aa2;
+  --angular-blue: #6872d1;
+  --angular-blue-light: #a0a9ff;
+
+  --shadow-black: 1px 1px 2px 0 rgba(0, 0, 0, 0.3), 0 2px 5px 0 rgba(0, 0, 0, 0.3);
+  --shadow-black-lowkey: 1px 1px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+@media (prefers-color-scheme: dark) {
+  .dark-theme {
+    --bg-image: url(assets/background-dark.jpg);
+    --logo-image: url(assets/shardsLogo-dark.png);
+    --bg-color: #1b1b1b;
+    --bg-color-2: #232323;
+    --bg-color-3: #333333;
+
+
+    /*--font-color-inverted: #1f1f20;*/
+    --font-color-inverted-light: #616161;
+    --angular-red-dark: #c00f59;
+    --angular-red: #bf477a;
+    --angular-red-light: #d58aaa;
+    --angular-purple-dark: #75129a;
+    --angular-purple: #8c3caa;
+    --angular-purple-light: #af71c6;
+    --angular-violet-dark: #5026aa;
+    --angular-violet: #6645ac;
+    --angular-violet-light: #ae89ff;
+    --angular-blue-dark: #2f3aa2;
+    --angular-blue: #434ca3;
+    --angular-blue-light: #8c97f8;
+
+    --shadow-black: 1px 1px 2px 0 rgba(0, 0, 0, 0.6), 0 2px 5px 0 rgba(0, 0, 0, 0.6);
+    --shadow-black-lowkey: 1px 1px 2px 0 rgba(0, 0, 0, 0.4), 0 2px 5px 0 rgba(0, 0, 0, 0.4);
+  }
+}
+
+.basic-font-color {
+  color: var(--font-color);
+}
+
+.basic-font-color-disabled {
+  color: var(--font-color-inverted);
+}
+
+.basic-font-color-inverted {
+  color: var(--font-color-inverted);
+}
+
+.basic-font-color-inverted-light {
+  color: var(--font-color-inverted-light);
+}
+
+.bg-color {
+  background-color: var(--bg-color);
+}
+
+.bg-color-nuance-2 {
+  background-color: var(--bg-color-2);
+}
+
+.bg-color-nuance-2:hover {
+  background-color: var(--bg-color-3);
+}
+
+.bg-color-nuance-3 {
+  background-color: var(--bg-color-3);
+}
+
+.bg-color-inverted-1 {
+  background-color: var(--font-color);
+}
+
+.basic-border {
+  border: 1px solid var(--font-color);
+}
+
+.basic-border-list-element {
+  border-width: 1px 1px 0 1px;
+  border-style: solid;
+  border-color: var(--font-color);
+}
+
+.basic-border-list-end {
+  border-bottom: 1px solid var(--font-color);
+}
+
+.basic-border-right {
+  border-right: 1px solid var(--font-color);
+}
+
+.theme-color-red-dark {
+  background-color: var(--angular-red-dark);
+}
+
+.theme-color-purple-dark {
+  background-color: var(--angular-purple-dark);
+}
+
+.theme-color-violet-dark {
+  background-color: var(--angular-violet-dark);
+}
+
+.theme-color-blue-dark {
+  background-color: var(--angular-blue-dark);
+}
+
+.theme-color-red {
+  background-color: var(--angular-red);
+}
+
+.theme-color-purple {
+  background-color: var(--angular-purple);
+}
+
+.theme-color-violet {
+  background-color: var(--angular-violet);
+}
+
+.theme-color-blue {
+  background-color: var(--angular-blue);
+}
+
+.theme-color-red-light {
+  background-color: var(--angular-red-light);
+}
+
+.theme-color-purple-light {
+  background-color: var(--angular-purple-light);
+}
+
+.theme-color-violet-light {
+  background-color: var(--angular-violet-light);
+}
+
+.theme-color-blue-light {
+  background-color: var(--angular-blue-light);
+}
+
+.font-color-red {
+  color: var(--angular-red);
+}
+
+.font-color-purple {
+  color: var(--angular-purple);
+}
+
+.font-color-violet {
+  color: var(--angular-violet);
+}
+
+.font-color-blue {
+  color: var(--angular-blue);
+}
+
+.basic-element-background {
+  background-color: var(--font-color-inverted);
+  /*backdrop-filter: blur(5px) !important;*/
+}
+
+.scroll-bar-design {
+  scrollbar-color: var(--font-color-inverted) var(--font-color-inverted-light);
+  scrollbar-width: thin;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

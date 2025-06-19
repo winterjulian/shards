@@ -1,0 +1,9 @@
+<div class="display-flex width-100-percent height-100-percent">
+  <ng-container *ngFor="let file of store.filesSignal()">
+    <div
+      class="height-100-percent width-100-percent"
+      [ngClass]="{'highlight-bg-color' : file[property] && color==1,'header-bg-color' : !file[property] && color==1}"
+      >
+    </div>
+  </ng-container>
+</div>
