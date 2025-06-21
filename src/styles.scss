@@ -5,6 +5,7 @@
 @use "styles/margins";
 @use "styles/specifics";
 @use "styles/toggle";
+@use "styles/loader";
 
 $primary-palette-light: custom-theme.$primary-palette;
 $primary-color-forced: map.get($primary-palette-light, 60);
@@ -30,6 +31,7 @@ html {
   --bg-color-intense: #f3f3f3;
   --bg-color-smooth: #dfdfdf;
   --bg-color-highlight: #c693c6;
+  --bg-color-highlight_2: #c35cc3;
   --font-color: #2e2e30;
   --font-color-lowkey: #565659;
   --font-color-inverted: #e1e1e1;
@@ -52,6 +54,7 @@ html.dark-mode {
   --bg-color-intense: #202020;
   --bg-color-smooth: #2c2c2c;
   --bg-color-highlight: #5d285d;
+  --bg-color-highlight_2: #c35cc3;
   --font-color: #d8d8d8;
   --font-color-lowkey: #9f9f9f;
   --font-color-inverted: #2e2e30;
@@ -79,21 +82,12 @@ html.dark-mode {
     filled-container-shape: 0%,
     outlined-container-shape: 0%,
     protected-container-shape: 0%,
-    text-label-text-color: violet,
-    ripple-color: red,
-    filled-ripple-color: blue,
-    outlined-ripple-color: gold,
-    protected-ripple-color: green,
-    text-ripple-color: orange,
     protected-container-elevation-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.5),
     protected-disabled-container-elevation-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.5),
     protected-focus-container-elevation-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.5),
     protected-hover-container-elevation-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.5),
     protected-pressed-container-elevation-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.5),
   ));
-  @include mat.ripple-overrides((
-    color: red,
-  ))
 }
 
 .router-bg-color {

@@ -29,7 +29,7 @@ export class IndexerToolComponent {
   ) {}
 
   public toggleExpansion() {
-    if (this.store.selectionSignal() === 0 || this.workflowService.isProcessing()) {
+    if (this.store.selectionCounterSignal() === 0 || this.workflowService.isProcessing()) {
       return;
     }
 

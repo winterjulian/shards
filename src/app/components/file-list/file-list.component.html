@@ -1,6 +1,5 @@
 <div class="height-100-percent user-select-none">
-
-  <div style="font-family: Arial,sans-serif" cdkDropList class="example-list">
+  <div style="font-family: Arial,sans-serif" cdkDropList (cdkDropListDropped)="dropFile($event)" class="example-list">
 
     @for (file of store.filesSignal(); track file; let index = $index) {
       @if(file.isVisible) {
@@ -25,8 +24,9 @@
               }
             </div>
             <div
-              (mousedown)="onMouseDown(file)"
+              (mousedown)="onMouseDown($event, file)"
               (mouseenter)="onMouseEnterFile(file)"
+              (click)="onFileClick($event, file, index)"
               class="display-flex flex-centralize-v width-100-percent height-100-percent">
               <div>
                 <div [innerHTML]="file.displayName"></div>

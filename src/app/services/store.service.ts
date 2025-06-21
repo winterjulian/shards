@@ -3,6 +3,7 @@ import {HttpClientService} from './http-client.service';
 import {BehaviorSubject} from 'rxjs';
 import {ExtendedFile} from '../interfaces/extendedFile';
 import {NameService} from './name.service';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 declare global {
   interface Window {
@@ -17,19 +18,19 @@ declare global {
 })
 export class StoreService {
   filesSignal = signal<ExtendedFile[]>([]);
-  selectionSignal = signal<number>(0);
+  selectionCounterSignal = signal<number>(0);
   visibilitySignal = signal<number>(0);
   selectionPercentageSignal = computed(() => {
     const total = this.filesSignal().length;
-    const selected = this.selectionSignal();
-    const rawPercentage = total > 0 ? (selected / total) * 100 : 0; // Vermeidung von Division durch 0
-    return Math.round(rawPercentage * 10) / 10; // Auf eine Dezimalstelle runden
+    const selected = this.selectionCounterSignal();
+    const rawPercentage = total > 0 ? (selected / total) * 100 : 0;
+    return Math.round(rawPercentage * 10) / 10;
   });
   visibilityPercentageSignal = computed(() => {
     const total = this.filesSignal().length;
     const visible = this.visibilitySignal();
-    const rawPercentage = total > 0 ? (visible / total) * 100 : 0; // Vermeidung von Division durch 0
-    return Math.round(rawPercentage * 10) / 10; // Auf eine Dezimalstelle runden
+    const rawPercentage = total > 0 ? (visible / total) * 100 : 0;
+    return Math.round(rawPercentage * 10) / 10;
   });
   searchStringSignal = signal<string>("");
   matchingShards = signal<string[]>([]);
@@ -37,18 +38,39 @@ export class StoreService {
   formerNames = signal<string[][]>([]);
   isClearable = signal<boolean>(false);
 
-  constructor(
-    private httpClient: HttpClientService,
-  ) {}
+  lastSelectedFile = signal<ExtendedFile | undefined>(undefined);
 
   selectFile(file: ExtendedFile) {
-    if (file.isSelected) {
-      this.selectionSignal.update(counter => counter - 1);
-      file.isSelected = false;
-    } else {
-      this.selectionSignal.update(counter => counter + 1);
-      file.isSelected = true;
-    }
+    this.setFileIsSelected(file, !file.isSelected);
+  }
+
+  setFileIsSelected(file: ExtendedFile, isSelected: boolean) {
+    if (file.isSelected === isSelected) return;
+
+    file.isSelected = isSelected;
+    isSelected ? this.lastSelectedFile.set(file) : this.lastSelectedFile.set(undefined);
+
+    this.selectionCounterSignal.update(count =>
+      isSelected ? count + 1 : count - 1
+    );
+  }
+
+  setFilesByIndices(start: number, end: number, selected: boolean): void {
+    const [from, to] = start < end ? [start, end] : [end, start];
+
+    console.log('from', from, 'to', to);
+    this.filesSignal.update(files =>
+      files.map((file, i) => {
+        console.log(i, i >= to && i <= from);
+        if (i >= from && i <= to && file.isSelected !== selected) {
+          this.selectionCounterSignal.update(count =>
+            selected ? count + 1 : count - 1
+          );
+          return { ...file, isSelected: selected };
+        }
+        return file;
+      })
+    );
   }
 
   selectOrDeselectAll(bool: boolean) {
@@ -61,7 +83,7 @@ export class StoreService {
         file.isSelected = !bool;
       }
     })
-    this.selectionSignal.set(counter);
+    this.selectionCounterSignal.set(counter);
   }
 
   selectAll() {
@@ -74,23 +96,23 @@ export class StoreService {
         file.isSelected = false;
       }
     })
-    this.selectionSignal.set(counter);
+    this.selectionCounterSignal.set(counter);
   }
 
   deselectAll() {
     let counter = this.filesSignal().length;
     this.filesSignal().forEach((file: ExtendedFile) => {
-      file.isSelected = false;
+      this.deselectFile(file);
       counter--;
     })
-    this.selectionSignal.set(counter);
+    this.selectionCounterSignal.set(counter);
   }
 
   invertSelection() {
     this.filesSignal().forEach((file: ExtendedFile) => {
       file.isSelected = !file.isSelected;
     })
-    this.selectionSignal.update(counter => this.filesSignal().length - counter);
+    this.selectionCounterSignal.update(counter => this.filesSignal().length - counter);
   }
 
   resetVisibility() {
@@ -191,9 +213,6 @@ export class StoreService {
     }
 
     this.filesSignal().forEach((file: ExtendedFile) => {
-      console.log("File Name:", file.name);
-      console.log("Search Pattern:", pattern);
-
       if (pattern.exec(file.name)) {
         file.isVisible = true;
 
@@ -233,9 +252,7 @@ export class StoreService {
     this.filesSignal().forEach(file => {
       array.push(file.changedName);
     })
-    console.log(array);
     this.formerNames.update(names => [...names, array]);
-    console.log(this.formerNames());
   }
 
   get isUndoNameChangesPossible() {
@@ -264,6 +281,20 @@ export class StoreService {
     this.filesSignal().forEach((file: ExtendedFile, index: number) => {
       file.changedName = this.formerNames()[this.formerNames().length-1][index]
     })
+  }
+
+  changeFileIndex(event: CdkDragDrop<ExtendedFile[]>): void {
+    if (event.previousIndex === event.currentIndex) return;
+
+    this.filesSignal.update(files => {
+      moveItemInArray(files, event.previousIndex, event.currentIndex);
+      return files;
+    });
+  }
+
+  deselectFile(file: ExtendedFile): void {
+    file.isSelected = false;
+    this.lastSelectedFile.set(undefined);
   }
 
   testFunc(inp: any) {

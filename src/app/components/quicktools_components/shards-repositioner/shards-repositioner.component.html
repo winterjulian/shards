@@ -9,7 +9,7 @@
       #searchField
       placeholder="Search ..."
       type="text"
-      [disabled]="store.selectionSignal() < 1"
+      [disabled]="store.selectionCounterSignal() < 1"
       [value]="searchShardsString"
       (input)="setShardsSearchString(searchField.value)"
       (keyup.enter)="searchForGroups()">
@@ -23,7 +23,7 @@
     <div>
       <button
         class="basic-button basic-button-red"
-        [disabled]="store.selectionSignal() < 1"
+        [disabled]="store.selectionCounterSignal() < 1"
         (click)="searchForGroups()">
         Search
       </button>
@@ -31,7 +31,7 @@
     <div>
       <button
         class="basic-button basic-button-purple"
-        [disabled]="store.selectionSignal() < 1"
+        [disabled]="store.selectionCounterSignal() < 1"
         (click)="setTestRegex()">
         => REGEX
       </button>
