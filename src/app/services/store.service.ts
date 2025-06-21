@@ -1,17 +1,6 @@
-import {computed, effect, Injectable, signal} from '@angular/core';
-import {HttpClientService} from './http-client.service';
-import {BehaviorSubject} from 'rxjs';
+import {computed, Injectable, signal} from '@angular/core';
 import {ExtendedFile} from '../interfaces/extendedFile';
-import {NameService} from './name.service';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
-
-declare global {
-  interface Window {
-    electron: {
-      openFiles: () => Promise<ExtendedFile[]>;
-    };
-  }
-}
 
 @Injectable({
   providedIn: 'root'
@@ -58,10 +47,8 @@ export class StoreService {
   setFilesByIndices(start: number, end: number, selected: boolean): void {
     const [from, to] = start < end ? [start, end] : [end, start];
 
-    console.log('from', from, 'to', to);
     this.filesSignal.update(files =>
       files.map((file, i) => {
-        console.log(i, i >= to && i <= from);
         if (i >= from && i <= to && file.isSelected !== selected) {
           this.selectionCounterSignal.update(count =>
             selected ? count + 1 : count - 1

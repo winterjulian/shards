@@ -49,7 +49,6 @@ export class FileOverviewComponent {
 
   initSignalListeners() {
     effect(() => {
-      console.log('')
       if (this.store.searchStringSignal() == "") {
         this.store.resetVisibility();
       } else {

@@ -74,6 +74,12 @@ export class IndexerToolComponent {
     this.workflowService.setIsProcessing(false);
 
     this.backupFileNames = [];
+    this.store.filesSignal().forEach((file: ExtendedFile) => {
+      if (file.isSelected) {
+        file.changedName = file.displayName;
+        file.changed = true;
+      }
+    })
   }
 
   cancelChanges() {

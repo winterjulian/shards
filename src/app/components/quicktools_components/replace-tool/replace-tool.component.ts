@@ -73,7 +73,6 @@ export class ReplaceToolComponent {
   }
 
   undoChanges() {
-    console.log('undo');
     let counter = 0;
 
     this.store.filesSignal().forEach((file: ExtendedFile) => {

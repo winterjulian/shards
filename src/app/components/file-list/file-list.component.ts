@@ -68,13 +68,8 @@ export class FileListComponent {
   }
 
   onFileClick(event: MouseEvent, file: ExtendedFile, index: number) {
-    console.log('file.index', file.index);
-    console.log('lastSelectedFile()?.index', this.store.lastSelectedFile()?.index);
-
     const lastSelected = this.store.lastSelectedFile();
     if (event.shiftKey && lastSelected) {
-      console.log('from (orig): ', file.index);
-      console.log('from new: ', file.index - (file.index-index));
       this.store.setFilesByIndices(file.index - (file.index-index), lastSelected.index, !file.isSelected);
     } else {
       this.store.lastSelectedFile.set(file);
