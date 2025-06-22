@@ -23,25 +23,30 @@ export class ReplaceToolComponent {
     public workflowService: WorkflowService
   ) {}
 
-  toggleExpansion() {
-    if (this.opened) {
-      this.cancelChanges();
-    } else {
-      if (this.store.selectionCounterSignal() === 0 || this.workflowService.isProcessing()) {
-        return;
-      }
+  onAccept() {
+    this.setBackComponent()
+  }
 
-      this.opened = true;
-      if (this.opened) {
-        this.workflowService.setIsProcessing(true);
-      }
+  onCancel() {
+    let counter = 0;
 
-      this.store.filesSignal().forEach((file: ExtendedFile) => {
-        if (file.isSelected) {
-          this.backupFileNames.push(file.changedName);
-        }
-      })
-    }
+    // this.store.filesSignal().forEach((file: ExtendedFile) => {
+    //   if (file.isSelected) {
+    //     file.changedName; file.displayName = this.backupFileNames[counter];
+    //     counter += 1;
+    //   }
+    // });
+
+    this.setBackComponent()
+  }
+
+  onExpand() {
+    // TODO: Create store own method
+    this.store.filesSignal().forEach((file: ExtendedFile) => {
+      if (file.isSelected) {
+        this.backupFileNames.push(file.changedName);
+      }
+    })
   }
 
   highlightString() {
@@ -60,51 +65,33 @@ export class ReplaceToolComponent {
     });
   }
 
-  generatePreview() {
-    let counter = 0;
+  // generatePreview() {
+  //   let counter = 0;
+  //
+  //   this.store.filesSignal().forEach((file: ExtendedFile) => {
+  //     if (file.isSelected && this.pattern && this.replacement) {
+  //       this.replacementBackupFileNames[counter] = file.changedName;
+  //
+  //       const escapedSearchString = this.pattern.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+  //       const regex = new RegExp(escapedSearchString, 'gi');
+  //       file.changedName; file.displayName = file.changedName.replace(regex, this.replacement);
+  //     }
+  //     counter += 1;
+  //   });
+  // }
 
-    this.store.filesSignal().forEach((file: ExtendedFile) => {
-      if (file.isSelected && this.pattern && this.replacement) {
-        this.replacementBackupFileNames[counter] = file.changedName;
-
-        const escapedSearchString = this.pattern.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-        const regex = new RegExp(escapedSearchString, 'gi');
-        file.changedName; file.displayName = file.changedName.replace(regex, this.replacement);
-      }
-      counter += 1;
-    });
-  }
-
-  undoChanges() {
-    let counter = 0;
-
-    this.store.filesSignal().forEach((file: ExtendedFile) => {
-      if (file.isSelected) {
-        file.changedName; file.displayName = this.replacementBackupFileNames[counter];
-      }
-      counter += 1;
-    });
-  }
-
-  acceptChanges() {
-    this.setBackComponent()
-  }
-
-  cancelChanges() {
-    let counter = 0;
-
-    this.store.filesSignal().forEach((file: ExtendedFile) => {
-      if (file.isSelected) {
-        file.changedName; file.displayName = this.backupFileNames[counter];
-        counter += 1;
-      }
-    });
-
-    this.setBackComponent()
-  }
+  // undoChanges() {
+  //   let counter = 0;
+  //
+  //   this.store.filesSignal().forEach((file: ExtendedFile) => {
+  //     if (file.isSelected) {
+  //       file.changedName; file.displayName = this.replacementBackupFileNames[counter];
+  //     }
+  //     counter += 1;
+  //   });
+  // }
 
   setBackComponent(): void {
-    this.workflowService.setIsProcessing(false);
     this.opened = false;
     this.backupFileNames = [];
     this.replacementBackupFileNames = [];
@@ -112,15 +99,23 @@ export class ReplaceToolComponent {
     this.replacement = '';
   }
 
-  testFunc() {
-    console.log('testFunc');
-  }
+  changeString() {
+    const pattern = this.pattern;
+    const replacement = this.replacement;
 
-  testAccept() {
-    console.log('testAccept');
-  }
+    const escapedPattern = pattern.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+    const regex = new RegExp(escapedPattern, 'gi');
 
-  testCancel() {
-    console.log('testCancel');
+    this.store.filesSignal().forEach((file: ExtendedFile) => {
+      if (file.isSelected) {
+        const replaced = file.changedName.replace(regex, replacement);
+        file.displayName = replaced.replace(
+          new RegExp(escapedPattern, 'gi'),
+          '<span class="highlight">$&</span>'
+        );
+      } else {
+        file.displayName = file.changedName;
+      }
+    });
   }
 }

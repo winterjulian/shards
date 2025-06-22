@@ -1,13 +1,13 @@
-<div class="router-bg-color margin-medium material-box-shadow-lowkey">
+<div class="router-bg-color material-box-shadow-lowkey margin-medium">
   <div class="font-size-medium padding-medium display-flex flex-centralize-v cursor-pointer"
        (click)="toggle()">
-    <i class="material-icons font-size-medium margin-medium-right">{{ icon }}</i>
+    <i class="material-icons font-size-medium margin-medium-right">{{ icon() }}</i>
     <div>
-      Replacement
+      {{ title() }}
     </div>
   </div>
 
-  <div *ngIf="expanded">
+  <div *ngIf="isExpanded">
     <div>
       <ng-content select="[tool-content]"></ng-content>
     </div>

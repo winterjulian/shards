@@ -30,7 +30,7 @@
               (click)="onFileClick($event, file, index)"
               class="display-flex flex-centralize-v width-100-percent height-100-percent">
               <div>
-                <div [innerHTML]="file.displayName"></div>
+                <div class="long-word-break" [innerHTML]="file.displayName"></div>
               </div>
             </div>
           </div>

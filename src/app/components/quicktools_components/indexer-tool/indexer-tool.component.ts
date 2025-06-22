@@ -3,12 +3,10 @@ import { FormsModule } from '@angular/forms';
 import { StoreService } from '../../../services/store.service';
 import { WorkflowService } from '../../../services/workflow.service';
 import { ExtendedFile } from '../../../interfaces/extendedFile';
-import {NgIf} from '@angular/common';
-import {MatButton} from '@angular/material/button';
 
 @Component({
   selector: 'app-indexer-tool',
-  imports: [FormsModule, NgIf, MatButton],
+  imports: [FormsModule],
   templateUrl: './indexer-tool.component.html',
   standalone: true,
   styleUrls: ['./indexer-tool.component.css']
@@ -25,25 +23,7 @@ export class IndexerToolComponent {
 
   constructor(
     public store: StoreService,
-    private workflowService: WorkflowService
   ) {}
-
-  public toggleExpansion() {
-    if (this.store.selectionCounterSignal() === 0 || this.workflowService.isProcessing()) {
-      return;
-    }
-
-    this.opened = true;
-    if (this.opened) {
-      this.workflowService.setIsProcessing(true);
-    }
-
-    this.store.filesSignal().forEach((file: ExtendedFile) => {
-      if (file.isSelected) {
-        this.backupFileNames.push(file.changedName);
-      }
-    })
-  }
 
   indexingString() {
     const placeholderLength = this.placeholderForNumber || 0;
@@ -69,9 +49,8 @@ export class IndexerToolComponent {
     });
   }
 
-  acceptChanges() {
+  onAccept() {
     this.opened = false;
-    this.workflowService.setIsProcessing(false);
 
     this.backupFileNames = [];
     this.store.filesSignal().forEach((file: ExtendedFile) => {
@@ -82,23 +61,22 @@ export class IndexerToolComponent {
     })
   }
 
-  cancelChanges() {
+  onCancel() {
 
     let counter = 0;
 
-    this.store.filesSignal().forEach((file: ExtendedFile) => {
-      if (file.isSelected) {
-        console.log(this.backupFileNames[counter])
-        file.displayName = this.backupFileNames[counter];
-        counter += 1;
-      }
-    })
+    // this.store.filesSignal().forEach((file: ExtendedFile) => {
+    //   if (file.isSelected) {
+    //     console.log(this.backupFileNames[counter])
+    //     file.displayName = this.backupFileNames[counter];
+    //     counter += 1;
+    //   }
+    // })
 
     this.setBackComponent()
   }
 
   setBackComponent(): void {
-    this.workflowService.setIsProcessing(false);
     this.opened = false;
     this.backupFileNames = [];
   }

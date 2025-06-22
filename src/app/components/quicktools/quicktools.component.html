@@ -1,31 +1,32 @@
-<div class="quicktools-position-css width-100-percent height-100-percent basic-element-background">
-  <div class="display-flex" [ngClass]="{'flex-direction-col': !verticalPosition}">
+<div class="width-100-percent height-100-percent basic-element-background">
+  <div class="display-flex height-100-percent flex-direction-col flex-space-between-v">
+    <div class="display-flex margin-medium" [ngClass]="{'flex-direction-col': !verticalPosition}">
+      <app-quicktool-wrapper
+        #replaceWrapper
+        (expand)="onToolExpand('replace', replaceWrapper.cancelChanges.bind(replaceWrapper))"
+        (accept)="replaceTool.onAccept()"
+        (cancel)="replaceTool.onCancel()"
+        title="Replacement"
+        icon="settings">
+        <div tool-content>
+          <app-replace-tool #replaceTool />
+        </div>
+      </app-quicktool-wrapper>
 
-    <app-quicktool-wrapper
-      (accept)="replaceTool.testAccept()"
-      (cancel)="replaceTool.testCancel()"
-      title="Replacement">
-      <div tool-content>
-        <app-replace-tool #replaceTool />
-      </div>
-    </app-quicktool-wrapper>
-
-<!--    <app-quicktool-wrapper-->
-<!--      (accept)="indexerTool.testAccept()"-->
-<!--      (cancel)="indexerTool.testCancel()"-->
-<!--      title="Replacement">-->
-<!--      <div tool-content>-->
-<!--        <app-indexer-tool #indexerTool></app-indexer-tool>-->
-<!--      </div>-->
-<!--    </app-quicktool-wrapper>-->
-
-    <div [ngClass]="{'font-color-disabled': this.store.selectionCounterSignal() === 0}"
-         class="router-bg-color margin-medium material-box-shadow-lowkey">
-      <app-indexer-tool></app-indexer-tool>
+      <app-quicktool-wrapper
+        #indexerWrapper
+        (expand)="onToolExpand('indexer', indexerWrapper.cancelChanges.bind(indexerWrapper))"
+        (accept)="indexerTool.onAccept()"
+        (cancel)="indexerTool.onCancel()"
+        title="Indexer">
+        <div tool-content>
+          <app-indexer-tool #indexerTool></app-indexer-tool>
+        </div>
+      </app-quicktool-wrapper>
     </div>
-
-    <div class="margin-medium-left material-box-shadow-intense" style="height: 50px; width: 50px">
-      <button mat-raised-button class="font-color" (click)="rename()">RENAME</button>
+    <div id="button-bar" class="display-flex flex-space-between-v margin-xlarge">
+      <button mat-raised-button class="font-color" (click)="cancelChanges()">Cancel</button>
+      <button mat-flat-button class="font-color" (click)="applyChanges()">RENAME</button>
     </div>
   </div>
 </div>

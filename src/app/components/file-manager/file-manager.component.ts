@@ -1,4 +1,4 @@
-import {Component, effect, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, effect, ElementRef, ViewChild} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FileSelectorComponent} from '../file-selector/file-selector.component';
 import {FileListComponent} from '../file-list/file-list.component';
@@ -7,6 +7,7 @@ import {NgIf} from '@angular/common';
 import {StoreService} from '../../services/store.service';
 import {WorkflowService} from '../../services/workflow.service';
 import {PercentageVerticalComponent} from '../percentage-vertical/percentage-vertical.component';
+import {MatButton} from '@angular/material/button';
 
 @Component({
   selector: 'app-file-manager',
@@ -18,7 +19,8 @@ import {PercentageVerticalComponent} from '../percentage-vertical/percentage-ver
     FileMonitorComponent,
     NgIf,
     PercentageVerticalComponent,
-    FileMonitorComponent
+    FileMonitorComponent,
+    MatButton,
   ],
   templateUrl: './file-manager.component.html',
   standalone: true,
@@ -29,7 +31,7 @@ export class FileManagerComponent {
 
   constructor(
     public store: StoreService,
-    private workflowService: WorkflowService
+    public workflowService: WorkflowService
   ) {
     effect(() => {
       const isProcessing = this.workflowService.isProcessing();
@@ -41,5 +43,9 @@ export class FileManagerComponent {
         overlay?.classList.add('hidden');
       }
     });
+  }
+
+  changeFileNames(): void {
+    this.workflowService.isProcessing.set(true);
   }
 }

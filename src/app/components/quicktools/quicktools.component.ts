@@ -23,18 +23,16 @@ import {QuicktoolWrapperComponent} from '../quicktool-wrapper/quicktool-wrapper.
 })
 export class QuicktoolsComponent {
   @Output() onVerticalPositionChange = new EventEmitter();
-  replaceTool = viewChild<ReplaceToolComponent>('replaceTool');
 
+  activeTool: { name: string, cancelFn: () => void } | null = null;
   verticalPosition: boolean = false;
 
-  constructor(public store: StoreService) {}
+  constructor(
+    public store: StoreService,
+    public workflowService: WorkflowService,
+  ) {}
 
-  changeDirection() {
-    this.verticalPosition = !this.verticalPosition;
-    this.onVerticalPositionChange.emit(this.verticalPosition);
-  }
-
-  rename() {
+  applyChanges() {
     const changedFiles = this.store.filesSignal()
       .filter(file => file.changed);
 
@@ -49,13 +47,16 @@ export class QuicktoolsComponent {
     // });
   }
 
-  apply() {
-    console.log('apply');
-    this.replaceTool()?.cancelChanges();
+  cancelChanges() {
+    this.workflowService.setIsProcessing(false);
   }
 
-  cancel() {
-    console.log('cancel');
-    this.replaceTool()?.acceptChanges();
+  onToolExpand(name: string, cancelFn: () => void) {
+    console.log(this.activeTool?.name)
+    if (this.activeTool && this.activeTool.name !== name) {
+      console.log('cancel');
+      this.activeTool.cancelFn();
+    }
+    this.activeTool = { name, cancelFn };
   }
 }

@@ -5,9 +5,11 @@
     <div class="display-flex flex-direction-col height-100-percent overflow-hidden width-100-percent">
       <app-file-manager class="height-100-percent"></app-file-manager>
     </div>
-    <div class="z-index-king header-bg-color material-box-shadow-intense" style="width: 550px">
-      <app-quicktools (onVerticalPositionChange)="this.verticalPosition.set($event)"></app-quicktools>
-    </div>
+    @if(workflowService.isProcessing()) {
+      <div class="z-index-king header-bg-color material-box-shadow-intense" style="width: 550px">
+        <app-quicktools (onVerticalPositionChange)="this.verticalPosition.set($event)"></app-quicktools>
+      </div>
+    }
 
   </div>
 

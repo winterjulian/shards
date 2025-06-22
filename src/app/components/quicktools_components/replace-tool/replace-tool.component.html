@@ -14,13 +14,10 @@
     <div class="display-flex width-100-percent">
       <input
         [(ngModel)]="replacement"
-        (input)="testFunc()"
+        (input)="changeString()"
         type="text"
         placeholder="Replacement particle"
         class="basic-input-field width-100-percent">
-    </div>
-    <div class="display-flex width-50-percent">
-      <button class="basic-button basic-button-colorless width-100-percent" (click)="undoChanges()">Undo</button>
     </div>
   </div>
 </div>

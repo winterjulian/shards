@@ -19,5 +19,10 @@
       </div>
     </div>
 
+    <div class="display-flex flex-flex-end margin-xlarge margin-none-top">
+        <button mat-flat-button
+                [disabled]="store.selectionCounterSignal() === 0 || workflowService.isProcessing()"
+                (click)="changeFileNames()">Change names</button>
+    </div>
   </div>
 </div>

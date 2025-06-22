@@ -12,8 +12,6 @@ import {MatButton} from '@angular/material/button';
   styleUrl: './file-monitor.component.css'
 })
 export class FileMonitorComponent {
-  private debounceTimeout: any;
-
   constructor( public store: StoreService) {}
 
   selectAll() {
