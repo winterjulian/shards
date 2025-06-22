@@ -1,17 +1,23 @@
 <div class="display-flex flex-direction-col height-100-percent">
 
-  <div *ngIf="store.filesSignal().length === 0" class="padding-medium">
+  <div *ngIf="store.filesSignal().length === 0" class="height-50-percent padding-medium">
     <app-file-selector></app-file-selector>
   </div>
 
-  <div #overlay class="blocked-area z-index-lord hidden"></div>
+  <div #overlay tabindex="0" class="blocked-area z-index-lord hidden"></div>
   <div *ngIf="store.filesSignal().length > 0" class="display-flex flex-direction-col height-100-percent">
-    <div class="padding-medium">
+    <div class="padding-medium padding-xlarge padding-xsmall-bottom">
       <app-file-monitor></app-file-monitor>
     </div>
 
-    <div class="margin-large height-100-percent basic-font-color scroll-container-y-scroll scroll-bar-design">
-      <app-file-list></app-file-list>
+    <div class="display-flex padding-xlarge overflow-hidden height-100-percent">
+      <div class="margin-medium-right">
+        <app-percentage-vertical></app-percentage-vertical>
+      </div>
+      <div class="height-100-percent width-100-percent basic-font-color scroll-container-y-scroll scroll-bar-design">
+        <app-file-list></app-file-list>
+      </div>
     </div>
+
   </div>
 </div>

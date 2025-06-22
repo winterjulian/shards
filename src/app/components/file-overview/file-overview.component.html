@@ -1,118 +1,55 @@
-<div class="display-flex flex-direction-col height-100-percent">
-
-  <div>
-    <app-file-selector></app-file-selector>
-  </div>
-
-  <div class="display-flex">
-    <div>
-      <button (click)="changeCompleteSelection(true)">Select All</button>
+<div class="display-flex font-size-medium">
+  <div class="display-flex flex-direction-col margin-small monitor-col-width flex-space-between-v">
+    <div
+      class="display-flex flex-centralize-v hoverable-font font-weight-bold cursor-pointer"
+      (click)="showAllFiles()">
+      Total <i class="material-icons font-size-medium margin-small-left">visibility</i>
     </div>
     <div>
-      <button (click)="changeCompleteSelection(false)">Deselect All</button>
+      Displayed
+    </div>
+    <div
+      (click)="showSelectedFiles()"
+      class="display-flex flex-centralize-v hoverable-font font-weight-bold cursor-pointer">
+      Selected <i class="material-icons font-size-medium margin-small-left">visibility</i>
+    </div>
+  </div>
+  <div class="display-flex flex-direction-col margin-small monitor-col-width flex-space-between-v">
+    <div class="font-weight-bold">
+      {{ store.filesSignal().length }}
     </div>
     <div>
-      <button (click)="invertSelection()">Invert selection!!!</button>
+      {{ store.visibilitySignal() }}
     </div>
-    <div class="display-flex">
-      <div>
-        <div class="basic-button-red">Clear</div>
-      </div>
-      <div>
-        <input
-          #searchField
-          type="text"
-          [value]="store.searchStringSignal()"
-          (input)="store.searchStringSignal.set(searchField.value)">
-      </div>
+    <div>
+      {{ store.selectionCounterSignal() }}
     </div>
   </div>
-
-  <div class="display-flex">
-    <div class="display-flex flex-direction-col margin-small">
-      <div class="font-size-xlarge">
-        {{ store.filesSignal().length }}
-      </div>
-      <div class="font-size-xxsmall">
-        TOTAL
-      </div>
+  <div class="display-flex flex-direction-col margin-small monitor-col-width flex-space-between-v">
+    <div class="font-weight-bold">
+      100%
     </div>
-    <div class="display-flex flex-direction-col margin-small">
-      <div>
-        Displayed
-      </div>
-      <div>
-        Selected
-      </div>
+    <div>
+      {{ store.visibilityPercentageSignal() }}%
     </div>
-    <div class="display-flex flex-direction-col margin-small">
-      <div>
-        {{ store.visibilitySignal() }}
-      </div>
-      <div>
-        {{ store.selectionCounterSignal() }}
-      </div>
-    </div>
-    <div class="display-flex flex-direction-col margin-small">
-      <div>
-        {{ store.visibilityPercentageSignal() }}%
-      </div>
-      <div>
-        {{ store.selectionPercentageSignal() }}%
-      </div>
-    </div>
-    <div class="display-flex flex-direction-col margin-small width-100-percent">
-      <div class="display-flex height-100-percent">
-        <app-percentage-display
-          class="width-100-percent"
-          [property]="'visible'"
-          [color]="4"
-        ></app-percentage-display>
-      </div>
-      <div class="display-flex height-100-percent">
-        <app-percentage-display
-          class="width-100-percent"
-          [property]="'selected'"
-          [color]="4"
-        ></app-percentage-display>
-      </div>
+    <div>
+      {{ store.selectionPercentageSignal() }}%
     </div>
   </div>
-
-  <div class="height-100-percent basic-font-color margin-small scroll-container-y-scroll scroll-bar-design">
-    <div *ngFor="let file of store.filesSignal()" (click)="selectFile(file)">
-
-      @if(file.isVisible) {
-        <div class="margin-small padding-small">
-          <div class="display-flex">
-            <div>
-              @if(file.isSelected) {
-                <i class="material-icons">check_box</i>
-              } @else {
-                <i class="material-icons">check_box_outline_blank</i>
-              }
-            </div>
-            <div style="width: 20px">
-              @if(file.changed) {
-                <i class="material-icons font-size-medium">settings</i>
-              }
-            </div>
-            <div>
-              {{ file.name }}
-            </div>
-            <div (click)="editFileName($event, file)">
-              <i class="material-icons font-size-medium">edit</i>
-            </div>
-          </div>
-        </div>
-      }
-
-      <!--      <div class="display-flex">-->
-      <!--        <div *ngFor="let shard of file.shards">-->
-      <!--          <div class="margin-medium">{{ shard.string }}</div>-->
-      <!--        </div>-->
-      <!--      </div>-->
+  <div class="display-flex flex-direction-col margin-small width-100-percent">
+    <div class="display-flex height-100-percent">
+      <app-percentage-display
+        class="width-100-percent"
+        [property]="'isVisible'"
+        [color]="1"
+      ></app-percentage-display>
+    </div>
+    <div class="display-flex height-100-percent">
+      <app-percentage-display
+        class="width-100-percent"
+        [property]="'isSelected'"
+        [color]="1"
+      ></app-percentage-display>
     </div>
   </div>
-
 </div>

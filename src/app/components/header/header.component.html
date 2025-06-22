@@ -8,20 +8,17 @@
       <img ngSrc="assets/shardsLogo.png" priority alt="shardsLogo" width="285" height="60">
     }
   </div>
-  <div class="display-flex flex-centralize-h flex-centralize-v height-100-percent">
-    <div class="test-class flex-centralize-h flex-centralize-v" (click)="testFunc(true)">Text</div>
+  <div>
+    <div>Imported files</div>
+    <div class="font-size-xxxlarge">{{ store.filesSignal().length }}</div>
   </div>
-  <div class="display-flex flex-centralize-h flex-centralize-v height-100-percent" style="filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.3));">
-    <div class="test-class-2 flex-centralize-h flex-centralize-v" (click)="testFunc(false)">Text</div>
+  <div>
+    <div>Selected files</div>
+    <div class="font-size-xxxlarge">{{ store.selectionCounterSignal() }}</div>
   </div>
-  <div class="display-flex flex-centralize-h flex-centralize-v height-100-percent">
-    <button mat-flat-button>Basic</button>
-  </div>
-  <div class="display-flex flex-centralize-h flex-centralize-v height-100-percent">
-    <button mat-raised-button>Basic2</button>
-  </div>
-  <div class="display-flex flex-centralize-h flex-centralize-v height-100-percent">
-    <button [disabled]="true" mat-flat-button>Basic</button>
+  <div>
+    <div>Changed files</div>
+    <div class="font-size-xxxlarge">{{ store.selectionCounterSignal() }}</div>
   </div>
   <div class="padding-small">
     <div class="display-flex flex-centralize-v flex-centralize-h">

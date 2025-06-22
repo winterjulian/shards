@@ -2,12 +2,11 @@ import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreService } from '../../../services/store.service';
 import { ExtendedFile } from '../../../interfaces/extendedFile';
-import { NgIf } from '@angular/common';
 import {WorkflowService} from '../../../services/workflow.service';
 
 @Component({
   selector: 'app-replace-tool',
-  imports: [ReactiveFormsModule, FormsModule, NgIf],
+  imports: [ReactiveFormsModule, FormsModule],
   templateUrl: './replace-tool.component.html',
   standalone: true,
   styleUrl: './replace-tool.component.css'
@@ -25,20 +24,24 @@ export class ReplaceToolComponent {
   ) {}
 
   toggleExpansion() {
-    if (this.store.selectionCounterSignal() === 0 || this.workflowService.isProcessing()) {
-      return;
-    }
-
-    this.opened = true;
     if (this.opened) {
-      this.workflowService.setIsProcessing(true);
-    }
-
-    this.store.filesSignal().forEach((file: ExtendedFile) => {
-      if (file.isSelected) {
-        this.backupFileNames.push(file.changedName);
+      this.cancelChanges();
+    } else {
+      if (this.store.selectionCounterSignal() === 0 || this.workflowService.isProcessing()) {
+        return;
       }
-    })
+
+      this.opened = true;
+      if (this.opened) {
+        this.workflowService.setIsProcessing(true);
+      }
+
+      this.store.filesSignal().forEach((file: ExtendedFile) => {
+        if (file.isSelected) {
+          this.backupFileNames.push(file.changedName);
+        }
+      })
+    }
   }
 
   highlightString() {
@@ -107,5 +110,17 @@ export class ReplaceToolComponent {
     this.replacementBackupFileNames = [];
     this.pattern = '';
     this.replacement = '';
+  }
+
+  testFunc() {
+    console.log('testFunc');
+  }
+
+  testAccept() {
+    console.log('testAccept');
+  }
+
+  testCancel() {
+    console.log('testCancel');
   }
 }

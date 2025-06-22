@@ -21,46 +21,49 @@ import {FileSelectorComponent} from '../file-selector/file-selector.component';
   styleUrl: './file-overview.component.css'
 })
 export class FileOverviewComponent {
-
   private debounceTimeout: any;
 
-  constructor(
-    public store: StoreService,
-  ) {
-    this.initSignalListeners()
+  constructor( public store: StoreService) {}
+
+  selectAll() {
+    this.store.selectAll();
   }
 
-  selectFile(file: ExtendedFile) {
-    this.store.selectFile(file);
-  }
-
-  editFileName(e: any, file: ExtendedFile) {
-    e.stopPropagation();
-    console.log(file);
-  }
-
-  changeCompleteSelection(bool: boolean) {
-    this.store.selectOrDeselectAll(bool)
+  deselectAll() {
+    this.store.deselectAll()
   }
 
   invertSelection() {
     this.store.invertSelection();
   }
 
-  initSignalListeners() {
-    effect(() => {
-      if (this.store.searchStringSignal() == "") {
-        this.store.resetVisibility();
-      } else {
-        if (this.debounceTimeout) {
-          clearTimeout(this.debounceTimeout);
-        }
+  clearSearchString() {
+    this.store.resetSearch();
+  }
 
-        this.debounceTimeout = setTimeout(() => {
-          this.store.filterFiles(this.store.searchStringSignal())
-        }, 750);
-      }
+  // initSignalListeners() {
+  //   effect(() => {
+  //     console.log('')
+  //     if (this.store.searchStringSignal() == "") {
+  //       this.store.resetVisibility();
+  //     } else {
+  //       if (this.debounceTimeout) {
+  //         clearTimeout(this.debounceTimeout);
+  //       }
+  //
+  //       this.debounceTimeout = setTimeout(() => {
+  //         this.store.filterFiles(this.store.searchStringSignal())
+  //       }, 750);
+  //     }
+  //
+  //   });
+  // }
 
-    });
+  showAllFiles() {
+    this.store.resetVisibility();
+  }
+
+  showSelectedFiles() {
+    this.store.showSelectedFiles();
   }
 }

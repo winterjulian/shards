@@ -1,11 +1,26 @@
 <div class="quicktools-position-css width-100-percent height-100-percent basic-element-background">
   <div class="display-flex" [ngClass]="{'flex-direction-col': !verticalPosition}">
 
-    <div [ngClass]="{'font-color-disabled': this.store.selectionCounterSignal() === 0}" class="router-bg-color margin-medium material-box-shadow-lowkey">
-      <app-replace-tool></app-replace-tool>
-    </div>
+    <app-quicktool-wrapper
+      (accept)="replaceTool.testAccept()"
+      (cancel)="replaceTool.testCancel()"
+      title="Replacement">
+      <div tool-content>
+        <app-replace-tool #replaceTool />
+      </div>
+    </app-quicktool-wrapper>
 
-    <div [ngClass]="{'font-color-disabled': this.store.selectionCounterSignal() === 0}" class="router-bg-color margin-medium material-box-shadow-lowkey">
+<!--    <app-quicktool-wrapper-->
+<!--      (accept)="indexerTool.testAccept()"-->
+<!--      (cancel)="indexerTool.testCancel()"-->
+<!--      title="Replacement">-->
+<!--      <div tool-content>-->
+<!--        <app-indexer-tool #indexerTool></app-indexer-tool>-->
+<!--      </div>-->
+<!--    </app-quicktool-wrapper>-->
+
+    <div [ngClass]="{'font-color-disabled': this.store.selectionCounterSignal() === 0}"
+         class="router-bg-color margin-medium material-box-shadow-lowkey">
       <app-indexer-tool></app-indexer-tool>
     </div>
 

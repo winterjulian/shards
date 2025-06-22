@@ -1,62 +1,6 @@
 <div>
-  <div class="display-flex font-size-medium">
-    <div class="display-flex flex-direction-col margin-small monitor-col-width flex-space-between-v">
-      <div
-        class="display-flex flex-centralize-v hoverable-font font-weight-bold cursor-pointer"
-        (click)="showAllFiles()">
-        Total <i class="material-icons font-size-medium margin-small-left">visibility</i>
-      </div>
-      <div>
-        Displayed
-      </div>
-      <div
-        (click)="showSelectedFiles()"
-        class="display-flex flex-centralize-v hoverable-font font-weight-bold cursor-pointer">
-        Selected <i class="material-icons font-size-medium margin-small-left">visibility</i>
-      </div>
-    </div>
-    <div class="display-flex flex-direction-col margin-small monitor-col-width flex-space-between-v">
-      <div class="font-weight-bold">
-        {{ store.filesSignal().length }}
-      </div>
-      <div>
-        {{ store.visibilitySignal() }}
-      </div>
-      <div>
-        {{ store.selectionCounterSignal() }}
-      </div>
-    </div>
-    <div class="display-flex flex-direction-col margin-small monitor-col-width flex-space-between-v">
-      <div class="font-weight-bold">
-        100%
-      </div>
-      <div>
-        {{ store.visibilityPercentageSignal() }}%
-      </div>
-      <div>
-        {{ store.selectionPercentageSignal() }}%
-      </div>
-    </div>
-    <div class="display-flex flex-direction-col margin-small width-100-percent">
-      <div class="display-flex height-100-percent">
-        <app-percentage-display
-          class="width-100-percent"
-          [property]="'isVisible'"
-          [color]="1"
-        ></app-percentage-display>
-      </div>
-      <div class="display-flex height-100-percent">
-        <app-percentage-display
-          class="width-100-percent"
-          [property]="'isSelected'"
-          [color]="1"
-        ></app-percentage-display>
-      </div>
-    </div>
-  </div>
-
   <div class="display-flex">
-    <div class="padding-small">
+    <div class="padding-small padding-none-left">
       <button mat-flat-button
               [disabled]="store.filesSignal().length === 0 || store.selectionCounterSignal() === store.visibilitySignal()"
               (click)="selectAll()">Select All</button>

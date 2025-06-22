@@ -1,4 +1,4 @@
-import {Component, EventEmitter, inject, Output} from '@angular/core';
+import {Component, EventEmitter, inject, Output, viewChild} from '@angular/core';
 import {NgClass} from '@angular/common';
 import {ReplaceToolComponent} from '../quicktools_components/replace-tool/replace-tool.component';
 import {StoreService} from '../../services/store.service';
@@ -6,6 +6,7 @@ import {IndexerToolComponent} from '../quicktools_components/indexer-tool/indexe
 import {MatSlideToggle} from "@angular/material/slide-toggle";
 import {WorkflowService} from '../../services/workflow.service';
 import {MatButton} from '@angular/material/button';
+import {QuicktoolWrapperComponent} from '../quicktool-wrapper/quicktool-wrapper.component';
 
 @Component({
   selector: 'app-quicktools',
@@ -14,6 +15,7 @@ import {MatButton} from '@angular/material/button';
     ReplaceToolComponent,
     IndexerToolComponent,
     MatButton,
+    QuicktoolWrapperComponent,
   ],
   templateUrl: './quicktools.component.html',
   standalone: true,
@@ -21,6 +23,7 @@ import {MatButton} from '@angular/material/button';
 })
 export class QuicktoolsComponent {
   @Output() onVerticalPositionChange = new EventEmitter();
+  replaceTool = viewChild<ReplaceToolComponent>('replaceTool');
 
   verticalPosition: boolean = false;
 
@@ -35,12 +38,24 @@ export class QuicktoolsComponent {
     const changedFiles = this.store.filesSignal()
       .filter(file => file.changed);
 
-    window.electron.renameFiles(changedFiles).then(result => {
-      if (result.success) {
-        console.log('Alle Dateien wurden erfolgreich umbenannt.');
-      } else {
-        console.error('Fehler beim Umbenennen:', result.errors);
-      }
-    });
+    console.log(changedFiles);
+
+    // window.electron.renameFiles(changedFiles).then(result => {
+    //   if (result.success) {
+    //     console.log('Alle Dateien wurden erfolgreich umbenannt.');
+    //   } else {
+    //     console.error('Fehler beim Umbenennen:', result.errors);
+    //   }
+    // });
+  }
+
+  apply() {
+    console.log('apply');
+    this.replaceTool()?.cancelChanges();
+  }
+
+  cancel() {
+    console.log('cancel');
+    this.replaceTool()?.acceptChanges();
   }
 }

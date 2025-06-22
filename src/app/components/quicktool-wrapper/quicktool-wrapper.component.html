@@ -1,0 +1,21 @@
+<div class="router-bg-color margin-medium material-box-shadow-lowkey">
+  <div class="font-size-medium padding-medium display-flex flex-centralize-v cursor-pointer"
+       (click)="toggle()">
+    <i class="material-icons font-size-medium margin-medium-right">{{ icon }}</i>
+    <div>
+      Replacement
+    </div>
+  </div>
+
+  <div *ngIf="expanded">
+    <div>
+      <ng-content select="[tool-content]"></ng-content>
+    </div>
+    <div>
+      <div class="display-flex padding-medium flex-space-between-v">
+        <button mat-raised-button class="font-color" (click)="cancelChanges()">Cancel</button>
+        <button mat-flat-button class="font-color" (click)="acceptChanges()">Accept</button>
+      </div>
+    </div>
+  </div>
+</div>

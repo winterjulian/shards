@@ -3,12 +3,12 @@ import {ThemeService} from '../../services/theme.service';
 import {NgClass, NgOptimizedImage} from '@angular/common';
 import {WorkflowService} from '../../services/workflow.service';
 import {MatButton} from '@angular/material/button';
+import {StoreService} from '../../services/store.service';
 
 @Component({
   selector: 'app-header',
   imports: [
     NgOptimizedImage,
-    MatButton,
     NgClass
   ],
   templateUrl: './header.component.html',
@@ -18,7 +18,8 @@ import {MatButton} from '@angular/material/button';
 export class HeaderComponent {
   constructor(
     public themeService: ThemeService,
-    public workflowService: WorkflowService
+    public workflowService: WorkflowService,
+    public store: StoreService
   ) {}
 
   testFunc($event: boolean): void {

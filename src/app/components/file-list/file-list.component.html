@@ -8,11 +8,12 @@
              class="example-box display-flex flex-centralize-v file-item">
           <div class="example-custom-placeholder router-bg-color material-box-shadow-inset" *cdkDragPlaceholder></div>
           <div class="display-flex flex-centralize-v width-100-percent height-100-percent">
-            @if (file.index !== index) {
-              <div class="index-column highlighted">{{ file.index+1 }}.</div>
-            } @else {
-              <div class="index-column">{{ file.index+1 }}.</div>
-            }
+            <div
+              class="index-column padding-small-left"
+              [ngClass]="{ 'highlighted': file.index !== index }"
+            >
+              {{ file.index + 1 }}.
+            </div>
             <div class="display-flex cursor-grab height-100-percent flex-centralize-h flex-centralize-v" style="width: 24px">
               <i cdkDragHandle class="material-icons font-size-medium">drag_indicator</i>
             </div>
@@ -36,7 +37,7 @@
           <div
             class="display-flex flex-centralize-v padding-small-right"
             (click)="editFileName($event, file)">
-            <i class="material-icons font-size-medium">edit</i>
+<!--            <i class="material-icons font-size-medium">edit</i>-->
           </div>
         </div>
       }

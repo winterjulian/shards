@@ -1,42 +1,26 @@
 <div class="basic-border padding-small bg-color">
-  <div class="font-size-medium padding-small display-flex flex-centralize-v" (click)="toggleExpansion()">
-    <i class="material-icons font-size-medium">sync</i>
-    <div>
-      Replacement
+  <div class="display-flex flex-centralize-v padding-small">
+    <div class="display-flex width-100-percent">
+      <input
+        [(ngModel)]="pattern"
+        (keyup)="highlightString()"
+        type="text"
+        placeholder="Particle to be replaced"
+        class="basic-input-field width-100-percent">
     </div>
   </div>
 
-  <div *ngIf="opened">
-    <div class="display-flex flex-centralize-v padding-small">
-      <div class="display-flex width-100-percent">
-        <input
-          [(ngModel)]="pattern"
-          (keyup)="highlightString()"
-          type="text"
-          placeholder="Particle to be replaced"
-          class="basic-input-field width-100-percent">
-      </div>
+  <div class="display-flex flex-centralize-v padding-small">
+    <div class="display-flex width-100-percent">
+      <input
+        [(ngModel)]="replacement"
+        (input)="testFunc()"
+        type="text"
+        placeholder="Replacement particle"
+        class="basic-input-field width-100-percent">
     </div>
-
-    <div class="display-flex flex-centralize-v padding-small">
-      <div class="display-flex width-100-percent">
-        <input
-          [(ngModel)]="replacement"
-          type="text"
-          placeholder="Replacement particle"
-          class="basic-input-field width-100-percent">
-      </div>
-      <div class="display-flex width-50-percent">
-        <button class="basic-button basic-button-purple width-100-percent" (click)="generatePreview()">Preview</button>
-      </div>
-      <div class="display-flex width-50-percent">
-        <button class="basic-button basic-button-colorless width-100-percent" (click)="undoChanges()">Undo</button>
-      </div>
-    </div>
-
-    <div class="display-flex padding-small flex-space-between-v">
-      <button class="basic-button basic-button-colorless" (click)="cancelChanges()">Abbrechen</button>
-      <button class="basic-button basic-button-red" (click)="acceptChanges()">Annehmen</button>
+    <div class="display-flex width-50-percent">
+      <button class="basic-button basic-button-colorless width-100-percent" (click)="undoChanges()">Undo</button>
     </div>
   </div>
 </div>

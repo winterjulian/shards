@@ -6,6 +6,7 @@ import {FileMonitorComponent} from '../file-monitor/file-monitor.component';
 import {NgIf} from '@angular/common';
 import {StoreService} from '../../services/store.service';
 import {WorkflowService} from '../../services/workflow.service';
+import {PercentageVerticalComponent} from '../percentage-vertical/percentage-vertical.component';
 
 @Component({
   selector: 'app-file-manager',
@@ -15,7 +16,9 @@ import {WorkflowService} from '../../services/workflow.service';
     FileSelectorComponent,
     FileListComponent,
     FileMonitorComponent,
-    NgIf
+    NgIf,
+    PercentageVerticalComponent,
+    FileMonitorComponent
   ],
   templateUrl: './file-manager.component.html',
   standalone: true,
