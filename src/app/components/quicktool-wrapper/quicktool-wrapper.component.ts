@@ -1,8 +1,7 @@
-import {Component, ContentChild, EventEmitter, inject, input, Input, output, Output} from '@angular/core';
+import {Component, input, output} from '@angular/core';
 import {NgIf} from '@angular/common';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatButton} from '@angular/material/button';
-import {WorkflowService} from '../../services/workflow.service';
 
 @Component({
   selector: 'app-quicktool-wrapper',
@@ -17,6 +16,8 @@ import {WorkflowService} from '../../services/workflow.service';
 export class QuicktoolWrapperComponent {
   title = input.required<string>();
   icon = input<string>('sync');
+  isAcceptDisabled = input<boolean>(false);
+  isCancelDisabled = input<boolean>(false);
   accept = output<void>();
   cancel = output<void>();
   expand = output<boolean>();

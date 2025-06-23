@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, signal} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { StoreService } from '../../../services/store.service';
 import { WorkflowService } from '../../../services/workflow.service';
@@ -12,14 +12,13 @@ import { ExtendedFile } from '../../../interfaces/extendedFile';
   styleUrls: ['./indexer-tool.component.css']
 })
 export class IndexerToolComponent {
+  public isAcceptDisabled = signal<boolean>(true);
+
   alternativeName: string = ''
   placeholderForNumber: number = 0;
   startingFrom: number = 0;
   spacerText: string = '';
   positionToggle: boolean = false;
-  opened: boolean = false;
-
-  backupFileNames: string[] = [];
 
   constructor(
     public store: StoreService,
@@ -50,35 +49,20 @@ export class IndexerToolComponent {
   }
 
   onAccept() {
-    this.opened = false;
-
-    this.backupFileNames = [];
-    this.store.filesSignal().forEach((file: ExtendedFile) => {
-      if (file.isSelected) {
-        file.changedName = file.displayName;
-        file.changed = true;
-      }
-    })
+    this.store.addSnapshotToHistory();
+    this.resetComponent();
   }
 
   onCancel() {
-
-    let counter = 0;
-
-    // this.store.filesSignal().forEach((file: ExtendedFile) => {
-    //   if (file.isSelected) {
-    //     console.log(this.backupFileNames[counter])
-    //     file.displayName = this.backupFileNames[counter];
-    //     counter += 1;
-    //   }
-    // })
-
-    this.setBackComponent()
+    this.resetComponent()
   }
 
-  setBackComponent(): void {
-    this.opened = false;
-    this.backupFileNames = [];
+  resetComponent(): void {
+    this.alternativeName = ''
+    this.placeholderForNumber = 0;
+    this.startingFrom = 0;
+    this.spacerText = '';
+    this.positionToggle = false;
   }
 }
 

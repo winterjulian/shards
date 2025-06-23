@@ -1,11 +1,14 @@
-import {computed, Injectable, signal} from '@angular/core';
+import {computed, inject, Injectable, signal} from '@angular/core';
 import {ExtendedFile} from '../interfaces/extendedFile';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import {HistoryService} from './history.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StoreService {
+  private history = inject(HistoryService)
+  private interSnapshot: string[] = [];
   filesSignal = signal<ExtendedFile[]>([]);
   selectionCounterSignal = signal<number>(0);
   visibilitySignal = signal<number>(0);
@@ -234,39 +237,9 @@ export class StoreService {
     })
   }
 
-  createNameCopy() {
-    let array: string[] = []
-    this.filesSignal().forEach(file => {
-      array.push(file.changedName);
-    })
-    this.formerNames.update(names => [...names, array]);
-  }
-
-  get isUndoNameChangesPossible() {
-    return this.formerNames().length > 0;
-  }
-
-  findNextSelectedFileUp(startIndex: number) {
-    for (let i = startIndex + 1; i < this.filesSignal().length; i++) {
-      if (this.filesSignal()[i].isSelected) {
-        return i;
-      }
-    }
-    return -1;
-  }
-
-  findNextSelectedFileDown(startIndex: number) {
-    for (let i = startIndex - 1; i >= 0; i--) {
-      if (this.filesSignal()[i].isSelected) {
-        return i;
-      }
-    }
-    return -1;
-  }
-
-  undoNameChange() {
-    this.filesSignal().forEach((file: ExtendedFile, index: number) => {
-      file.changedName = this.formerNames()[this.formerNames().length-1][index]
+  transferDisplayToChangedName() {
+    this.filesSignal().forEach((file: ExtendedFile) => {
+      file.changedName = file.displayName;
     })
   }
 
@@ -284,7 +257,70 @@ export class StoreService {
     this.lastSelectedFile.set(undefined);
   }
 
-  testFunc(inp: any) {
-    console.log(inp);
+  // HISTORY SERVICE
+
+  addIntermediateSnapshot(): void {
+    this.interSnapshot = this.filesSignal().map(f => f.changedName);
+  }
+
+  clearIntermediateSnapshot(): void {
+    this.interSnapshot = [];
+  }
+
+  transferIntermediateSnapshot(): void {
+    this.history.addSnapshot(this.interSnapshot);
+  }
+
+  resetFileNamesFromIntermediateSnapshot(): void {
+    const intermediate = this.interSnapshot;
+    if (!intermediate || intermediate.length === 0) return;
+
+    const updatedFiles = this.filesSignal().map((file, index) => {
+      const restoredName = intermediate[index];
+      return {
+        ...file,
+        changedName: restoredName,
+        displayName: restoredName,
+      };
+    });
+
+    this.filesSignal.set(updatedFiles);
+  }
+
+  addSnapshotToHistory(): void {
+    const names = this.filesSignal().map(f => f.changedName);
+    this.history.addSnapshot(names);
+  }
+
+  getSnapShotFromHistory(): string[][] {
+    return this.history.history;
+  }
+
+  undo(): void {
+    const snapshot = this.history.undo();
+    if (snapshot) {
+      const updatedFiles = this.filesSignal().map((file, index) => ({
+        ...file,
+        changedName: snapshot[index],
+        displayName: snapshot[index],
+      }));
+      this.filesSignal.set(updatedFiles);
+    }
+  }
+
+  redo(): void {
+    const snapshot = this.history.redo();
+    if (snapshot) {
+      const updatedFiles = this.filesSignal().map((file, index) => ({
+        ...file,
+        changedName: snapshot[index],
+        displayName: snapshot[index],
+      }));
+      this.filesSignal.set(updatedFiles);
+    }
+  }
+
+  clearHistory(): void {
+    this.history.clear();
   }
 }

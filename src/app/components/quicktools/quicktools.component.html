@@ -3,9 +3,10 @@
     <div class="display-flex margin-medium" [ngClass]="{'flex-direction-col': !verticalPosition}">
       <app-quicktool-wrapper
         #replaceWrapper
-        (expand)="onToolExpand('replace', replaceWrapper.cancelChanges.bind(replaceWrapper))"
-        (accept)="replaceTool.onAccept()"
-        (cancel)="replaceTool.onCancel()"
+        (expand)="onExpand('replace', replaceWrapper.cancelChanges.bind(replaceWrapper))"
+        (accept)="onAccept(); replaceTool.onAccept()"
+        (cancel)="onCancel(); replaceTool.onCancel()"
+        [isAcceptDisabled]="replaceTool.isAcceptDisabled()"
         title="Replacement"
         icon="settings">
         <div tool-content>
@@ -15,9 +16,10 @@
 
       <app-quicktool-wrapper
         #indexerWrapper
-        (expand)="onToolExpand('indexer', indexerWrapper.cancelChanges.bind(indexerWrapper))"
-        (accept)="indexerTool.onAccept()"
-        (cancel)="indexerTool.onCancel()"
+        (expand)="onExpand('indexer', indexerWrapper.cancelChanges.bind(indexerWrapper))"
+        (accept)="onAccept(); indexerTool.onAccept()"
+        (cancel)="onCancel(); indexerTool.onCancel()"
+        [isAcceptDisabled]="indexerTool.isAcceptDisabled()"
         title="Indexer">
         <div tool-content>
           <app-indexer-tool #indexerTool></app-indexer-tool>

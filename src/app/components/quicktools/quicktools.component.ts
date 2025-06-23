@@ -3,7 +3,6 @@ import {NgClass} from '@angular/common';
 import {ReplaceToolComponent} from '../quicktools_components/replace-tool/replace-tool.component';
 import {StoreService} from '../../services/store.service';
 import {IndexerToolComponent} from '../quicktools_components/indexer-tool/indexer-tool.component';
-import {MatSlideToggle} from "@angular/material/slide-toggle";
 import {WorkflowService} from '../../services/workflow.service';
 import {MatButton} from '@angular/material/button';
 import {QuicktoolWrapperComponent} from '../quicktool-wrapper/quicktool-wrapper.component';
@@ -51,12 +50,24 @@ export class QuicktoolsComponent {
     this.workflowService.setIsProcessing(false);
   }
 
-  onToolExpand(name: string, cancelFn: () => void) {
-    console.log(this.activeTool?.name)
+  onExpand(name: string, cancelFn: () => void) {
+    this.store.addIntermediateSnapshot();
+
     if (this.activeTool && this.activeTool.name !== name) {
       console.log('cancel');
       this.activeTool.cancelFn();
     }
     this.activeTool = { name, cancelFn };
+  }
+
+  onAccept() {
+    this.store.transferDisplayToChangedName();
+    this.store.transferIntermediateSnapshot();
+    this.store.clearIntermediateSnapshot();
+  }
+
+  onCancel() {
+    this.store.clearIntermediateSnapshot();
+    this.store.resetFileNamesFromIntermediateSnapshot()
   }
 }
