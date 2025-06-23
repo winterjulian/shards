@@ -28,8 +28,10 @@ html,body{
 }
 
 html {
+  --bg-color-gradient: linear-gradient(45deg, rgb(145, 145, 145) 0%, rgb(255, 255, 255) 100%);
   --bg-color-intense: #f3f3f3;
   --bg-color-smooth: #dfdfdf;
+  --bg-color-highlight-gradient: linear-gradient(90deg,rgba(198, 147, 198, 1) 15%, rgb(223, 223, 223) 100%);;
   --bg-color-highlight: #c693c6;
   --bg-color-highlight_2: #c35cc3;
   --font-color: #2e2e30;
@@ -51,8 +53,10 @@ html {
 }
 
 html.dark-mode {
+  --bg-color-gradient: linear-gradient(45deg, rgb(16, 16, 16) 0%, rgb(46, 46, 46) 100%);
   --bg-color-intense: #202020;
   --bg-color-smooth: #2c2c2c;
+  --bg-color-highlight-gradient: linear-gradient(90deg,rgba(93, 40, 93, 1) 15%, rgb(44, 44, 44) 100%);;
   --bg-color-highlight: #5d285d;
   --bg-color-highlight_2: #c35cc3;
   --font-color: #d8d8d8;
@@ -90,6 +94,10 @@ html.dark-mode {
   ));
 }
 
+.gradient-bg-color {
+  background: var(--bg-color-gradient)
+}
+
 .router-bg-color {
   background-color: var(--bg-color-intense);
 }
@@ -100,6 +108,10 @@ html.dark-mode {
 
 .highlight-bg-color {
   background-color: var(--bg-color-highlight);
+}
+
+.highlight-bg-color-gradient {
+  background: var(--bg-color-highlight-gradient);
 }
 
 .basic-input-field {

@@ -1,13 +1,13 @@
 <div class="display-flex height-100-percent width-100-percent">
 
-  <div #body class="display-flex height-100-percent width-100-percent" [ngClass]="{'flex-direction-col' : verticalPosition()}">
+  <div class="display-flex height-100-percent width-100-percent">
 
     <div class="display-flex flex-direction-col height-100-percent overflow-hidden width-100-percent">
       <app-file-manager class="height-100-percent"></app-file-manager>
     </div>
     @if(workflowService.isProcessing()) {
       <div class="z-index-king header-bg-color material-box-shadow-intense" style="width: 550px">
-        <app-quicktools (onVerticalPositionChange)="this.verticalPosition.set($event)"></app-quicktools>
+        <app-quicktools></app-quicktools>
       </div>
     }
 

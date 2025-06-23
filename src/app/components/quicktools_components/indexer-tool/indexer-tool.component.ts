@@ -25,7 +25,7 @@ export class IndexerToolComponent {
   ) {}
 
   indexingString() {
-    if (!this.startingFrom) {
+    if (this.startingFrom === undefined) {
       return
     }
 

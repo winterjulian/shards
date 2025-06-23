@@ -44,14 +44,6 @@ export class QuicktoolsComponent {
       .filter(file => file.changed);
 
     console.log(changedFiles);
-
-    // window.electron.renameFiles(changedFiles).then(result => {
-    //   if (result.success) {
-    //     console.log('Alle Dateien wurden erfolgreich umbenannt.');
-    //   } else {
-    //     console.error('Fehler beim Umbenennen:', result.errors);
-    //   }
-    // });
   }
 
   cancelChanges() {

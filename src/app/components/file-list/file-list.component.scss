@@ -11,15 +11,15 @@
   color: #c35cc3;
 }
 
-.example-box {
+.file-entry {
   font-family: "Roboto", sans-serif;
 }
 
-.example-box:hover {
-  background-color: var(--bg-color-highlight_2);
+.file-entry:hover {
+  background: var(--bg-color-highlight_2);
 }
 
-.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+.example-list.cdk-drop-list-dragging .file-entry:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 

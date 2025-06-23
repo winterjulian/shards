@@ -4,8 +4,8 @@
     @for (file of store.filesSignal(); track file; let index = $index) {
       @if(file.isVisible) {
         <div cdkDrag
-             [ngClass]="{'highlight-bg-color': file.isSelected, 'header-bg-color': !file.isSelected }"
-             class="example-box display-flex flex-centralize-v file-item">
+             [ngClass]="{'highlight-bg-color-gradient': file.isSelected, 'header-bg-color': !file.isSelected }"
+             class="file-entry display-flex flex-centralize-v file-item">
           <div class="example-custom-placeholder router-bg-color material-box-shadow-inset" *cdkDragPlaceholder></div>
           <div class="display-flex flex-centralize-v width-100-percent height-100-percent">
             <div

@@ -250,6 +250,16 @@ export class StoreService {
     this.lastSelectedFile.set(undefined);
   }
 
+  renameFiles() {
+    window.electron.renameFiles(this.filesSignal()).then(result => {
+      if (result.success) {
+        console.log('Alle Dateien wurden erfolgreich umbenannt.');
+      } else {
+        console.error('Fehler beim Umbenennen:', result.errors);
+      }
+    });
+  }
+
   // HISTORY SERVICE
 
   addIntermediateSnapshot(): void {
