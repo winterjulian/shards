@@ -30,7 +30,6 @@ export class ReplaceToolComponent {
       return;
     }
 
-    this.store.addSnapshotToHistory();
     this.resetComponent();
   }
 

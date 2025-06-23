@@ -9,18 +9,17 @@
           <div class="example-custom-placeholder router-bg-color material-box-shadow-inset" *cdkDragPlaceholder></div>
           <div class="display-flex flex-centralize-v width-100-percent height-100-percent">
             <div
-              class="index-column padding-small-left"
+              class="display-flex flex-flex-end index-column padding-small-left padding-medium-right"
               [ngClass]="{ 'highlighted': file.index !== index }"
             >
               {{ file.index + 1 }}.
             </div>
-            <div class="display-flex cursor-grab height-100-percent flex-centralize-h flex-centralize-v" style="width: 24px">
+            <div class="display-flex cursor-grab height-100-percent flex-centralize-h flex-centralize-v padding-medium-right">
               <i cdkDragHandle class="material-icons font-size-medium">drag_indicator</i>
             </div>
             <div
-              class="display-flex flex-centralize-v"
-              style="width: 20px">
-              @if(file.changed) {
+              class="display-flex flex-centralize-v padding-medium-right index-column">
+              @if(file.name !== file.changedName) {
                 <i class="material-icons font-size-medium">settings</i>
               }
             </div>

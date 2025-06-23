@@ -31,6 +31,14 @@ export class QuicktoolsComponent {
     public workflowService: WorkflowService,
   ) {}
 
+  undoChanges() {
+    this.store.undo();
+  }
+
+  redoChanges() {
+    this.store.redo();
+  }
+
   applyChanges() {
     const changedFiles = this.store.filesSignal()
       .filter(file => file.changed);
@@ -62,7 +70,7 @@ export class QuicktoolsComponent {
 
   onAccept() {
     this.store.transferDisplayToChangedName();
-    this.store.transferIntermediateSnapshot();
+    this.store.addSnapshotToHistory();
     this.store.clearIntermediateSnapshot();
   }
 

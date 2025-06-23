@@ -3,7 +3,7 @@ import {Injectable} from '@angular/core';
 @Injectable({ providedIn: 'root' })
 export class HistoryService {
   public history: string[][] = [];
-  private currentIndex = -1;
+  public currentIndex = -1;
   private readonly maxSteps = 20;
 
   addSnapshot(names: string[]): void {

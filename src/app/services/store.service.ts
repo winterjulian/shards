@@ -7,7 +7,7 @@ import {HistoryService} from './history.service';
   providedIn: 'root'
 })
 export class StoreService {
-  private history = inject(HistoryService)
+  public history = inject(HistoryService)
   private interSnapshot: string[] = [];
   filesSignal = signal<ExtendedFile[]>([]);
   selectionCounterSignal = signal<number>(0);
@@ -27,14 +27,9 @@ export class StoreService {
   searchStringSignal = signal<string>("");
   matchingShards = signal<string[]>([]);
 
-  formerNames = signal<string[][]>([]);
   isClearable = signal<boolean>(false);
 
   lastSelectedFile = signal<ExtendedFile | undefined>(undefined);
-
-  selectFile(file: ExtendedFile) {
-    this.setFileIsSelected(file, !file.isSelected);
-  }
 
   setFileIsSelected(file: ExtendedFile, isSelected: boolean) {
     if (file.isSelected === isSelected) return;
@@ -234,6 +229,7 @@ export class StoreService {
     window.electron.openFiles().then((files: Array<ExtendedFile>) => {
       this.filesSignal.set(files);
       this.resetVisibility();
+      this.addSnapshotToHistory()
     })
   }
 
@@ -271,6 +267,14 @@ export class StoreService {
     this.history.addSnapshot(this.interSnapshot);
   }
 
+  canUndo() {
+    return this.history.canUndo();
+  }
+
+  canRedo() {
+    return this.history.canRedo();
+  }
+
   resetFileNamesFromIntermediateSnapshot(): void {
     const intermediate = this.interSnapshot;
     if (!intermediate || intermediate.length === 0) return;
@@ -298,6 +302,9 @@ export class StoreService {
 
   undo(): void {
     const snapshot = this.history.undo();
+
+    console.log(snapshot);
+
     if (snapshot) {
       const updatedFiles = this.filesSignal().map((file, index) => ({
         ...file,
@@ -310,6 +317,9 @@ export class StoreService {
 
   redo(): void {
     const snapshot = this.history.redo();
+
+    console.log(snapshot);
+
     if (snapshot) {
       const updatedFiles = this.filesSignal().map((file, index) => ({
         ...file,

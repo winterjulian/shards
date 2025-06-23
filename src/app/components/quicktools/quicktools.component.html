@@ -1,6 +1,16 @@
 <div class="width-100-percent height-100-percent basic-element-background">
   <div class="display-flex height-100-percent flex-direction-col flex-space-between-v">
-    <div class="display-flex margin-medium" [ngClass]="{'flex-direction-col': !verticalPosition}">
+    <div class="display-flex flex-space-between-v margin-xlarge">
+      <button [disabled]="!this.store.canUndo()" mat-raised-button class="font-color" (click)="undoChanges()">
+        <i class="material-icons font-size-medium margin-medium-right">undo</i>
+        Undo
+      </button>
+      <button [disabled]="!this.store.canRedo()" mat-flat-button class="font-color" (click)="redoChanges()">
+        Redo
+        <i class="material-icons font-size-medium margin-medium-right">redo</i>
+      </button>
+    </div>
+    <div class="display-flex margin-medium height-100-percent" [ngClass]="{'flex-direction-col': !verticalPosition}">
       <app-quicktool-wrapper
         #replaceWrapper
         (expand)="onExpand('replace', replaceWrapper.cancelChanges.bind(replaceWrapper))"
