@@ -62,7 +62,6 @@ export class QuicktoolsComponent {
     this.store.addIntermediateSnapshot();
 
     if (this.activeTool && this.activeTool.name !== name) {
-      console.log('cancel');
       this.activeTool.cancelFn();
     }
     this.activeTool = { name, cancelFn };

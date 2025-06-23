@@ -123,7 +123,6 @@ export class StoreService {
   }
 
   resetSearch() {
-    console.log('RESET SEARCH');
     this.searchStringSignal.update(() => "");
     this.resetVisibility();
     this.resetMatchGroups();
@@ -202,10 +201,8 @@ export class StoreService {
         file.isVisible = true;
 
         const regex = new RegExp(filterString, 'gi');
-        console.log("Generated Regex:", regex);
 
         file.displayName = file.name.replace(regex, '<span class="highlight">$&</span>');
-        console.log("Highlighted Display Name:", file.displayName);
       } else {
         file.isVisible = false;
         visibilityCounter -= 1;
@@ -303,8 +300,6 @@ export class StoreService {
   undo(): void {
     const snapshot = this.history.undo();
 
-    console.log(snapshot);
-
     if (snapshot) {
       const updatedFiles = this.filesSignal().map((file, index) => ({
         ...file,
@@ -317,8 +312,6 @@ export class StoreService {
 
   redo(): void {
     const snapshot = this.history.redo();
-
-    console.log(snapshot);
 
     if (snapshot) {
       const updatedFiles = this.filesSignal().map((file, index) => ({
