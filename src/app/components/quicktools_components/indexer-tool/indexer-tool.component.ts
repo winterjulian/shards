@@ -15,16 +15,20 @@ export class IndexerToolComponent {
   public isAcceptDisabled = signal<boolean>(true);
 
   alternativeName: string = ''
-  placeholderForNumber: number = 0;
-  startingFrom: number = 0;
+  placeholderForNumber: number = 1;
+  startingFrom: number | undefined = undefined;
   spacerText: string = '';
-  positionToggle: boolean = false;
+  positionToggle: boolean = true;
 
   constructor(
     public store: StoreService,
   ) {}
 
   indexingString() {
+    if (!this.startingFrom) {
+      return
+    }
+
     const placeholderLength = this.placeholderForNumber || 0;
     let counter = this.startingFrom;
 
@@ -46,10 +50,11 @@ export class IndexerToolComponent {
         file.displayName = fileName;
       }
     });
+
+    this.isAcceptDisabled.set(false);
   }
 
   onAccept() {
-    this.store.addSnapshotToHistory();
     this.resetComponent();
   }
 
@@ -59,10 +64,10 @@ export class IndexerToolComponent {
 
   resetComponent(): void {
     this.alternativeName = ''
-    this.placeholderForNumber = 0;
-    this.startingFrom = 0;
+    this.placeholderForNumber = 1;
+    this.startingFrom = undefined;
     this.spacerText = '';
-    this.positionToggle = false;
+    this.positionToggle = true;
   }
 }
 

@@ -274,6 +274,7 @@ export class StoreService {
 
   resetFileNamesFromIntermediateSnapshot(): void {
     const intermediate = this.interSnapshot;
+
     if (!intermediate || intermediate.length === 0) return;
 
     const updatedFiles = this.filesSignal().map((file, index) => {

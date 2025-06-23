@@ -21,15 +21,6 @@
     </div>
     <div class="display-flex width-100-percent">
       <input
-        [(ngModel)]="placeholderForNumber"
-        (ngModelChange)="indexingString()"
-        type="number"
-        placeholder="Positions for numbers"
-        min="0"
-        class="basic-input-field width-100-percent">
-    </div>
-    <div class="display-flex width-100-percent">
-      <input
         [(ngModel)]="startingFrom"
         (ngModelChange)="indexingString()"
         type="number"
@@ -37,9 +28,18 @@
         min="0"
         class="basic-input-field width-100-percent">
     </div>
+    <div class="display-flex width-100-percent">
+      <input
+        [(ngModel)]="placeholderForNumber"
+        (ngModelChange)="indexingString()"
+        type="number"
+        placeholder="Positions for numbers"
+        min="1"
+        class="basic-input-field width-100-percent">
+    </div>
   </div>
 
-  <div class="display-flex flex-centralize-v padding-small">
+  <div class="flex-centralize-v flex-centralize-h padding-small">
     <div class="padding-small-right">
       Left
     </div>

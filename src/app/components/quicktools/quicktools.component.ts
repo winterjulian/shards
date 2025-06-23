@@ -74,7 +74,7 @@ export class QuicktoolsComponent {
   }
 
   onCancel() {
-    this.store.clearIntermediateSnapshot();
     this.store.resetFileNamesFromIntermediateSnapshot()
+    this.store.clearIntermediateSnapshot();
   }
 }
