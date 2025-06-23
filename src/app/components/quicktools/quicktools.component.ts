@@ -6,6 +6,7 @@ import {IndexerToolComponent} from '../quicktools_components/indexer-tool/indexe
 import {WorkflowService} from '../../services/workflow.service';
 import {MatButton} from '@angular/material/button';
 import {QuicktoolWrapperComponent} from '../quicktool-wrapper/quicktool-wrapper.component';
+import {CaseConverterToolComponent} from '../quicktools_components/case-converter-tool/case-converter-tool.component';
 
 @Component({
   selector: 'app-quicktools',
@@ -15,6 +16,7 @@ import {QuicktoolWrapperComponent} from '../quicktool-wrapper/quicktool-wrapper.
     IndexerToolComponent,
     MatButton,
     QuicktoolWrapperComponent,
+    CaseConverterToolComponent,
   ],
   templateUrl: './quicktools.component.html',
   standalone: true,

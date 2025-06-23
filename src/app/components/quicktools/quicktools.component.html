@@ -35,6 +35,19 @@
           <app-indexer-tool #indexerTool></app-indexer-tool>
         </div>
       </app-quicktool-wrapper>
+
+      <app-quicktool-wrapper
+        #caseConverterWrapper
+        (expand)="onExpand('caseConverter', caseConverterWrapper.cancelChanges.bind(caseConverterWrapper))"
+        (accept)="onAccept(); caseConverter.onAccept()"
+        (cancel)="onCancel(); caseConverter.onCancel()"
+        [isAcceptDisabled]="caseConverter.isAcceptDisabled()"
+        title="Case Converter"
+        icon="text_format">
+        <div tool-content>
+          <app-case-converter-tool #caseConverter></app-case-converter-tool>
+        </div>
+      </app-quicktool-wrapper>
     </div>
     <div id="button-bar" class="display-flex flex-space-between-v margin-xlarge">
       <button mat-raised-button class="font-color" (click)="cancelChanges()">Cancel</button>
