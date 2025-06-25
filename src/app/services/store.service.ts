@@ -26,7 +26,7 @@ export class StoreService {
   });
   searchStringSignal = signal<string>("");
   matchingShards = signal<string[]>([]);
-
+  isLoading = signal<boolean>(false);
   isClearable = signal<boolean>(false);
 
   lastSelectedFile = signal<ExtendedFile | undefined>(undefined);
@@ -316,6 +316,16 @@ export class StoreService {
     }
   }
 
+  getChangedFilesAsNumber(): number {
+    let counter = 0;
+    this.filesSignal().forEach((file: ExtendedFile) => {
+      if (file.changedName !== file.name) {
+        counter++;
+      }
+    })
+    return counter
+  }
+
   clearHistory(): void {
     this.history.clear();
   }
@@ -344,12 +354,18 @@ export class StoreService {
   }
 
   renameFiles() {
-    window.electron.renameFiles(this.filesSignal()).then(result => {
+    this.isLoading.set(true);
+    const filesToRename = this.filesSignal().filter(f => f.changedName !== f.name)
+
+    window.electron.renameFiles(filesToRename).then(result => {
       if (result.success) {
-        console.log('Alle Dateien wurden erfolgreich umbenannt.');
+        result.renamedFiles?.forEach((file: ExtendedFile) => {
+          this.filesSignal()[file.index] = file;
+        })
       } else {
         console.error('Fehler beim Umbenennen:', result.errors);
       }
+      this.isLoading.set(false);
     });
   }
 }

@@ -7,6 +7,8 @@ import {WorkflowService} from '../../services/workflow.service';
 import {MatButton} from '@angular/material/button';
 import {QuicktoolWrapperComponent} from '../quicktool-wrapper/quicktool-wrapper.component';
 import {CaseConverterToolComponent} from '../quicktools_components/case-converter-tool/case-converter-tool.component';
+import {MatDialog} from '@angular/material/dialog';
+import {DialogRenameComponent} from '../dialog-rename/dialog-rename.component';
 
 @Component({
   selector: 'app-quicktools',
@@ -25,6 +27,7 @@ import {CaseConverterToolComponent} from '../quicktools_components/case-converte
 export class QuicktoolsComponent {
   @Output() onVerticalPositionChange = new EventEmitter();
 
+  readonly dialog = inject(MatDialog);
   activeTool: { name: string, cancelFn: () => void } | null = null;
   verticalPosition: boolean = false;
 
@@ -42,10 +45,20 @@ export class QuicktoolsComponent {
   }
 
   applyChanges() {
-    const changedFiles = this.store.filesSignal()
-      .filter(file => file.changed);
+    this.openDialog();
+  }
 
-    console.log(changedFiles);
+  openDialog(): void {
+    console.log(this.store.getChangedFilesAsNumber());
+    const dialogRef = this.dialog.open(DialogRenameComponent, {
+      data: { changedFiles: this.store.getChangedFilesAsNumber() },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.store.renameFiles();
+      }
+    });
   }
 
   cancelChanges() {

@@ -6,7 +6,10 @@ declare global {
       openFiles: () => Promise<ExtendedFile[]>;
       renameFiles: (
         filesToRename: ExtendedFile[]
-      ) => Promise<{ success: boolean; errors?: Array<{ file: string; message: string }> }>;
+      ) => Promise<{
+        success: boolean;
+        renamedFiles?: Array<ExtendedFile>;
+        errors?: Array<{ file: string; message: string }> }>;
     };
   }
 }

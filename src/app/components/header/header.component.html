@@ -10,7 +10,7 @@
   </div>
   <div style="min-width: 500px">
     <div class="font-size-xxxlarge">Source</div>
-    <div>{{ store.filesSignal()[0].path }}&ensp;</div>
+    <div>{{ store.filesSignal().length > 0 ? store.filesSignal()[0].path : '&ensp;' }}</div>
   </div>
   <div>
     <div>Imported files</div>
