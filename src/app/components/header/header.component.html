@@ -8,16 +8,16 @@
       <img ngSrc="assets/shardsLogo.png" priority alt="shardsLogo" width="285" height="60">
     }
   </div>
+  <div style="min-width: 500px">
+    <div class="font-size-xxxlarge">Source</div>
+    <div>{{ store.filesSignal()[0].path }}&ensp;</div>
+  </div>
   <div>
     <div>Imported files</div>
     <div class="font-size-xxxlarge">{{ store.filesSignal().length }}</div>
   </div>
   <div>
     <div>Selected files</div>
-    <div class="font-size-xxxlarge">{{ store.selectionCounterSignal() }}</div>
-  </div>
-  <div>
-    <div>Changed files</div>
     <div class="font-size-xxxlarge">{{ store.selectionCounterSignal() }}</div>
   </div>
   <div class="padding-small">

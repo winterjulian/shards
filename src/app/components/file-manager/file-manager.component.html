@@ -19,10 +19,20 @@
       </div>
     </div>
 
-    <div class="display-flex flex-flex-end margin-xlarge margin-none-top">
+    <div class="display-flex flex-space-between-v margin-xlarge margin-none-top">
+      <div>
+        <button class="font-color" mat-raised-button
+                (click)="getFiles()">
+          Change source
+        </button>
+      </div>
+      <div>
         <button mat-flat-button
                 [disabled]="store.selectionCounterSignal() === 0 || workflowService.isProcessing()"
-                (click)="changeFileNames()">Change names</button>
+                (click)="changeFileNames()">
+          Change names
+        </button>
+      </div>
     </div>
   </div>
 </div>

@@ -222,14 +222,6 @@ export class StoreService {
     }
   }
 
-  getFilesByDialogue() {
-    window.electron.openFiles().then((files: Array<ExtendedFile>) => {
-      this.filesSignal.set(files);
-      this.resetVisibility();
-      this.addSnapshotToHistory()
-    })
-  }
-
   transferDisplayToChangedName() {
     this.filesSignal().forEach((file: ExtendedFile) => {
       file.changedName = file.displayName;
@@ -248,16 +240,6 @@ export class StoreService {
   deselectFile(file: ExtendedFile): void {
     file.isSelected = false;
     this.lastSelectedFile.set(undefined);
-  }
-
-  renameFiles() {
-    window.electron.renameFiles(this.filesSignal()).then(result => {
-      if (result.success) {
-        console.log('Alle Dateien wurden erfolgreich umbenannt.');
-      } else {
-        console.error('Fehler beim Umbenennen:', result.errors);
-      }
-    });
   }
 
   // HISTORY SERVICE
@@ -336,5 +318,38 @@ export class StoreService {
 
   clearHistory(): void {
     this.history.clear();
+  }
+
+  // FILE MANAGEMENT
+
+  countChangedFiles(): number {
+    let counter = 0;
+    this.filesSignal().forEach((file: ExtendedFile) => {
+      if (file.changedName !== file.name) {
+        counter++;
+      }
+    })
+    return counter;
+  }
+
+  getFilesByDialogue() {
+    window.electron.openFiles().then((files: Array<ExtendedFile>) => {
+      if (!files.length) {
+        return;
+      }
+      this.filesSignal.set(files);
+      this.resetVisibility();
+      this.addSnapshotToHistory()
+    })
+  }
+
+  renameFiles() {
+    window.electron.renameFiles(this.filesSignal()).then(result => {
+      if (result.success) {
+        console.log('Alle Dateien wurden erfolgreich umbenannt.');
+      } else {
+        console.error('Fehler beim Umbenennen:', result.errors);
+      }
+    });
   }
 }

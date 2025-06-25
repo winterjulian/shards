@@ -17,6 +17,7 @@
         (accept)="onAccept(); replaceTool.onAccept()"
         (cancel)="onCancel(); replaceTool.onCancel()"
         [isAcceptDisabled]="replaceTool.isAcceptDisabled()"
+        [stopClosingAfterAccept]="true"
         title="Replacement"
         icon="settings">
         <div tool-content>

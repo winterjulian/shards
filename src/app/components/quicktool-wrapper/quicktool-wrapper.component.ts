@@ -18,6 +18,7 @@ export class QuicktoolWrapperComponent {
   icon = input<string>('sync');
   isAcceptDisabled = input<boolean>(false);
   isCancelDisabled = input<boolean>(false);
+  stopClosingAfterAccept = input<boolean>(false);
   accept = output<void>();
   cancel = output<void>();
   expand = output<boolean>();
@@ -35,6 +36,9 @@ export class QuicktoolWrapperComponent {
   }
 
   acceptChanges(): void {
+    if (!this.stopClosingAfterAccept()) {
+      this.isExpanded = false;
+    }
     this.accept.emit();
   }
 }

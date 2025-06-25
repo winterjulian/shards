@@ -48,4 +48,8 @@ export class FileManagerComponent {
   changeFileNames(): void {
     this.workflowService.isProcessing.set(true);
   }
+
+  getFiles() {
+    this.store.getFilesByDialogue()
+  }
 }
