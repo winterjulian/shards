@@ -35,11 +35,6 @@ export class FileListComponent {
 
   constructor(public store: StoreService) {}
 
-  editFileName(e: any, file: ExtendedFile) {
-    e.stopPropagation();
-    console.log(file);
-  }
-
   onMouseDown(event: MouseEvent, file: ExtendedFile) {
     if (event.shiftKey) {
       return;

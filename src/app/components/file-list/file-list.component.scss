@@ -19,7 +19,7 @@
   background: var(--bg-color-highlight_2);
 }
 
-.example-list.cdk-drop-list-dragging .file-entry:not(.cdk-drag-placeholder) {
+.file-list.cdk-drop-list-dragging .file-entry:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
@@ -27,7 +27,7 @@
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-.example-custom-placeholder {
+.file-custom-placeholder {
   height: 38px;
   border: 2px solid var(--bg-color-highlight);
 }

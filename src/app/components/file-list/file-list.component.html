@@ -1,12 +1,19 @@
 <div class="height-100-percent user-select-none">
-  <div style="font-family: Arial,sans-serif" cdkDropList (cdkDropListDropped)="dropFile($event)" class="example-list">
+  <div cdkDropList
+       (cdkDropListDropped)="dropFile($event)"
+       class="basic-font file-list">
 
     @for (file of store.filesSignal(); track file; let index = $index) {
       @if(file.isVisible) {
         <div cdkDrag
-             [ngClass]="{'highlight-bg-color-gradient': file.isSelected, 'header-bg-color': !file.isSelected }"
+             [ngClass]="{
+             'highlight-bg-color-gradient': file.isSelected,
+             'header-bg-color': !file.isSelected
+             }"
              class="file-entry display-flex flex-centralize-v file-item">
-          <div class="example-custom-placeholder router-bg-color material-box-shadow-inset" *cdkDragPlaceholder></div>
+          <div class="file-custom-placeholder router-bg-color material-box-shadow-inset"
+               *cdkDragPlaceholder>
+          </div>
           <div class="display-flex flex-centralize-v width-100-percent height-100-percent">
             <div
               class="display-flex flex-flex-end index-column padding-small-left padding-medium-right"
@@ -33,15 +40,9 @@
               </div>
             </div>
           </div>
-          <div
-            class="display-flex flex-centralize-v padding-small-right"
-            (click)="editFileName($event, file)">
-<!--            <i class="material-icons font-size-medium">edit</i>-->
-          </div>
         </div>
       }
     }
 
   </div>
-
 </div>
