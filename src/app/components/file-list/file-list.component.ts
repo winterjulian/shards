@@ -1,28 +1,22 @@
-import {Component, HostListener} from '@angular/core';
-import {StoreService} from '../../services/store.service';
-import {ExtendedFile} from '../../interfaces/extendedFile';
+import { Component, HostListener } from '@angular/core';
+import { StoreService } from '../../services/store.service';
+import { ExtendedFile } from '../../interfaces/extendedFile';
 import {
   CdkDrag,
   CdkDragDrop,
   CdkDragHandle,
   CdkDragPlaceholder,
   CdkDropList,
-  moveItemInArray
+  moveItemInArray,
 } from '@angular/cdk/drag-drop';
-import {NgClass} from '@angular/common';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-file-list',
-  imports: [
-    CdkDropList,
-    CdkDrag,
-    CdkDragHandle,
-    CdkDragPlaceholder,
-    NgClass
-  ],
+  imports: [CdkDropList, CdkDrag, CdkDragHandle, CdkDragPlaceholder, NgClass],
   templateUrl: './file-list.component.html',
   standalone: true,
-  styleUrl: './file-list.component.scss'
+  styleUrl: './file-list.component.scss',
 })
 export class FileListComponent {
   private selectionMode: 'select' | 'deselect' | null = null;
@@ -59,13 +53,17 @@ export class FileListComponent {
   }
 
   dropFile(event: CdkDragDrop<ExtendedFile[]>) {
-    this.store.changeFileIndex(event)
+    this.store.changeFileIndex(event);
   }
 
   onFileClick(event: MouseEvent, file: ExtendedFile, index: number) {
     const lastSelected = this.store.lastSelectedFile();
     if (event.shiftKey && lastSelected) {
-      this.store.setFilesByIndices(file.index - (file.index-index), lastSelected.index, !file.isSelected);
+      this.store.setFilesByIndices(
+        file.index - (file.index - index),
+        lastSelected.index,
+        !file.isSelected
+      );
     } else {
       this.store.lastSelectedFile.set(file);
     }

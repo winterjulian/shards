@@ -170,7 +170,9 @@ For every project identically
 }
 
 .material-box-shadow-inset {
-  box-shadow: 1px 4px 8px 0 rgba(0, 0, 0, 0.3) inset, 1px 4px 8px 0 rgba(0, 0, 0, 0.22) inset;
+  box-shadow:
+    1px 4px 8px 0 rgba(0, 0, 0, 0.3) inset,
+    1px 4px 8px 0 rgba(0, 0, 0, 0.22) inset;
 }
 
 .material-box-shadow-lowkey {

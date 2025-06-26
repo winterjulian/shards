@@ -1,16 +1,14 @@
 <div class="display-flex flex-direction-col height-100-percent">
-
   <div *ngIf="store.filesSignal().length === 0" class="height-50-percent padding-medium">
     <app-file-selector></app-file-selector>
   </div>
 
-  <div #overlay
-       tabindex="0"
-       class="blocked-area z-index-lord hidden"
-  ></div>
-  <div *ngIf="store.filesSignal().length > 0"
-       [attr.inert]="workflowService.isProcessing() ? true : null"
-       class="display-flex flex-direction-col height-100-percent">
+  <div #overlay tabindex="0" class="blocked-area z-index-lord hidden"></div>
+  <div
+    *ngIf="store.filesSignal().length > 0"
+    [attr.inert]="workflowService.isProcessing() ? true : null"
+    class="display-flex flex-direction-col height-100-percent"
+  >
     <div class="padding-medium padding-xlarge padding-xsmall-bottom">
       <app-file-monitor></app-file-monitor>
     </div>
@@ -19,22 +17,23 @@
       <div class="margin-medium-right material-box-shadow">
         <app-percentage-vertical></app-percentage-vertical>
       </div>
-      <div class="material-box-shadow basic-font-color scroll-container-y-scroll scroll-bar-design height-100-percent width-100-percent ">
+      <div
+        class="material-box-shadow basic-font-color scroll-container-y-scroll scroll-bar-design height-100-percent width-100-percent"
+      >
         <app-file-list></app-file-list>
       </div>
     </div>
 
     <div class="display-flex flex-space-between-v margin-xlarge margin-none-top">
       <div>
-        <button class="font-color" mat-raised-button
-                (click)="getFiles()">
-          Change source
-        </button>
+        <button class="font-color" mat-raised-button (click)="getFiles()">Change source</button>
       </div>
       <div>
-        <button mat-flat-button
-                [disabled]="store.selectionCounterSignal() === 0 || workflowService.isProcessing()"
-                (click)="changeFileNames()">
+        <button
+          mat-flat-button
+          [disabled]="store.selectionCounterSignal() === 0 || workflowService.isProcessing()"
+          (click)="changeFileNames()"
+        >
           Change names
         </button>
       </div>

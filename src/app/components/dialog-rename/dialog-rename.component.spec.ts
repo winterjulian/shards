@@ -8,9 +8,8 @@ describe('DialogRenameComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DialogRenameComponent]
-    })
-    .compileComponents();
+      imports: [DialogRenameComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(DialogRenameComponent);
     component = fixture.componentInstance;

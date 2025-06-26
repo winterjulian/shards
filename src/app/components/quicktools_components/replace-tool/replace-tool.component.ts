@@ -8,7 +8,7 @@ import { ExtendedFile } from '../../../interfaces/extendedFile';
   imports: [ReactiveFormsModule, FormsModule],
   templateUrl: './replace-tool.component.html',
   standalone: true,
-  styleUrl: './replace-tool.component.css'
+  styleUrl: './replace-tool.component.css',
 })
 export class ReplaceToolComponent {
   pattern = signal('');
@@ -79,7 +79,7 @@ export class ReplaceToolComponent {
   resetHighlighting() {
     this.store.filesSignal().forEach((file: ExtendedFile) => {
       file.displayName = file.changedName;
-    })
+    });
   }
 
   resetComponent(): void {

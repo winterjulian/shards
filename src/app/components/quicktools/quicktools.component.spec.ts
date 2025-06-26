@@ -8,9 +8,8 @@ describe('QuicktoolsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [QuicktoolsComponent]
-    })
-    .compileComponents();
+      imports: [QuicktoolsComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(QuicktoolsComponent);
     component = fixture.componentInstance;

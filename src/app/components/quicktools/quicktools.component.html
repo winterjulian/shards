@@ -1,16 +1,29 @@
 <div class="width-100-percent height-100-percent basic-element-background">
   <div class="display-flex height-100-percent flex-direction-col flex-space-between-v">
     <div class="display-flex flex-space-between-v margin-xlarge margin-none-bottom">
-      <button [disabled]="!this.store.canUndo()" mat-raised-button class="font-color" (click)="undoChanges()">
+      <button
+        [disabled]="!this.store.canUndo()"
+        mat-raised-button
+        class="font-color"
+        (click)="undoChanges()"
+      >
         <i class="material-icons font-size-medium margin-medium-right">undo</i>
         Undo
       </button>
-      <button [disabled]="!this.store.canRedo()" mat-flat-button class="font-color" (click)="redoChanges()">
+      <button
+        [disabled]="!this.store.canRedo()"
+        mat-flat-button
+        class="font-color"
+        (click)="redoChanges()"
+      >
         Redo
         <i class="material-icons font-size-medium margin-medium-right">redo</i>
       </button>
     </div>
-    <div class="display-flex margin-medium height-100-percent" [ngClass]="{'flex-direction-col': !verticalPosition}">
+    <div
+      class="display-flex margin-medium height-100-percent"
+      [ngClass]="{ 'flex-direction-col': !verticalPosition }"
+    >
       <app-quicktool-wrapper
         #replaceWrapper
         (expand)="onExpand('replace', replaceWrapper.cancelChanges.bind(replaceWrapper))"
@@ -18,7 +31,8 @@
         (cancel)="onCancel(); replaceTool.onCancel()"
         [isAcceptDisabled]="replaceTool.isAcceptDisabled()"
         [stopClosingAfterAccept]="true"
-        title="Replacement">
+        title="Replacement"
+      >
         <div tool-content>
           <app-replace-tool #replaceTool />
         </div>
@@ -31,7 +45,8 @@
         (cancel)="onCancel(); indexerTool.onCancel()"
         [isAcceptDisabled]="indexerTool.isAcceptDisabled()"
         icon="settings"
-        title="Indexer">
+        title="Indexer"
+      >
         <div tool-content>
           <app-indexer-tool #indexerTool></app-indexer-tool>
         </div>
@@ -39,12 +54,15 @@
 
       <app-quicktool-wrapper
         #caseConverterWrapper
-        (expand)="onExpand('caseConverter', caseConverterWrapper.cancelChanges.bind(caseConverterWrapper))"
+        (expand)="
+          onExpand('caseConverter', caseConverterWrapper.cancelChanges.bind(caseConverterWrapper))
+        "
         (accept)="onAccept(); caseConverter.onAccept()"
         (cancel)="onCancel(); caseConverter.onCancel()"
         [isAcceptDisabled]="caseConverter.isAcceptDisabled()"
         title="Case Converter"
-        icon="text_format">
+        icon="text_format"
+      >
         <div tool-content>
           <app-case-converter-tool #caseConverter></app-case-converter-tool>
         </div>

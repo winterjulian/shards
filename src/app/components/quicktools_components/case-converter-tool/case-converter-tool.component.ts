@@ -1,18 +1,14 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatRadioGroup, MatRadioButton } from '@angular/material/radio';
-import {StoreService} from '../../../services/store.service';
+import { StoreService } from '../../../services/store.service';
 
 @Component({
   selector: 'app-case-converter-tool',
   standalone: true,
-  imports: [
-    MatRadioGroup,
-    MatRadioButton,
-    FormsModule
-  ],
+  imports: [MatRadioGroup, MatRadioButton, FormsModule],
   templateUrl: './case-converter-tool.component.html',
-  styleUrl: './case-converter-tool.component.scss'
+  styleUrl: './case-converter-tool.component.scss',
 })
 export class CaseConverterToolComponent {
   public isAcceptDisabled = signal<boolean>(true);
@@ -25,17 +21,17 @@ export class CaseConverterToolComponent {
 
     this.store.filesSignal().forEach(file => {
       if (file.isSelected) {
-        file.displayName = this.applyCase(file.changedName)
+        file.displayName = this.applyCase(file.changedName);
       }
-    })
+    });
   }
 
   onAccept(): void {
-    return
+    return;
   }
 
   onCancel(): void {
-    return
+    return;
   }
 
   private applyCase(value: string): string {
@@ -45,8 +41,9 @@ export class CaseConverterToolComponent {
       case 'lower':
         return value.toLowerCase();
       case 'capitalize':
-        return value.replace(/\b\p{L}+/gu, word =>
-          word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+        return value.replace(
+          /\b\p{L}+/gu,
+          word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
         );
       default:
         return value;

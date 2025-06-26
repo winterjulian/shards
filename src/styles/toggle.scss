@@ -24,19 +24,21 @@
   right: 0;
   bottom: 0;
   background-color: var(--toggle-bg);
-  transition: .4s;
-  box-shadow: 1px 4px 8px 0 rgba(0, 0, 0, 0.2) inset, 1px 4px 8px 0 rgba(0, 0, 0, 0.19) inset;
+  transition: 0.4s;
+  box-shadow:
+    1px 4px 8px 0 rgba(0, 0, 0, 0.2) inset,
+    1px 4px 8px 0 rgba(0, 0, 0, 0.19) inset;
 }
 
 .slider:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 26px;
   width: 26px;
   left: 4px;
   bottom: 4px;
   background-color: var(--bg-color-smooth);
-  transition: .4s;
+  transition: 0.4s;
 }
 
 .slider-small:before {

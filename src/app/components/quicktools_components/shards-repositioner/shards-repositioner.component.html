@@ -1,7 +1,5 @@
 <div class="basic-border padding-medium">
-  <div class="font-size-medium">
-
-  </div>
+  <div class="font-size-medium"></div>
   <div class="display-flex">
     {{ searchShardsString }}
     <input
@@ -12,10 +10,12 @@
       [disabled]="store.selectionCounterSignal() < 1"
       [value]="searchShardsString"
       (input)="setShardsSearchString(searchField.value)"
-      (keyup.enter)="searchForGroups()">
+      (keyup.enter)="searchForGroups()"
+    />
     <button
       class="basic-button basic-input-field basic-input-field-button"
-      (click)="resetShardsSearch()">
+      (click)="resetShardsSearch()"
+    >
       Clear
     </button>
   </div>
@@ -24,7 +24,8 @@
       <button
         class="basic-button basic-button-red"
         [disabled]="store.selectionCounterSignal() < 1"
-        (click)="searchForGroups()">
+        (click)="searchForGroups()"
+      >
         Search
       </button>
     </div>
@@ -32,7 +33,8 @@
       <button
         class="basic-button basic-button-purple"
         [disabled]="store.selectionCounterSignal() < 1"
-        (click)="setTestRegex()">
+        (click)="setTestRegex()"
+      >
         => REGEX
       </button>
     </div>
@@ -40,7 +42,9 @@
   <div class="display-flex">
     <ng-content *ngFor="let shard of store.matchingShards(); index as i">
       @if (i > -5) {
-        <div class="font-size-small basic-border border-radius-medium margin-xsmall padding-xsmall bg-color-violet">
+        <div
+          class="font-size-small basic-border border-radius-medium margin-xsmall padding-xsmall bg-color-violet"
+        >
           {{ shard }}
         </div>
       }

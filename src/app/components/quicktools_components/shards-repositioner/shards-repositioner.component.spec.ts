@@ -8,9 +8,8 @@ describe('ShardsRepositionerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ShardsRepositionerComponent]
-    })
-    .compileComponents();
+      imports: [ShardsRepositionerComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ShardsRepositionerComponent);
     component = fixture.componentInstance;

@@ -8,9 +8,8 @@ describe('PercentageVerticalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PercentageVerticalComponent]
-    })
-    .compileComponents();
+      imports: [PercentageVerticalComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PercentageVerticalComponent);
     component = fixture.componentInstance;

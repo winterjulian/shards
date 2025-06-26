@@ -1,11 +1,18 @@
 <div
   style="min-height: 80px"
-  class="display-flex flex-centralize-h flex-centralize-v flex-space-between-v material-box-shadow-intense basic-element-background">
+  class="display-flex flex-centralize-h flex-centralize-v flex-space-between-v material-box-shadow-intense basic-element-background"
+>
   <div class="padding-small">
     @if (themeService.darkMode()) {
-      <img ngSrc="assets/shardsLogo-dark.png" priority alt="shardsLogo-dark" width="285" height="60">
+      <img
+        ngSrc="assets/shardsLogo-dark.png"
+        priority
+        alt="shardsLogo-dark"
+        width="285"
+        height="60"
+      />
     } @else {
-      <img ngSrc="assets/shardsLogo.png" priority alt="shardsLogo" width="285" height="60">
+      <img ngSrc="assets/shardsLogo.png" priority alt="shardsLogo" width="285" height="60" />
     }
   </div>
   <div style="min-width: 500px">
@@ -31,21 +38,20 @@
             #darkModeSwitch
             type="checkbox"
             [checked]="themeService.darkMode()"
-            (input)="themeService.setDisplayMode(darkModeSwitch.checked)">
+            (input)="themeService.setDisplayMode(darkModeSwitch.checked)"
+          />
           <span class="slider"></span>
         </label>
-<!--        <mat-slide-toggle-->
-<!--          style="padding-left:0"-->
-<!--          #darkModeSwitch-->
-<!--          [checked]="themeService.darkMode()"-->
-<!--          (change)="themeService.setDisplayMode(darkModeSwitch.checked)">-->
-<!--        </mat-slide-toggle>-->
+        <!--        <mat-slide-toggle-->
+        <!--          style="padding-left:0"-->
+        <!--          #darkModeSwitch-->
+        <!--          [checked]="themeService.darkMode()"-->
+        <!--          (change)="themeService.setDisplayMode(darkModeSwitch.checked)">-->
+        <!--        </mat-slide-toggle>-->
       </div>
       <div class="display-flex flex-centralize-h flex-centralize-v padding-small-left">
         <i class="material-icons basic-font-color-inverted-light font-size-xxlarge">brightness_2</i>
       </div>
     </div>
-
-
   </div>
 </div>

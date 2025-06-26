@@ -1,6 +1,8 @@
 <div class="router-bg-color material-box-shadow-lowkey margin-medium">
-  <div class="font-size-medium padding-medium display-flex flex-centralize-v cursor-pointer"
-       (click)="toggle()">
+  <div
+    class="font-size-medium padding-medium display-flex flex-centralize-v cursor-pointer"
+    (click)="toggle()"
+  >
     <i class="material-icons font-size-medium margin-medium-right">{{ icon() }}</i>
     <div>
       {{ title() }}
@@ -13,8 +15,22 @@
     </div>
     <div>
       <div class="display-flex padding-medium flex-space-between-v">
-        <button mat-raised-button class="font-color" [disabled]="isCancelDisabled()" (click)="cancelChanges()">Cancel</button>
-        <button mat-flat-button class="font-color" [disabled]="isAcceptDisabled()" (click)="acceptChanges()">Accept</button>
+        <button
+          mat-raised-button
+          class="font-color"
+          [disabled]="isCancelDisabled()"
+          (click)="cancelChanges()"
+        >
+          Cancel
+        </button>
+        <button
+          mat-flat-button
+          class="font-color"
+          [disabled]="isAcceptDisabled()"
+          (click)="acceptChanges()"
+        >
+          Accept
+        </button>
       </div>
     </div>
   </div>

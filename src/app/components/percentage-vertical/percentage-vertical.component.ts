@@ -1,12 +1,10 @@
-import {Component, inject, Input} from '@angular/core';
-import {StoreService} from '../../services/store.service';
-import {NgClass} from '@angular/common';
+import { Component, inject, Input } from '@angular/core';
+import { StoreService } from '../../services/store.service';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-percentage-vertical',
-  imports: [
-    NgClass
-  ],
+  imports: [NgClass],
   templateUrl: './percentage-vertical.component.html',
   standalone: true,
 })

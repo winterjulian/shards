@@ -1,14 +1,14 @@
-import {Component, EventEmitter, inject, Output, viewChild} from '@angular/core';
-import {NgClass} from '@angular/common';
-import {ReplaceToolComponent} from '../quicktools_components/replace-tool/replace-tool.component';
-import {StoreService} from '../../services/store.service';
-import {IndexerToolComponent} from '../quicktools_components/indexer-tool/indexer-tool.component';
-import {WorkflowService} from '../../services/workflow.service';
-import {MatButton} from '@angular/material/button';
-import {QuicktoolWrapperComponent} from '../quicktool-wrapper/quicktool-wrapper.component';
-import {CaseConverterToolComponent} from '../quicktools_components/case-converter-tool/case-converter-tool.component';
-import {MatDialog} from '@angular/material/dialog';
-import {DialogRenameComponent} from '../dialog-rename/dialog-rename.component';
+import { Component, EventEmitter, inject, Output, viewChild } from '@angular/core';
+import { NgClass } from '@angular/common';
+import { ReplaceToolComponent } from '../quicktools_components/replace-tool/replace-tool.component';
+import { StoreService } from '../../services/store.service';
+import { IndexerToolComponent } from '../quicktools_components/indexer-tool/indexer-tool.component';
+import { WorkflowService } from '../../services/workflow.service';
+import { MatButton } from '@angular/material/button';
+import { QuicktoolWrapperComponent } from '../quicktool-wrapper/quicktool-wrapper.component';
+import { CaseConverterToolComponent } from '../quicktools_components/case-converter-tool/case-converter-tool.component';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogRenameComponent } from '../dialog-rename/dialog-rename.component';
 
 @Component({
   selector: 'app-quicktools',
@@ -22,18 +22,18 @@ import {DialogRenameComponent} from '../dialog-rename/dialog-rename.component';
   ],
   templateUrl: './quicktools.component.html',
   standalone: true,
-  styleUrl: './quicktools.component.css'
+  styleUrl: './quicktools.component.css',
 })
 export class QuicktoolsComponent {
   @Output() onVerticalPositionChange = new EventEmitter();
 
   readonly dialog = inject(MatDialog);
-  activeTool: { name: string, cancelFn: () => void } | null = null;
+  activeTool: { name: string; cancelFn: () => void } | null = null;
   verticalPosition: boolean = false;
 
   constructor(
     public store: StoreService,
-    public workflowService: WorkflowService,
+    public workflowService: WorkflowService
   ) {}
 
   undoChanges() {
@@ -81,7 +81,7 @@ export class QuicktoolsComponent {
   }
 
   onCancel() {
-    this.store.resetFileNamesFromIntermediateSnapshot()
+    this.store.resetFileNamesFromIntermediateSnapshot();
     this.store.clearIntermediateSnapshot();
   }
 }

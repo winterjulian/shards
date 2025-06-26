@@ -8,9 +8,8 @@ describe('QuicktoolWrapperComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [QuicktoolWrapperComponent]
-    })
-    .compileComponents();
+      imports: [QuicktoolWrapperComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(QuicktoolWrapperComponent);
     component = fixture.componentInstance;

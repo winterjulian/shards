@@ -1,25 +1,22 @@
-@import "styles/helpers";
-@import "styles/margins";
-@import "styles/specifics";
-@import "styles/toggle";
+@import 'styles/helpers';
+@import 'styles/margins';
+@import 'styles/specifics';
+@import 'styles/toggle';
 
-html,body{
+html,
+body {
   height: 100%;
-  margin:0;
-  padding:0;
+  margin: 0;
+  padding: 0;
   background-image: var(--bg-image);
   background-attachment: fixed;
   background-size: cover;
 }
 
 .basic-font {
-  font-family: "Roboto",
-  "Segoe UI",
-  "GeezaPro",
-  "DejaVu Serif",
-  "sans-serif",
-  "-apple-system",
-  "BlinkMacSystemFont";
+  font-family:
+    'Roboto', 'Segoe UI', 'GeezaPro', 'DejaVu Serif', 'sans-serif', '-apple-system',
+    'BlinkMacSystemFont';
 }
 
 body {
@@ -28,7 +25,6 @@ body {
   --bg-color: whitesmoke;
   --bg-color-2: #e6e6e6;
   --bg-color-3: #b1b1b1;
-
 
   /*--font-color-inverted: whitesmoke;*/
   --font-color-inverted-light: #9e9e9e;
@@ -56,7 +52,6 @@ body {
     --bg-color: #1b1b1b;
     --bg-color-2: #232323;
     --bg-color-3: #333333;
-
 
     /*--font-color-inverted: #1f1f20;*/
     --font-color-inverted-light: #616161;
@@ -206,5 +201,11 @@ body {
   scrollbar-width: thin;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}

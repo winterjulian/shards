@@ -1,13 +1,13 @@
-import {Component, effect, ElementRef, ViewChild} from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {FileSelectorComponent} from '../file-selector/file-selector.component';
-import {FileListComponent} from '../file-list/file-list.component';
-import {FileMonitorComponent} from '../file-monitor/file-monitor.component';
-import {NgIf} from '@angular/common';
-import {StoreService} from '../../services/store.service';
-import {WorkflowService} from '../../services/workflow.service';
-import {PercentageVerticalComponent} from '../percentage-vertical/percentage-vertical.component';
-import {MatButton} from '@angular/material/button';
+import { Component, effect, ElementRef, ViewChild } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FileSelectorComponent } from '../file-selector/file-selector.component';
+import { FileListComponent } from '../file-list/file-list.component';
+import { FileMonitorComponent } from '../file-monitor/file-monitor.component';
+import { NgIf } from '@angular/common';
+import { StoreService } from '../../services/store.service';
+import { WorkflowService } from '../../services/workflow.service';
+import { PercentageVerticalComponent } from '../percentage-vertical/percentage-vertical.component';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-file-manager',
@@ -24,7 +24,7 @@ import {MatButton} from '@angular/material/button';
   ],
   templateUrl: './file-manager.component.html',
   standalone: true,
-  styleUrl: './file-manager.component.scss'
+  styleUrl: './file-manager.component.scss',
 })
 export class FileManagerComponent {
   @ViewChild('overlay') overlay: ElementRef | undefined;
@@ -50,6 +50,6 @@ export class FileManagerComponent {
   }
 
   getFiles() {
-    this.store.getFilesByDialogue()
+    this.store.getFilesByDialogue();
   }
 }

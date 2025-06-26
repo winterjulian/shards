@@ -1,19 +1,16 @@
 import { Component } from '@angular/core';
-import {ThemeService} from '../../services/theme.service';
-import {NgClass, NgOptimizedImage} from '@angular/common';
-import {WorkflowService} from '../../services/workflow.service';
-import {MatButton} from '@angular/material/button';
-import {StoreService} from '../../services/store.service';
+import { ThemeService } from '../../services/theme.service';
+import { NgClass, NgOptimizedImage } from '@angular/common';
+import { WorkflowService } from '../../services/workflow.service';
+import { MatButton } from '@angular/material/button';
+import { StoreService } from '../../services/store.service';
 
 @Component({
   selector: 'app-header',
-  imports: [
-    NgOptimizedImage,
-    NgClass
-  ],
+  imports: [NgOptimizedImage, NgClass],
   templateUrl: './header.component.html',
   standalone: true,
-  styleUrl: './header.component.scss'
+  styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
   constructor(

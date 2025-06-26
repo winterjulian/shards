@@ -5,13 +5,10 @@
       style="width: 500px"
       disabled="disabled"
       [value]="store.filesSignal().length > 0 ? store.filesSignal()[0].path : ''"
-      class="basic-input-field basic-font-color">
+      class="basic-input-field basic-font-color"
+    />
   </div>
   <div>
-    <button
-      class="basic-button basic-button-red margin-small"
-      (click)="getFiles()">
-      Open
-    </button>
+    <button class="basic-button basic-button-red margin-small" (click)="getFiles()">Open</button>
   </div>
 </div>

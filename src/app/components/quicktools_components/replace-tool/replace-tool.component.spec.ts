@@ -8,9 +8,8 @@ describe('ReplaceToolComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ReplaceToolComponent]
-    })
-    .compileComponents();
+      imports: [ReplaceToolComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ReplaceToolComponent);
     component = fixture.componentInstance;

@@ -1,24 +1,21 @@
-import {Component, signal} from '@angular/core';
-import {StoreService} from '../../../services/store.service';
-import {NgForOf} from '@angular/common';
+import { Component, signal } from '@angular/core';
+import { StoreService } from '../../../services/store.service';
+import { NgForOf } from '@angular/common';
 
 @Component({
   selector: 'app-shards-repositioner',
-  imports: [
-    NgForOf
-  ],
+  imports: [NgForOf],
   templateUrl: './shards-repositioner.component.html',
   standalone: true,
-  styleUrl: './shards-repositioner.component.css'
+  styleUrl: './shards-repositioner.component.css',
 })
 export class ShardsRepositionerComponent {
-
   public searchShardsString: string = '';
 
   constructor(public store: StoreService) {}
 
   setTestRegex() {
-    this.searchShardsString = '^(\\d+)\\s-\\s([A-Za-z]+)\\s([A-Za-z]+)\\s?(.*)'
+    this.searchShardsString = '^(\\d+)\\s-\\s([A-Za-z]+)\\s([A-Za-z]+)\\s?(.*)';
   }
 
   setShardsSearchString(input: string) {

@@ -1,12 +1,14 @@
 @use '@angular/material' as mat;
 
-:host ::ng-deep .mat-internal-form-field>label {
+:host ::ng-deep .mat-internal-form-field > label {
   padding-left: 0;
 }
 
 :host {
-  @include mat.slide-toggle-overrides((
-    handle-shape: 0%,
-    track-shape: 0%,
-  ));
+  @include mat.slide-toggle-overrides(
+    (
+      handle-shape: 0%,
+      track-shape: 0%,
+    )
+  );
 }

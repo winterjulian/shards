@@ -1,11 +1,11 @@
-import {inject, Injectable, signal} from '@angular/core';
-import {DOCUMENT} from '@angular/common';
+import { inject, Injectable, signal } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ThemeService {
-  private readonly document = inject(DOCUMENT)
+  private readonly document = inject(DOCUMENT);
   readonly darkMode = signal<boolean>(false);
 
   constructor() {
@@ -29,9 +29,9 @@ export class ThemeService {
     const darkMode = localStorage.getItem('darkMode');
     switch (darkMode) {
       case 'false':
-        return false
+        return false;
       case 'true':
-        return true
+        return true;
       default:
         return undefined;
     }

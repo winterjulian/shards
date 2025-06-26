@@ -8,9 +8,8 @@ describe('FileManagerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FileManagerComponent]
-    })
-    .compileComponents();
+      imports: [FileManagerComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FileManagerComponent);
     component = fixture.componentInstance;

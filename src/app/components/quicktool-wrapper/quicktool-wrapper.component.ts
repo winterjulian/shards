@@ -1,17 +1,13 @@
-import {Component, input, output} from '@angular/core';
-import {NgIf} from '@angular/common';
-import {ReactiveFormsModule} from '@angular/forms';
-import {MatButton} from '@angular/material/button';
+import { Component, input, output } from '@angular/core';
+import { NgIf } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-quicktool-wrapper',
   standalone: true,
   templateUrl: './quicktool-wrapper.component.html',
-  imports: [
-    NgIf,
-    ReactiveFormsModule,
-    MatButton,
-  ]
+  imports: [NgIf, ReactiveFormsModule, MatButton],
 })
 export class QuicktoolWrapperComponent {
   title = input.required<string>();

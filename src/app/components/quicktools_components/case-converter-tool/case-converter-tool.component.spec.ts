@@ -8,9 +8,8 @@ describe('CaseConverterToolComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CaseConverterToolComponent]
-    })
-    .compileComponents();
+      imports: [CaseConverterToolComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CaseConverterToolComponent);
     component = fixture.componentInstance;

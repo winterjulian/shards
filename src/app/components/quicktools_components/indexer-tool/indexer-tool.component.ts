@@ -1,4 +1,4 @@
-import {Component, signal} from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { StoreService } from '../../../services/store.service';
 import { WorkflowService } from '../../../services/workflow.service';
@@ -9,24 +9,22 @@ import { ExtendedFile } from '../../../interfaces/extendedFile';
   imports: [FormsModule],
   templateUrl: './indexer-tool.component.html',
   standalone: true,
-  styleUrls: ['./indexer-tool.component.css']
+  styleUrls: ['./indexer-tool.component.css'],
 })
 export class IndexerToolComponent {
   public isAcceptDisabled = signal<boolean>(true);
 
-  alternativeName: string = ''
+  alternativeName: string = '';
   placeholderForNumber: number = 1;
   startingFrom: number | undefined = undefined;
   spacerText: string = '';
   positionToggle: boolean = true;
 
-  constructor(
-    public store: StoreService,
-  ) {}
+  constructor(public store: StoreService) {}
 
   indexingString() {
     if (this.startingFrom === undefined) {
-      return
+      return;
     }
 
     const placeholderLength = this.placeholderForNumber || 0;
@@ -59,17 +57,14 @@ export class IndexerToolComponent {
   }
 
   onCancel() {
-    this.resetComponent()
+    this.resetComponent();
   }
 
   resetComponent(): void {
-    this.alternativeName = ''
+    this.alternativeName = '';
     this.placeholderForNumber = 1;
     this.startingFrom = undefined;
     this.spacerText = '';
     this.positionToggle = true;
   }
 }
-
-
-

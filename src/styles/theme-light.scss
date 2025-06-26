@@ -2,9 +2,11 @@
 
 html {
   color-scheme: light;
-  @include mat.theme((
-    color: mat.$red-palette,
-    typography: Roboto,
-    density: 0
-  ));
+  @include mat.theme(
+    (
+      color: mat.$red-palette,
+      typography: Roboto,
+      density: 0,
+    )
+  );
 }

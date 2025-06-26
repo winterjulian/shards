@@ -6,7 +6,8 @@
         (ngModelChange)="indexingString()"
         type="text"
         placeholder="Alternative file name"
-        class="basic-input-field width-100-percent">
+        class="basic-input-field width-100-percent"
+      />
     </div>
   </div>
 
@@ -17,7 +18,8 @@
         (ngModelChange)="indexingString()"
         type="text"
         placeholder="Spacer"
-        class="basic-input-field width-100-percent">
+        class="basic-input-field width-100-percent"
+      />
     </div>
     <div class="display-flex width-100-percent">
       <input
@@ -26,7 +28,8 @@
         type="number"
         placeholder="Starting from"
         min="0"
-        class="basic-input-field width-100-percent">
+        class="basic-input-field width-100-percent"
+      />
     </div>
     <div class="display-flex width-100-percent">
       <input
@@ -35,25 +38,19 @@
         type="number"
         placeholder="Positions for numbers"
         min="1"
-        class="basic-input-field width-100-percent">
+        class="basic-input-field width-100-percent"
+      />
     </div>
   </div>
 
   <div class="flex-centralize-v flex-centralize-h padding-small">
-    <div class="padding-small-right">
-      Left
-    </div>
+    <div class="padding-small-right">Left</div>
     <div>
       <label class="switch switch-small">
-        <input
-          type="checkbox"
-          [(ngModel)]="positionToggle"
-          (ngModelChange)="indexingString()">
+        <input type="checkbox" [(ngModel)]="positionToggle" (ngModelChange)="indexingString()" />
         <span class="slider slider-small"></span>
       </label>
     </div>
-    <div class="padding-small-left">
-      Right
-    </div>
+    <div class="padding-small-left">Right</div>
   </div>
 </div>

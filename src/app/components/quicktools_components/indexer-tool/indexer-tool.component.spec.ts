@@ -8,9 +8,8 @@ describe('IndexerToolComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [IndexerToolComponent]
-    })
-    .compileComponents();
+      imports: [IndexerToolComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(IndexerToolComponent);
     component = fixture.componentInstance;

@@ -1,11 +1,11 @@
-import {Component, effect, signal} from '@angular/core';
-import {ExtendedFile} from '../../interfaces/extendedFile';
-import {NgForOf, NgIf} from '@angular/common';
-import {StoreService} from '../../services/store.service';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {PercentageDisplayComponent} from '../percentage-display/percentage-display.component';
-import {Event} from '@angular/router';
-import {FileSelectorComponent} from '../file-selector/file-selector.component';
+import { Component, effect, signal } from '@angular/core';
+import { ExtendedFile } from '../../interfaces/extendedFile';
+import { NgForOf, NgIf } from '@angular/common';
+import { StoreService } from '../../services/store.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PercentageDisplayComponent } from '../percentage-display/percentage-display.component';
+import { Event } from '@angular/router';
+import { FileSelectorComponent } from '../file-selector/file-selector.component';
 
 @Component({
   selector: 'app-file-overview',
@@ -14,23 +14,23 @@ import {FileSelectorComponent} from '../file-selector/file-selector.component';
     ReactiveFormsModule,
     FormsModule,
     PercentageDisplayComponent,
-    FileSelectorComponent
+    FileSelectorComponent,
   ],
   templateUrl: './file-overview.component.html',
   standalone: true,
-  styleUrl: './file-overview.component.css'
+  styleUrl: './file-overview.component.css',
 })
 export class FileOverviewComponent {
   private debounceTimeout: any;
 
-  constructor( public store: StoreService) {}
+  constructor(public store: StoreService) {}
 
   selectAll() {
     this.store.selectAll();
   }
 
   deselectAll() {
-    this.store.deselectAll()
+    this.store.deselectAll();
   }
 
   invertSelection() {

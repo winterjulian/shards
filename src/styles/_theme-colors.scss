@@ -105,7 +105,6 @@ $_palettes: (
     98: #fff7fe,
     99: #fffbff,
     100: #ffffff,
-
   ),
   error: (
     0: #000000,
@@ -160,13 +159,13 @@ $_palettes: (
     98: #fce5fb,
     99: #fef4ff,
     100: #ffffff,
-  )
+  ),
 );
 
 $_rest: (
   secondary: map.get($_palettes, secondary),
   neutral: map.get($_palettes, neutral),
-  neutral-variant: map.get($_palettes,  neutral-variant),
+  neutral-variant: map.get($_palettes, neutral-variant),
   error: map.get($_palettes, error),
 );
 

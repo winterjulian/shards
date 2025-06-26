@@ -1,13 +1,13 @@
-import {computed, inject, Injectable, signal} from '@angular/core';
-import {ExtendedFile} from '../interfaces/extendedFile';
-import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
-import {HistoryService} from './history.service';
+import { computed, inject, Injectable, signal } from '@angular/core';
+import { ExtendedFile } from '../interfaces/extendedFile';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { HistoryService } from './history.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class StoreService {
-  public history = inject(HistoryService)
+  public history = inject(HistoryService);
   private interSnapshot: string[] = [];
   filesSignal = signal<ExtendedFile[]>([]);
   selectionCounterSignal = signal<number>(0);
@@ -24,7 +24,7 @@ export class StoreService {
     const rawPercentage = total > 0 ? (visible / total) * 100 : 0;
     return Math.round(rawPercentage * 10) / 10;
   });
-  searchStringSignal = signal<string>("");
+  searchStringSignal = signal<string>('');
   matchingShards = signal<string[]>([]);
   isLoading = signal<boolean>(false);
   isClearable = signal<boolean>(false);
@@ -37,9 +37,7 @@ export class StoreService {
     file.isSelected = isSelected;
     isSelected ? this.lastSelectedFile.set(file) : this.lastSelectedFile.set(undefined);
 
-    this.selectionCounterSignal.update(count =>
-      isSelected ? count + 1 : count - 1
-    );
+    this.selectionCounterSignal.update(count => (isSelected ? count + 1 : count - 1));
   }
 
   setFilesByIndices(start: number, end: number, selected: boolean): void {
@@ -48,9 +46,7 @@ export class StoreService {
     this.filesSignal.update(files =>
       files.map((file, i) => {
         if (i >= from && i <= to && file.isSelected !== selected) {
-          this.selectionCounterSignal.update(count =>
-            selected ? count + 1 : count - 1
-          );
+          this.selectionCounterSignal.update(count => (selected ? count + 1 : count - 1));
           return { ...file, isSelected: selected };
         }
         return file;
@@ -67,7 +63,7 @@ export class StoreService {
       } else {
         file.isSelected = !bool;
       }
-    })
+    });
     this.selectionCounterSignal.set(counter);
   }
 
@@ -80,7 +76,7 @@ export class StoreService {
       } else {
         file.isSelected = false;
       }
-    })
+    });
     this.selectionCounterSignal.set(counter);
   }
 
@@ -89,22 +85,22 @@ export class StoreService {
     this.filesSignal().forEach((file: ExtendedFile) => {
       this.deselectFile(file);
       counter--;
-    })
+    });
     this.selectionCounterSignal.set(counter);
   }
 
   invertSelection() {
     this.filesSignal().forEach((file: ExtendedFile) => {
       file.isSelected = !file.isSelected;
-    })
+    });
     this.selectionCounterSignal.update(counter => this.filesSignal().length - counter);
   }
 
   resetVisibility() {
-    this.setVisibilityCounter(this.filesSignal().length)
+    this.setVisibilityCounter(this.filesSignal().length);
     this.filesSignal().forEach((file: ExtendedFile) => {
       file.isVisible = true;
-    })
+    });
   }
 
   showSelectedFiles() {
@@ -113,39 +109,39 @@ export class StoreService {
     this.filesSignal().forEach((file: ExtendedFile) => {
       if (file.isSelected) {
         file.isVisible = true;
-        visibilityCounter++
+        visibilityCounter++;
       } else {
         file.isVisible = false;
       }
-    })
+    });
 
     this.setVisibilityCounter(visibilityCounter);
   }
 
   resetSearch() {
-    this.searchStringSignal.update(() => "");
+    this.searchStringSignal.update(() => '');
     this.resetVisibility();
     this.resetMatchGroups();
     this.resetDisplayName();
-    this.isClearable.update(() => false)
+    this.isClearable.update(() => false);
   }
 
   resetMatchGroups() {
     this.filesSignal().forEach((file: ExtendedFile) => {
       file.groups = [];
-    })
+    });
   }
 
   resetDisplayName(): void {
     this.filesSignal().forEach((file: ExtendedFile) => {
       file.displayName = file.changedName;
-    })
+    });
   }
 
   filterFiles(filterString: string) {
     let visibilityCounter = this.filesSignal().length;
 
-    if (filterString === "") {
+    if (filterString === '') {
       this.resetSearch();
       return;
     }
@@ -157,21 +153,21 @@ export class StoreService {
         file.isVisible = false;
         visibilityCounter -= 1;
       }
-    })
+    });
 
     this.setVisibilityCounter(visibilityCounter);
   }
 
   getRegexGroups(filterString: string) {
-    this.matchingShards.set([])
-    let pattern = new RegExp(filterString)
+    this.matchingShards.set([]);
+    let pattern = new RegExp(filterString);
     let hasValue = false;
 
     this.filesSignal().forEach((file: ExtendedFile) => {
-      file.groups = [] // clear groups;
+      file.groups = []; // clear groups;
 
       if (file.isSelected) {
-        let matches = pattern.exec(file.changedName)
+        let matches = pattern.exec(file.changedName);
 
         if (matches) {
           hasValue ? void undefined : this.matchingShards.set(matches);
@@ -182,7 +178,7 @@ export class StoreService {
           file.isSelected = false;
         }
       }
-    })
+    });
   }
 
   filterFilesWithRegex(filterString: string) {
@@ -191,7 +187,7 @@ export class StoreService {
     let visibilityCounter = this.filesSignal().length;
     let pattern = new RegExp(filterString);
 
-    if (filterString === "") {
+    if (filterString === '') {
       this.resetSearch();
       return;
     }
@@ -218,14 +214,14 @@ export class StoreService {
 
   setSearchStringSignal(input: any) {
     if (input) {
-      this.searchStringSignal.set(input)
+      this.searchStringSignal.set(input);
     }
   }
 
   transferDisplayToChangedName() {
     this.filesSignal().forEach((file: ExtendedFile) => {
       file.changedName = file.displayName;
-    })
+    });
   }
 
   changeFileIndex(event: CdkDragDrop<ExtendedFile[]>): void {
@@ -322,8 +318,8 @@ export class StoreService {
       if (file.changedName !== file.name) {
         counter++;
       }
-    })
-    return counter
+    });
+    return counter;
   }
 
   clearHistory(): void {
@@ -338,7 +334,7 @@ export class StoreService {
       if (file.changedName !== file.name) {
         counter++;
       }
-    })
+    });
     return counter;
   }
 
@@ -349,19 +345,19 @@ export class StoreService {
       }
       this.filesSignal.set(files);
       this.resetVisibility();
-      this.addSnapshotToHistory()
-    })
+      this.addSnapshotToHistory();
+    });
   }
 
   renameFiles() {
     this.isLoading.set(true);
-    const filesToRename = this.filesSignal().filter(f => f.changedName !== f.name)
+    const filesToRename = this.filesSignal().filter(f => f.changedName !== f.name);
 
     window.electron.renameFiles(filesToRename).then(result => {
       if (result.success) {
         result.renamedFiles?.forEach((file: ExtendedFile) => {
           this.filesSignal()[file.index] = file;
-        })
+        });
       } else {
         console.error('Fehler beim Umbenennen:', result.errors);
       }
