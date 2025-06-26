@@ -1,4 +1,5 @@
-# shards
+# Shards
+![Changing strings with replacement in Shards](https://github.com/user-attachments/assets/8b258860-febe-4bfb-be5d-f51916521753)
 shards, the file name management tool
 
 ### Development Setup
