@@ -9,11 +9,9 @@ import {NgClass} from '@angular/common';
   ],
   templateUrl: './percentage-vertical.component.html',
   standalone: true,
-  styleUrl: './percentage-vertical.component.scss'
 })
 export class PercentageVerticalComponent {
   @Input() property: 'isSelected' | 'isVisible' = 'isSelected';
 
   public store = inject(StoreService);
-
 }

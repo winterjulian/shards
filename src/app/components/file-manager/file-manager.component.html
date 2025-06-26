@@ -4,8 +4,13 @@
     <app-file-selector></app-file-selector>
   </div>
 
-  <div #overlay tabindex="0" class="blocked-area z-index-lord hidden"></div>
-  <div *ngIf="store.filesSignal().length > 0" class="display-flex flex-direction-col height-100-percent">
+  <div #overlay
+       tabindex="0"
+       class="blocked-area z-index-lord hidden"
+  ></div>
+  <div *ngIf="store.filesSignal().length > 0"
+       [attr.inert]="workflowService.isProcessing() ? true : null"
+       class="display-flex flex-direction-col height-100-percent">
     <div class="padding-medium padding-xlarge padding-xsmall-bottom">
       <app-file-monitor></app-file-monitor>
     </div>

@@ -13,9 +13,7 @@ import {WorkflowService} from '../../services/workflow.service';
   ],
   templateUrl: './overview.component.html',
   standalone: true,
-  styleUrl: './overview.component.css'
 })
 export class OverviewComponent {
   public workflowService = inject(WorkflowService);
-  verticalPosition = signal<boolean>(false);
 }
