@@ -1,9 +1,30 @@
 # shards
 shards, the file name management tool
 
-## Development Setup
+### Development Setup
 
-1. Run the server with `npm start`
+1. After downloading the repo, run `npm install` to install all necessary packages.
+2. Run `ng s` to start the application. 
+3. Download "shards-backend" and start the application as described in its README. Starting the backend will automatically open the webapp in an Electron window.
+
+### Production Setup
+
+This application is part of an Electron application. Electron application consist of a backend (main process) and a frontend (render process). A successful prod build of the app can be achieved only via the "shards-backend" project. Further information in its README.
+
+### What to expect?
+
+| Area             |                            |
+|------------------|----------------------------|
+| AI               | ❌                          | 
+| Backend          | Project "shards-backend" * | 
+| Dark mode        | ✅                          |
+| Database         | Not needed                 |
+| Reactivity       | Signals                    |
+| Special features | Electron app *             |
+| Styling          | scss, Angular material     |
+| Testing          | ❌                          |
+
+> **\* as part of an Electron application, this web application only represents the render process, while the repo "shards-backend" serves as the main process. Building the applications is realized via this repo, see its README.**
 
 ## Architecture
 
