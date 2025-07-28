@@ -8,7 +8,7 @@
 }
 
 .highlighted {
-  color: #c35cc3;
+  color: #4167c8;
 }
 
 .file-entry {
@@ -16,7 +16,7 @@
 }
 
 .file-entry:hover {
-  background: var(--bg-color-highlight_2);
+  background: #4167c8;
 }
 
 .file-list.cdk-drop-list-dragging .file-entry:not(.cdk-drag-placeholder) {

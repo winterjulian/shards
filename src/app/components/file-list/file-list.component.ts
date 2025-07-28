@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import {Component, HostListener, input} from '@angular/core';
 import { StoreService } from '../../services/store.service';
 import { ExtendedFile } from '../../interfaces/extendedFile';
 import {
@@ -10,6 +10,8 @@ import {
   moveItemInArray,
 } from '@angular/cdk/drag-drop';
 import { NgClass } from '@angular/common';
+import {ExtendedFileGroup} from '../../interfaces/extendedFileGroup';
+import {PercentageVerticalComponent} from '../percentage-vertical/percentage-vertical.component';
 
 @Component({
   selector: 'app-file-list',

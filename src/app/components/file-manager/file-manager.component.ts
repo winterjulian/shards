@@ -8,6 +8,8 @@ import { StoreService } from '../../services/store.service';
 import { WorkflowService } from '../../services/workflow.service';
 import { PercentageVerticalComponent } from '../percentage-vertical/percentage-vertical.component';
 import { MatButton } from '@angular/material/button';
+import {FileListWrapperComponent} from '../file-list-wrapper/file-list-wrapper.component';
+import {FileGroupListComponent} from '../file-group-list/file-group-list.component';
 
 @Component({
   selector: 'app-file-manager',
@@ -21,6 +23,8 @@ import { MatButton } from '@angular/material/button';
     PercentageVerticalComponent,
     FileMonitorComponent,
     MatButton,
+    FileListWrapperComponent,
+    FileGroupListComponent,
   ],
   templateUrl: './file-manager.component.html',
   standalone: true,
@@ -28,6 +32,7 @@ import { MatButton } from '@angular/material/button';
 })
 export class FileManagerComponent {
   @ViewChild('overlay') overlay: ElementRef | undefined;
+
 
   constructor(
     public store: StoreService,
@@ -51,5 +56,10 @@ export class FileManagerComponent {
 
   getFiles() {
     this.store.getFilesByDialogue();
+  }
+
+  arrangeFiles() {
+    console.log('arrangeFiles');
+    this.store.rearrangeFiles();
   }
 }

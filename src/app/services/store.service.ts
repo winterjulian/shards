@@ -2,6 +2,7 @@ import { computed, inject, Injectable, signal } from '@angular/core';
 import { ExtendedFile } from '../interfaces/extendedFile';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { HistoryService } from './history.service';
+import {ExtendedFileGroup} from '../interfaces/extendedFileGroup';
 
 @Injectable({
   providedIn: 'root',
@@ -27,6 +28,8 @@ export class StoreService {
   searchStringSignal = signal<string>('');
   matchingShards = signal<string[]>([]);
   isLoading = signal<boolean>(false);
+  rearrangeFilesSignal = signal<ExtendedFileGroup[]>([]);
+  isRearrangingFiles = signal<boolean>(false);
   isClearable = signal<boolean>(false);
 
   lastSelectedFile = signal<ExtendedFile | undefined>(undefined);
@@ -38,6 +41,49 @@ export class StoreService {
     isSelected ? this.lastSelectedFile.set(file) : this.lastSelectedFile.set(undefined);
 
     this.selectionCounterSignal.update(count => (isSelected ? count + 1 : count - 1));
+  }
+
+  setFileGroupIsSelected(fileGroup: ExtendedFileGroup, isSelected: boolean) {
+    if (fileGroup.isSelected === isSelected) return;
+
+    fileGroup.isSelected = isSelected;
+  }
+
+  groupFiles(index: number): void {
+    const rearrangedFiles = this.rearrangeFilesSignal();
+    const baseGroup = rearrangedFiles[index];
+
+    if (!baseGroup.isSelected) return;
+
+    const newArray = [...baseGroup.files];
+
+    let i = index + 1;
+    while (i < rearrangedFiles.length && rearrangedFiles[i].isSelected) {
+      rearrangedFiles[i].files.forEach(file => newArray.push(file));
+      rearrangedFiles.splice(i, 1);
+      // no i++ bc element is deleted, index is therefore changed
+      // i++
+    }
+
+    baseGroup.files = newArray;
+    console.log("Gruppierte Dateien:", newArray);
+  }
+
+  ungroupFiles(index: number): void {
+    const rearranged = this.rearrangeFilesSignal().slice(); // Kopie zum Bearbeiten
+    const groupToUngroup = rearranged[index];
+
+    // Neue Einzelgruppen erzeugen
+    const individualGroups = groupToUngroup.files.map(file => ({
+      isSelected: true,
+      files: [file]
+    }));
+
+    // Ursprüngliche Gruppe durch Einzelgruppen ersetzen
+    rearranged.splice(index, 1, ...individualGroups);
+
+    // Signal aktualisieren
+    this.rearrangeFilesSignal.set(rearranged);
   }
 
   setFilesByIndices(start: number, end: number, selected: boolean): void {
@@ -233,6 +279,15 @@ export class StoreService {
     });
   }
 
+  changeFileGroupIndex(event: CdkDragDrop<ExtendedFileGroup[]>): void {
+    if (event.previousIndex === event.currentIndex) return;
+
+    this.rearrangeFilesSignal.update(fileGroups => {
+      moveItemInArray(fileGroups, event.previousIndex, event.currentIndex);
+      return fileGroups;
+    });
+  }
+
   deselectFile(file: ExtendedFile): void {
     file.isSelected = false;
     this.lastSelectedFile.set(undefined);
@@ -347,6 +402,24 @@ export class StoreService {
       this.resetVisibility();
       this.addSnapshotToHistory();
     });
+  }
+
+  rearrangeFiles(): void {
+    this.isRearrangingFiles.set(true);
+    this.createRearrangeFilesSignal();
+  }
+
+  createRearrangeFilesSignal(): void {
+    let array: ExtendedFileGroup[] = [];
+    this.filesSignal().forEach((file: ExtendedFile) => {
+      array.push(
+        {
+          isSelected: false,
+          files: [file]
+        }
+      );
+    })
+    this.rearrangeFilesSignal.set(array);
   }
 
   renameFiles() {
