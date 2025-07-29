@@ -1,21 +1,21 @@
-<div class="w-full h-full basic-element-background">
+<div class="w-full h-full quicktool-bg shadow-2xl">
   <div class="flex h-full flex-col justify-between">
-    <div class="flex justify-between m-5 mb-0">
+    <div class="flex justify-between m-6 mb-0">
       <button
         [disabled]="!this.store.canUndo()"
-        class="font-color"
+        class="button-basics action-button"
         (click)="undoChanges()"
       >
-        <i class="material-icons font-size-medium mr-3">undo</i>
+        <i class="material-icons text-base mr-3">undo</i>
         Undo
       </button>
       <button
         [disabled]="!this.store.canRedo()"
-        class="font-color"
+        class="button-basics action-button"
         (click)="redoChanges()"
       >
         Redo
-        <i class="material-icons font-size-medium mr-3">redo</i>
+        <i class="material-icons text-base mr-3">redo</i>
       </button>
     </div>
     <div
@@ -67,8 +67,8 @@
       </app-quicktool-wrapper>
     </div>
     <div id="button-bar" class="flex justify-between m-5">
-      <button class="font-color" (click)="cancelChanges()">Cancel</button>
-      <button class="font-color" (click)="applyChanges()">RENAME</button>
+      <button class="button-basics decline-button" (click)="cancelChanges()">Cancel</button>
+      <button class="button-basics action-button" (click)="applyChanges()">RENAME</button>
     </div>
   </div>
 </div>

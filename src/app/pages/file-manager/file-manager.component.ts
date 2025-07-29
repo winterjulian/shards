@@ -1,14 +1,14 @@
 import { Component, effect, ElementRef, ViewChild } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FileSelectorComponent } from '../file-selector/file-selector.component';
-import { FileListComponent } from '../file-list/file-list.component';
-import { FileMonitorComponent } from '../file-monitor/file-monitor.component';
+import { FileSelectorComponent } from '../../components/file-selector/file-selector.component';
+import { FileListComponent } from '../../components/file-list/file-list.component';
+import { FileMonitorComponent } from '../../components/file-monitor/file-monitor.component';
 import { NgIf } from '@angular/common';
 import { StoreService } from '../../services/store.service';
 import { WorkflowService } from '../../services/workflow.service';
-import { PercentageVerticalComponent } from '../percentage-vertical/percentage-vertical.component';
-import {FileListWrapperComponent} from '../file-list-wrapper/file-list-wrapper.component';
-import {FileGroupListComponent} from '../file-group-list/file-group-list.component';
+import { PercentageVerticalComponent } from '../../components/percentage-vertical/percentage-vertical.component';
+import {FileListWrapperComponent} from '../../components/file-list-wrapper/file-list-wrapper.component';
+import {FileGroupListComponent} from '../../components/file-group-list/file-group-list.component';
 
 @Component({
   selector: 'app-file-manager',

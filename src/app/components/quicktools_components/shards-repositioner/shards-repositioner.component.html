@@ -1,5 +1,5 @@
 <div class="basic-border p-3">
-  <div class="font-size-medium"></div>
+  <div class="text-base"></div>
   <div class="flex">
     {{ searchShardsString }}
     <input
@@ -43,7 +43,7 @@
     <ng-content *ngFor="let shard of store.matchingShards(); index as i">
       @if (i > -5) {
         <div
-          class="font-size-small basic-border border-radius-medium m-1 p-1 bg-color-violet"
+          class="text-xs basic-border border-radius-medium m-1 p-1 bg-color-violet"
         >
           {{ shard }}
         </div>

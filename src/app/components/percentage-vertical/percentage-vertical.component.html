@@ -1,9 +1,9 @@
-<div class="h-full">
+<div class="h-full w-9">
   <div class="h-full flex flex-col">
     @for (file of store.filesSignal(); track file.index) {
       <div
         class="flex-1"
-        [ngClass]="{ 'highlight-bg-color': file[property], 'header-bg-color': !file[property] }"
+        [ngClass]="{ 'highlight-area-bg': file[property], 'application-2-bg': !file[property] }"
       ></div>
     }
   </div>

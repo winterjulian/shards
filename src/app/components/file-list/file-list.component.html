@@ -1,17 +1,16 @@
 <div class="h-full user-select-none">
-  <div cdkDropList (cdkDropListDropped)="dropFile($event)" class="basic-font file-list">
+  <div cdkDropList (cdkDropListDropped)="dropFile($event)" class="file-list">
     @for (file of store.filesSignal(); track file; let index = $index) {
       @if (file.isVisible) {
+        <div class="flex">
 
-        <!--- TODO: Find out why file-item has to be here?! --->
-        <div class="file-item flex">
           <div
             cdkDrag
             [ngClass]="{
-            'highlight-purple-bg-color-gradient': file.isSelected,
-            'header-bg-color': !file.isSelected,
+            'file-selected-bg': file.isSelected,
+            'file-bg': !file.isSelected,
           }"
-            class="file-entry w-full"
+            class="file-entry file-item flex items-center w-full"
           >
             <div
               class="file-custom-placeholder router-bg-color material-box-shadow-inset"
@@ -27,11 +26,11 @@
               <div
                 class="flex cursor-grab h-full justify-center items-center pr-3"
               >
-                <i cdkDragHandle class="material-icons font-size-medium">drag_indicator</i>
+                <i cdkDragHandle class="material-icons text-base">drag_indicator</i>
               </div>
               <div class="flex items-center pr-3 index-column">
                 @if (file.name !== file.changedName) {
-                  <i class="material-icons font-size-medium">settings</i>
+                  <i class="material-icons !text-base">settings</i>
                 }
               </div>
               <div
@@ -46,6 +45,7 @@
               </div>
             </div>
           </div>
+
         </div>
       }
     }

@@ -1,6 +1,6 @@
 <div
   style="min-height: 80px"
-  class="flex justify-center items-center justify-between material-box-shadow-intense basic-element-background"
+  class="header-bg tailwind-font-color flex items-center justify-between shadow-border-b basic-element-background pl-3 pr-3"
 >
   <div class="p-2">
     @if (themeService.darkMode()) {
@@ -15,37 +15,29 @@
       <img ngSrc="assets/shardsLogo.png" priority alt="shardsLogo" width="285" height="60" />
     }
   </div>
-  <div style="min-width: 500px">
-    <div class="font-size-xxxlarge">Source</div>
+  <div>
+    <div class="text-4xl">Source</div>
     <div>{{ store.filesSignal().length > 0 ? store.filesSignal()[0].path : '&ensp;' }}</div>
   </div>
   <div>
     <div>Imported files</div>
-    <div class="font-size-xxxlarge">{{ store.filesSignal().length }}</div>
+    <div class="text-4xl">{{ store.filesSignal().length }}</div>
   </div>
   <div>
     <div>Selected files</div>
-    <div class="font-size-xxxlarge">{{ store.selectionCounterSignal() }}</div>
+    <div class="text-4xl">{{ store.selectionCounterSignal() }}</div>
   </div>
   <div class="p-2">
     <div class="flex items-center justify-center">
-      <div class="flex items-center pr-2">
-        <i class="material-icons basic-font-color-inverted-light font-size-xxlarge">wb_sunny</i>
-      </div>
-      <div class="flex justify-center">
-        <label class="switch" [ngClass]="themeService.darkMode() ? 'dark' : 'light'">
-          <input
-            #darkModeSwitch
-            type="checkbox"
-            [checked]="themeService.darkMode()"
-            (input)="themeService.setDisplayMode(darkModeSwitch.checked)"
-          />
-          <span class="slider"></span>
-        </label>
-      </div>
-      <div class="flex justify-center items-center pl-2">
-        <i class="material-icons basic-font-color-inverted-light font-size-xxlarge">brightness_2</i>
-      </div>
+      <button (click)="themeService.toggleDarkMode()" class="button-basics standard-button">
+        <div class="flex justify-center">
+          @if (themeService.darkMode()) {
+            <i class="material-icons">light_mode</i>
+          } @else {
+            <i class="material-icons">dark_mode</i>
+          }
+        </div>
+      </button>
     </div>
   </div>
 </div>

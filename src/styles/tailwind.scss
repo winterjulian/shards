@@ -1,13 +1,95 @@
-.standard-button {
-  @apply flex;
-  /* necessary to prevent elongated button at bottom? O.o */
-  @apply p-2 rounded;
+.button-basics {
+  @apply flex items-center justify-center;
+  @apply p-2;
+  @apply rounded-xs;
+  @apply shadow-lg-dark;
   @apply cursor-pointer;
-  @apply bg-gray-700 text-gray-200 hover:bg-gray-500;
-  @apply dark:bg-gray-200 dark:text-gray-700 hover:dark:bg-gray-400;
+}
+
+.standard-button {
+  @apply bg-neutral-700 hover:bg-neutral-500 text-neutral-100;
+  @apply dark:bg-neutral-200 hover:dark:bg-neutral-500 dark:text-neutral-900;
 
   &:disabled {
-    @apply bg-gray-400 text-gray-200;
-    @apply dark:bg-gray-500 dark:text-gray-700;
+    @apply bg-neutral-400 text-neutral-200;
+    @apply dark:bg-neutral-500 dark:text-neutral-700;
   }
+}
+
+.action-button {
+  @apply bg-eggplant-400 hover:bg-eggplant-300 text-neutral-900;
+  @apply dark:bg-eggplant-800 hover:dark:bg-eggplant-700 dark:text-neutral-100;
+
+  &:disabled {
+    @apply bg-neutral-400 text-neutral-600;
+    @apply dark:bg-neutral-700 dark:text-neutral-400;
+  }
+}
+
+.decline-button {
+  @apply bg-ruby-400 hover:bg-ruby-300 text-neutral-900;
+  @apply dark:bg-ruby-800 hover:dark:bg-ruby-700 dark:text-neutral-100;
+
+  &:disabled {
+    @apply bg-ruby-100 text-neutral-500;
+    @apply dark:bg-ruby-950 dark:text-neutral-400;
+  }
+}
+
+.button-small {
+  @apply flex items-center justify-center;
+  @apply p-1 h-8 w-8;
+  @apply shadow-lg
+}
+
+.tailwind-font-color {
+  @apply text-gray-950 ;
+  @apply dark:text-gray-300;
+}
+
+.header-bg {
+  @apply bg-gradient-to-tr from-neutral-300 to-white;
+  @apply dark:bg-gradient-to-tr dark:from-neutral-800 dark:to-neutral-700;
+}
+
+.application-bg {
+  @apply bg-gradient-to-tr from-neutral-400 to-white;
+  @apply dark:bg-gradient-to-tr dark:from-neutral-900 dark:to-neutral-800;
+}
+
+.file-bg {
+  @apply bg-gradient-to-r from-neutral-200 to-white;
+  @apply dark:bg-gradient-to-r dark:from-neutral-700 dark:to-neutral-800;
+}
+
+.file-selected-bg {
+  @apply bg-gradient-to-r from-eggplant-400 to-white;
+  @apply dark:bg-gradient-to-r dark:from-eggplant-700 dark:to-neutral-800;
+}
+
+.highlight-area-bg {
+  @apply bg-eggplant-400;
+  @apply dark:bg-eggplant-800;
+}
+
+.application-2-bg {
+  @apply bg-neutral-200;
+  @apply dark:bg-neutral-700;
+}
+
+.quicktool-bg {
+  @apply shadow-border-l;
+  @apply bg-neutral-300;
+  @apply dark:bg-neutral-800;
+}
+
+.application-4-bg {
+  @apply bg-neutral-200;
+  @apply dark:bg-neutral-600;
+}
+
+.input-field-basics {
+  @apply h-10 pl-2;
+  @apply border-2 border-neutral-500 bg-neutral-100;
+  @apply dark:border-neutral-500 dark:bg-neutral-800;
 }

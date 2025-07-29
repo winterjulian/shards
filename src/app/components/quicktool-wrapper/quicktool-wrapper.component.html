@@ -1,29 +1,29 @@
-<div class="router-bg-color material-box-shadow-lowkey m-3">
+<div class="application-4-bg shadow-lg-dark m-3">
   <div
-    class="font-size-medium p-3 flex items-center cursor-pointer"
+    class="text-base p-3 flex items-center cursor-pointer"
     (click)="toggle()"
   >
-    <i class="material-icons font-size-medium mr-3">{{ icon() }}</i>
+    <i class="material-icons !text-base mr-3">{{ icon() }}</i>
     <div>
       {{ title() }}
     </div>
   </div>
 
   <div *ngIf="isExpanded">
-    <div>
+    <div class="p-2 pt-0">
       <ng-content select="[tool-content]"></ng-content>
     </div>
     <div>
-      <div class="flex p-3 justify-between">
+      <div class="flex p-3 pt-0 justify-between">
         <button
-          class="font-color"
+          class="button-basics decline-button"
           [disabled]="isCancelDisabled()"
           (click)="cancelChanges()"
         >
           Cancel
         </button>
         <button
-          class="font-color"
+          class="button-basics action-button"
           [disabled]="isAcceptDisabled()"
           (click)="acceptChanges()"
         >

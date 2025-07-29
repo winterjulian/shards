@@ -1,31 +1,30 @@
 <div class="h-full user-select-none">
   <div cdkDropList (cdkDropListDropped)="dropFile($event)" class="basic-font file-list">
     @for (fileGroup of store.rearrangeFilesSignal(); track fileGroup; let index = $index) {
-      <div class="flex file-item">
+      <div class="flex">
 
-        <div class="w-9 mr-3">
+        <div class="flex justify-center items-center w-9 mr-3">
           @if(fileGroup.isSelected
               && store.rearrangeFilesSignal()[index+1].isSelected
               && !store.rearrangeFilesSignal()[index-1].isSelected
             ) {
-            <button mat-mini-fab (click)="groupFiles(index)">
-              <i class="material-icons font-size-medium">lock</i>
+            <button class="button-basics button-small" (click)="groupFiles(index)">
+              <i class="material-icons !text-lg">lock</i>
             </button>
           }
           @if(fileGroup.files.length > 1 && !fileGroup.isSelected) {
-            <button (click)="ungroupFiles(index)">
-              <i class="material-icons font-size-medium">lock_open</i>
+            <button class="button-basics button-small" (click)="ungroupFiles(index)">
+              <i class="material-icons !text-lg">lock_open</i>
             </button>
           }
         </div>
-
         <div
           cdkDrag
           [ngClass]="{
-            'highlight-blue-bg-color-gradient': fileGroup.isSelected,
-            'header-bg-color': !fileGroup.isSelected,
+            'file-selected-bg': fileGroup.isSelected,
+            'file-bg': !fileGroup.isSelected,
           }"
-          class="file-entry flex items-center w-full"
+          class="file-entry file-item flex items-center w-full"
         >
           <div
             class="file-custom-placeholder router-bg-color material-box-shadow-inset"
@@ -40,7 +39,7 @@
             <div
               class="flex cursor-grab h-full justify-center items-center pr-3"
             >
-              <i cdkDragHandle class="material-icons font-size-medium">drag_indicator</i>
+              <i cdkDragHandle class="material-icons text-base">drag_indicator</i>
             </div>
             <div
               (mousedown)="onMouseDown($event, fileGroup)"
@@ -56,6 +55,7 @@
             </div>
           </div>
         </div>
+
       </div>
     }
   </div>

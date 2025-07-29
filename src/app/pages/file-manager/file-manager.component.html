@@ -18,14 +18,16 @@
 
     <div class="flex p-5 overflow-hidden h-full">
       @if(!store.isRearrangingFiles()) {
-        <div class="w-9 mr-3 material-box-shadow">
-          <app-percentage-vertical></app-percentage-vertical>
-        </div>
-        <app-file-list-wrapper class="w-full">
-          <div content>
-            <app-file-list></app-file-list>
+        <div class="flex w-full">
+          <div class="w-9 mr-3">
+            <app-percentage-vertical></app-percentage-vertical>
           </div>
-        </app-file-list-wrapper>
+          <app-file-list-wrapper class="w-full">
+            <div content>
+              <app-file-list></app-file-list>
+            </div>
+          </app-file-list-wrapper>
+        </div>
       } @else {
         <app-file-list-wrapper class="w-full">
           <div content>
@@ -38,14 +40,14 @@
     <div class="flex justify-between m-5 mt-0">
       <div class="flex">
         <div class="mr-4">
-          <button class="font-color" (click)="getFiles()">Change source</button>
+          <button class="button-basics decline-button" (click)="getFiles()">Change source</button>
         </div>
         <div>
-          <button class="font-color" (click)="arrangeFiles()">Arrange files</button>
+          <button class="button-basics action-button" (click)="arrangeFiles()">Arrange files</button>
         </div>
       </div>
       <div>
-        <button class="standard-button"
+        <button class="button-basics action-button"
           [disabled]="store.selectionCounterSignal() === 0 || workflowService.isProcessing()"
           (click)="changeFileNames()"
         >

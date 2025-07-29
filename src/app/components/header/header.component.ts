@@ -6,7 +6,7 @@ import { StoreService } from '../../services/store.service';
 
 @Component({
   selector: 'app-header',
-  imports: [NgOptimizedImage, NgClass],
+  imports: [NgOptimizedImage],
   templateUrl: './header.component.html',
   standalone: true,
   styleUrl: './header.component.scss',

@@ -1,24 +1,24 @@
-<div class="basic-border p-2 bg-color">
-  <div class="flex items-center p-2">
+<div class="basic-border bg-color">
+  <div class="flex items-center p-1">
     <div class="flex w-full">
       <input
         [(ngModel)]="alternativeName"
         (ngModelChange)="indexingString()"
         type="text"
         placeholder="Alternative file name"
-        class="basic-input-field w-full"
+        class="input-field-basics w-full"
       />
     </div>
   </div>
 
-  <div class="flex items-center p-2">
+  <div class="flex items-center p-1">
     <div class="flex w-full">
       <input
         [(ngModel)]="spacerText"
         (ngModelChange)="indexingString()"
         type="text"
         placeholder="Spacer"
-        class="basic-input-field w-full"
+        class="input-field-basics w-full"
       />
     </div>
     <div class="flex w-full">
@@ -28,7 +28,7 @@
         type="number"
         placeholder="Starting from"
         min="0"
-        class="basic-input-field w-full"
+        class="input-field-basics w-full"
       />
     </div>
     <div class="flex w-full">
@@ -38,12 +38,12 @@
         type="number"
         placeholder="Positions for numbers"
         min="1"
-        class="basic-input-field w-full"
+        class="input-field-basics w-full"
       />
     </div>
   </div>
 
-  <div class="flex items-center justify-center p-2">
+  <div class="flex items-center justify-center p-1">
     <div class="pr-2">Left</div>
     <div>
       <label class="switch switch-small">
