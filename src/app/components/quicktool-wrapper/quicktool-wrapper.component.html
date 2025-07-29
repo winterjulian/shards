@@ -1,9 +1,9 @@
-<div class="router-bg-color material-box-shadow-lowkey margin-medium">
+<div class="router-bg-color material-box-shadow-lowkey m-3">
   <div
-    class="font-size-medium padding-medium display-flex flex-centralize-v cursor-pointer"
+    class="font-size-medium p-3 flex items-center cursor-pointer"
     (click)="toggle()"
   >
-    <i class="material-icons font-size-medium margin-medium-right">{{ icon() }}</i>
+    <i class="material-icons font-size-medium mr-3">{{ icon() }}</i>
     <div>
       {{ title() }}
     </div>
@@ -14,7 +14,7 @@
       <ng-content select="[tool-content]"></ng-content>
     </div>
     <div>
-      <div class="display-flex padding-medium flex-space-between-v">
+      <div class="flex p-3 justify-between">
         <button
           class="font-color"
           [disabled]="isCancelDisabled()"

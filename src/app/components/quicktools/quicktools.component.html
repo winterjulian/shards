@@ -1,12 +1,12 @@
-<div class="width-100-percent height-100-percent basic-element-background">
-  <div class="display-flex height-100-percent flex-direction-col flex-space-between-v">
-    <div class="display-flex flex-space-between-v margin-xlarge margin-none-bottom">
+<div class="w-full h-full basic-element-background">
+  <div class="flex h-full flex-col justify-between">
+    <div class="flex justify-between m-5 mb-0">
       <button
         [disabled]="!this.store.canUndo()"
         class="font-color"
         (click)="undoChanges()"
       >
-        <i class="material-icons font-size-medium margin-medium-right">undo</i>
+        <i class="material-icons font-size-medium mr-3">undo</i>
         Undo
       </button>
       <button
@@ -15,12 +15,12 @@
         (click)="redoChanges()"
       >
         Redo
-        <i class="material-icons font-size-medium margin-medium-right">redo</i>
+        <i class="material-icons font-size-medium mr-3">redo</i>
       </button>
     </div>
     <div
-      class="display-flex margin-medium height-100-percent"
-      [ngClass]="{ 'flex-direction-col': !verticalPosition }"
+      class="flex m-3 h-full"
+      [ngClass]="{ 'flex-col': !verticalPosition }"
     >
       <app-quicktool-wrapper
         #replaceWrapper
@@ -66,7 +66,7 @@
         </div>
       </app-quicktool-wrapper>
     </div>
-    <div id="button-bar" class="display-flex flex-space-between-v margin-xlarge">
+    <div id="button-bar" class="flex justify-between m-5">
       <button class="font-color" (click)="cancelChanges()">Cancel</button>
       <button class="font-color" (click)="applyChanges()">RENAME</button>
     </div>

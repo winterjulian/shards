@@ -1,20 +1,20 @@
-<div class="display-flex font-size-medium">
-  <div class="display-flex flex-direction-col margin-small monitor-col-width flex-space-between-v">
+<div class="flex font-size-medium">
+  <div class="flex flex-col m-2 monitor-col-width justify-between">
     <div
-      class="display-flex flex-centralize-v hoverable-font font-weight-bold cursor-pointer"
+      class="flex items-center hoverable-font font-weight-bold cursor-pointer"
       (click)="showAllFiles()"
     >
-      Total <i class="material-icons font-size-medium margin-small-left">visibility</i>
+      Total <i class="material-icons font-size-medium ml-2">visibility</i>
     </div>
     <div>Displayed</div>
     <div
       (click)="showSelectedFiles()"
-      class="display-flex flex-centralize-v hoverable-font font-weight-bold cursor-pointer"
+      class="flex items-center hoverable-font font-weight-bold cursor-pointer"
     >
-      Selected <i class="material-icons font-size-medium margin-small-left">visibility</i>
+      Selected <i class="material-icons font-size-medium ml-2">visibility</i>
     </div>
   </div>
-  <div class="display-flex flex-direction-col margin-small monitor-col-width flex-space-between-v">
+  <div class="flex flex-col m-2 monitor-col-width justify-between">
     <div class="font-weight-bold">
       {{ store.filesSignal().length }}
     </div>
@@ -25,22 +25,22 @@
       {{ store.selectionCounterSignal() }}
     </div>
   </div>
-  <div class="display-flex flex-direction-col margin-small monitor-col-width flex-space-between-v">
+  <div class="flex flex-col m-2 monitor-col-width justify-between">
     <div class="font-weight-bold">100%</div>
     <div>{{ store.visibilityPercentageSignal() }}%</div>
     <div>{{ store.selectionPercentageSignal() }}%</div>
   </div>
-  <div class="display-flex flex-direction-col margin-small width-100-percent">
-    <div class="display-flex height-100-percent">
+  <div class="flex flex-col m-2 w-full">
+    <div class="flex h-full">
       <app-percentage-display
-        class="width-100-percent"
+        class="w-full"
         [property]="'isVisible'"
         [color]="1"
       ></app-percentage-display>
     </div>
-    <div class="display-flex height-100-percent">
+    <div class="flex h-full">
       <app-percentage-display
-        class="width-100-percent"
+        class="w-full"
         [property]="'isSelected'"
         [color]="1"
       ></app-percentage-display>

@@ -1,33 +1,33 @@
-<div class="display-flex flex-direction-col height-100-percent">
+<div class="flex flex-col h-full">
 
-  <div *ngIf="store.filesSignal().length === 0" class="height-50-percent padding-medium">
+  <div *ngIf="store.filesSignal().length === 0" class="h-1/2 p-3">
     <app-file-selector></app-file-selector>
   </div>
 
-  <div #overlay tabindex="0" class="blocked-area z-index-lord hidden"></div>
+  <div #overlay tabindex="0" class="blocked-area z-lord hidden"></div>
 
   <div
     *ngIf="store.filesSignal().length > 0"
     [attr.inert]="workflowService.isProcessing() ? true : null"
-    class="display-flex flex-direction-col height-100-percent"
+    class="flex flex-col h-full"
   >
 
-    <div class="padding-xlarge-top padding-xlarge-left padding-xlarge-right">
+    <div class="pt-5 pl-5 pr-5">
       <app-file-monitor></app-file-monitor>
     </div>
 
-    <div style="border: 1px solid red;" class="display-flex padding-xlarge overflow-hidden height-100-percent">
+    <div style="border: 1px solid red;" class="flex p-5 overflow-hidden h-full">
       @if(!store.isRearrangingFiles()) {
-        <div class="side-col-width margin-medium-right material-box-shadow">
+        <div class="side-col-width mr-3 material-box-shadow">
           <app-percentage-vertical></app-percentage-vertical>
         </div>
-        <app-file-list-wrapper class="width-100-percent">
+        <app-file-list-wrapper class="w-full">
           <div content>
             <app-file-list></app-file-list>
           </div>
         </app-file-list-wrapper>
       } @else {
-        <app-file-list-wrapper class="width-100-percent">
+        <app-file-list-wrapper class="w-full">
           <div content>
             <app-file-group-list></app-file-group-list>
           </div>
@@ -35,9 +35,9 @@
       }
     </div>
 
-    <div class="display-flex flex-space-between-v margin-xlarge margin-none-top">
-      <div class="display-flex">
-        <div class="margin-large-right">
+    <div class="flex justify-between m-5 mt-0">
+      <div class="flex">
+        <div class="mr-4">
           <button class="font-color" (click)="getFiles()">Change source</button>
         </div>
         <div>

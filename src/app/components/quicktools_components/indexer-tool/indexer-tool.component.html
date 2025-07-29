@@ -1,56 +1,56 @@
-<div class="basic-border padding-small bg-color">
-  <div class="display-flex flex-centralize-v padding-small">
-    <div class="display-flex width-100-percent">
+<div class="basic-border p-2 bg-color">
+  <div class="flex items-center p-2">
+    <div class="flex w-full">
       <input
         [(ngModel)]="alternativeName"
         (ngModelChange)="indexingString()"
         type="text"
         placeholder="Alternative file name"
-        class="basic-input-field width-100-percent"
+        class="basic-input-field w-full"
       />
     </div>
   </div>
 
-  <div class="display-flex flex-centralize-v padding-small">
-    <div class="display-flex width-100-percent">
+  <div class="flex items-center p-2">
+    <div class="flex w-full">
       <input
         [(ngModel)]="spacerText"
         (ngModelChange)="indexingString()"
         type="text"
         placeholder="Spacer"
-        class="basic-input-field width-100-percent"
+        class="basic-input-field w-full"
       />
     </div>
-    <div class="display-flex width-100-percent">
+    <div class="flex w-full">
       <input
         [(ngModel)]="startingFrom"
         (ngModelChange)="indexingString()"
         type="number"
         placeholder="Starting from"
         min="0"
-        class="basic-input-field width-100-percent"
+        class="basic-input-field w-full"
       />
     </div>
-    <div class="display-flex width-100-percent">
+    <div class="flex w-full">
       <input
         [(ngModel)]="placeholderForNumber"
         (ngModelChange)="indexingString()"
         type="number"
         placeholder="Positions for numbers"
         min="1"
-        class="basic-input-field width-100-percent"
+        class="basic-input-field w-full"
       />
     </div>
   </div>
 
-  <div class="flex-centralize-v flex-centralize-h padding-small">
-    <div class="padding-small-right">Left</div>
+  <div class="flex items-center justify-center p-2">
+    <div class="pr-2">Left</div>
     <div>
       <label class="switch switch-small">
         <input type="checkbox" [(ngModel)]="positionToggle" (ngModelChange)="indexingString()" />
         <span class="slider slider-small"></span>
       </label>
     </div>
-    <div class="padding-small-left">Right</div>
+    <div class="pl-2">Right</div>
   </div>
 </div>

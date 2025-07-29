@@ -3,3 +3,21 @@
 @import "./styles/tailwind.scss";
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --z-index-emperor: 999;
+  --z-index-king: 99;
+  --z-index-lord: 9;
+}
+
+@utility z-emperor {
+  z-index: theme(--z-index-emperor);
+}
+
+@utility z-king {
+  z-index: theme(--z-index-king);
+}
+
+@utility z-lord {
+  z-index: theme(--z-index-lord);
+}
