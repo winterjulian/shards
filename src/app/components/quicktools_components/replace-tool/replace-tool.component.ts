@@ -49,7 +49,7 @@ export class ReplaceToolComponent {
 
     this.store.filesSignal().forEach((file: ExtendedFile) => {
       if (file.isSelected) {
-        file.displayName = file.changedName.replace(regex, '<span class="highlight">$&</span>');
+        file.displayName = file.changedName.replace(regex, '<span class="highlight-text">$&</span>');
       } else {
         file.displayName = file.changedName;
       }
@@ -68,7 +68,7 @@ export class ReplaceToolComponent {
         const replaced = file.changedName.replace(regex, replacement);
         file.displayName = replaced.replace(
           new RegExp(escapedPattern, 'gi'),
-          '<span class="highlight">$&</span>'
+          '<span class="highlight-text">$&</span>'
         );
       } else {
         file.displayName = file.changedName;

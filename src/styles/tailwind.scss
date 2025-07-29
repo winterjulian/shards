@@ -89,7 +89,18 @@
 }
 
 .input-field-basics {
-  @apply h-10 pl-2;
+  @apply h-10 pl-2 pr-2;
   @apply border-2 border-neutral-500 bg-neutral-100;
   @apply dark:border-neutral-500 dark:bg-neutral-800;
+}
+
+.input-field-cobutton {
+  @apply border-l-0;
+  @apply hover:bg-neutral-300;
+  @apply dark:hover:bg-neutral-500;
+}
+
+.highlight-text {
+  @apply bg-amber-500;
+  @apply dark:bg-amber-800;
 }

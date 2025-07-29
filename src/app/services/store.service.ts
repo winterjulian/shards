@@ -244,7 +244,7 @@ export class StoreService {
 
         const regex = new RegExp(filterString, 'gi');
 
-        file.displayName = file.name.replace(regex, '<span class="highlight">$&</span>');
+        file.displayName = file.name.replace(regex, '<span class="highlight-text">$&</span>');
       } else {
         file.isVisible = false;
         visibilityCounter -= 1;

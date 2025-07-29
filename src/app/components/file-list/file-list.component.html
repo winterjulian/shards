@@ -18,17 +18,11 @@
             ></div>
             <div class="flex items-center w-full h-full">
               <div
-                class="flex justify-end index-column pl-2 pr-3"
-                [ngClass]="{ highlighted: file.index !== index }"
-              >
+                cdkDragHandle
+                class="flex justify-end cursor-grab pl-2 pr-3 w-16">
                 {{ file.index + 1 }}.
               </div>
-              <div
-                class="flex cursor-grab h-full justify-center items-center pr-3"
-              >
-                <i cdkDragHandle class="material-icons text-base">drag_indicator</i>
-              </div>
-              <div class="flex items-center pr-3 index-column">
+              <div class="flex items-center pr-3">
                 @if (file.name !== file.changedName) {
                   <i class="material-icons !text-base">settings</i>
                 }

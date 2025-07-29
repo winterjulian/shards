@@ -1,4 +1,4 @@
-<div>
+<div class="flex">
   <div class="flex">
     <div class="p-2 pl-0">
       <button
@@ -30,27 +30,26 @@
         Invert selection
       </button>
     </div>
-    <div class="flex">
-      <div class="p-2 pr-0">
-        <input
-          class="basic-input-field material-box-shadow-inset"
-          #searchField
-          placeholder="Search"
-          type="text"
-          style="width: 300px"
-          [disabled]="store.filesSignal().length === 0"
-          [value]="store.searchStringSignal()"
-          (input)="store.searchStringSignal.set(searchField.value)"
-          (keyup.enter)="store.filterFilesWithRegex(store.searchStringSignal())"
-        />
-        <button
-          class="basic-button basic-input-field basic-input-field-button"
-          [disabled]="!store.isClearable()"
-          (click)="clearSearchString()"
-        >
-          Clear
-        </button>
-      </div>
+  </div>
+  <div>
+    <div class="inline-flex whitespace-nowrap p-2 pr-0">
+      <input
+        class="input-field-basics"
+        #searchField
+        placeholder="Search"
+        type="text"
+        style="width: 300px"
+        [value]="store.searchStringSignal()"
+        (input)="store.searchStringSignal.set(searchField.value)"
+        (keyup.enter)="store.filterFilesWithRegex(store.searchStringSignal())"
+      />
+      <button
+        class="input-field-basics input-field-cobutton"
+        [disabled]="!store.isClearable()"
+        (click)="clearSearchString()"
+      >
+        Clear
+      </button>
     </div>
   </div>
 </div>
