@@ -1,10 +1,11 @@
 <div class="h-full user-select-none">
-  <div cdkDropList (cdkDropListDropped)="dropFile($event)" class="basic-font file-list">
-    @for (fileGroup of store.rearrangeFilesSignal(); track fileGroup; let index = $index) {
+  <div cdkDropList (cdkDropListDropped)="dropFile($event)"
+       class="file-list">
+    @for (entry of store.rearrangeFilesSignal(); track entry; let index = $index) {
       <div class="flex">
 
         <div class="flex justify-center items-center w-9 mr-3">
-          @if(fileGroup.isSelected
+          @if(entry.isSelected
               && store.rearrangeFilesSignal()[index+1].isSelected
               && !store.rearrangeFilesSignal()[index-1].isSelected
             ) {
@@ -12,7 +13,7 @@
               <i class="material-icons !text-lg">lock</i>
             </button>
           }
-          @if(fileGroup.files.length > 1 && !fileGroup.isSelected) {
+          @if(entry.files.length > 1 && !entry.isSelected) {
             <button class="button-basics button-small" (click)="ungroupFiles(index)">
               <i class="material-icons !text-lg">lock_open</i>
             </button>
@@ -20,11 +21,8 @@
         </div>
         <div
           cdkDrag
-          [ngClass]="{
-            'file-selected-bg': fileGroup.isSelected,
-            'file-bg': !fileGroup.isSelected,
-          }"
-          class="file-entry file-item flex items-center w-full"
+          [ngClass]="{'file-group-selected-bg': entry.isSelected}"
+          class="list-element-basics list-element-bg flex items-center w-full"
         >
           <div
             class="file-custom-placeholder router-bg-color material-box-shadow-inset"
@@ -32,23 +30,21 @@
           ></div>
           <div class="flex items-center w-full h-full">
             <div
-              class="flex justify-end index-column pl-2 pr-3"
-            >
+              cdkDragHandle
+              class="flex justify-end cursor-grab pl-2 pr-3 w-16">
               {{ index + 1 }}.
             </div>
-            <div
-              class="flex cursor-grab h-full justify-center items-center pr-3"
-            >
-              <i cdkDragHandle class="material-icons text-base">drag_indicator</i>
+            <div class="flex items-center pr-3">
+              <!--- placeholder --->
             </div>
             <div
-              (mousedown)="onMouseDown($event, fileGroup)"
-              (mouseenter)="onMouseEnterFile(fileGroup)"
-              (click)="onFileClick($event, fileGroup, index)"
+              (mousedown)="onMouseDown($event, entry)"
+              (mouseenter)="onMouseEnterFile(entry)"
+              (click)="onFileClick($event, entry, index)"
               class="flex items-center w-full h-full"
             >
               <div>
-                @for(file of fileGroup.files; track file; let subindex = $index) {
+                @for(file of entry.files; track file) {
                   <div class="long-word-break" [innerHTML]="file.displayName"></div>
                 }
               </div>

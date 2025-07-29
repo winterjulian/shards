@@ -57,7 +57,6 @@ export class FileManagerComponent {
   }
 
   arrangeFiles() {
-    console.log('arrangeFiles');
     this.store.rearrangeFiles();
   }
 }

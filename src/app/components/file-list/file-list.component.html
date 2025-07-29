@@ -1,16 +1,14 @@
 <div class="h-full user-select-none">
-  <div cdkDropList (cdkDropListDropped)="dropFile($event)" class="file-list">
-    @for (file of store.filesSignal(); track file; let index = $index) {
-      @if (file.isVisible) {
+  <div cdkDropList (cdkDropListDropped)="dropFile($event)"
+       class="file-list">
+    @for (entry of store.filesSignal(); track entry; let index = $index) {
+      @if (entry.isVisible) {
         <div class="flex">
 
           <div
             cdkDrag
-            [ngClass]="{
-            'file-selected-bg': file.isSelected,
-            'file-bg': !file.isSelected,
-          }"
-            class="file-entry file-item flex items-center w-full"
+            [ngClass]="{'file-selected-bg': entry.isSelected}"
+            class="list-element-basics list-element-bg flex items-center w-full"
           >
             <div
               class="file-custom-placeholder router-bg-color material-box-shadow-inset"
@@ -20,21 +18,21 @@
               <div
                 cdkDragHandle
                 class="flex justify-end cursor-grab pl-2 pr-3 w-16">
-                {{ file.index + 1 }}.
+                {{ entry.index + 1 }}.
               </div>
               <div class="flex items-center pr-3">
-                @if (file.name !== file.changedName) {
+                @if (entry.name !== entry.changedName) {
                   <i class="material-icons !text-base">settings</i>
                 }
               </div>
               <div
-                (mousedown)="onMouseDown($event, file)"
-                (mouseenter)="onMouseEnterFile(file)"
-                (click)="onFileClick($event, file, index)"
+                (mousedown)="onMouseDown($event, entry)"
+                (mouseenter)="onMouseEnterFile(entry)"
+                (click)="onFileClick($event, entry, index)"
                 class="flex items-center w-full h-full"
               >
                 <div>
-                  <div class="long-word-break" [innerHTML]="file.displayName"></div>
+                  <div class="long-word-break" [innerHTML]="entry.displayName"></div>
                 </div>
               </div>
             </div>

@@ -53,18 +53,28 @@
 }
 
 .application-bg {
-  @apply bg-gradient-to-tr from-neutral-400 to-white;
+  @apply bg-gradient-to-tr from-neutral-400 to-neutral-200;
   @apply dark:bg-gradient-to-tr dark:from-neutral-900 dark:to-neutral-800;
 }
 
-.file-bg {
-  @apply bg-gradient-to-r from-neutral-200 to-white;
+.list-element-bg {
+  @apply bg-gradient-to-r from-neutral-100 to-neutral-300;
   @apply dark:bg-gradient-to-r dark:from-neutral-700 dark:to-neutral-800;
+
+  &:hover {
+    @apply bg-gradient-to-r from-amber-400 to-amber-400;
+    @apply dark:bg-gradient-to-r dark:from-amber-800 dark:to-amber-800;
+  }
 }
 
 .file-selected-bg {
-  @apply bg-gradient-to-r from-eggplant-400 to-white;
+  @apply bg-gradient-to-r from-eggplant-400 to-neutral-300;
   @apply dark:bg-gradient-to-r dark:from-eggplant-700 dark:to-neutral-800;
+}
+
+.file-group-selected-bg {
+  @apply bg-gradient-to-r from-amethyst-400 to-neutral-300;
+  @apply dark:bg-gradient-to-r dark:from-amethyst-700 dark:to-neutral-800;
 }
 
 .highlight-area-bg {
@@ -100,7 +110,14 @@
   @apply dark:hover:bg-neutral-500;
 }
 
+
 .highlight-text {
   @apply bg-amber-500;
   @apply dark:bg-amber-800;
+}
+
+.list-element-basics {
+  @apply min-h-8 border-1;
+  @apply border-neutral-300;
+  @apply dark:border-neutral-800;
 }
