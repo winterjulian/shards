@@ -3,7 +3,6 @@ import {StoreService} from '../../services/store.service';
 import {CdkDrag, CdkDragDrop, CdkDragHandle, CdkDragPlaceholder, CdkDropList} from '@angular/cdk/drag-drop';
 import {NgClass} from '@angular/common';
 import {ExtendedFileGroup} from '../../interfaces/extendedFileGroup';
-import {MatButton, MatMiniFabButton} from '@angular/material/button';
 
 @Component({
   selector: 'app-file-group-list',
@@ -13,7 +12,6 @@ import {MatButton, MatMiniFabButton} from '@angular/material/button';
     CdkDropList,
     NgClass,
     CdkDragPlaceholder,
-    MatMiniFabButton
   ],
   templateUrl: './file-group-list.component.html',
   styleUrl: './file-group-list.component.scss'

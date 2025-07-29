@@ -1,28 +1,26 @@
-<div class="width-100-percent height-100-percent basic-element-background">
-  <div class="display-flex height-100-percent flex-direction-col flex-space-between-v">
-    <div class="display-flex flex-space-between-v margin-xlarge margin-none-bottom">
+<div class="w-full h-full quicktool-bg shadow-2xl">
+  <div class="flex h-full flex-col justify-between">
+    <div class="flex justify-between m-6 mb-0">
       <button
         [disabled]="!this.store.canUndo()"
-        mat-raised-button
-        class="font-color"
+        class="button-basics action-button"
         (click)="undoChanges()"
       >
-        <i class="material-icons font-size-medium margin-medium-right">undo</i>
+        <i class="material-icons text-base mr-3">undo</i>
         Undo
       </button>
       <button
         [disabled]="!this.store.canRedo()"
-        mat-flat-button
-        class="font-color"
+        class="button-basics action-button"
         (click)="redoChanges()"
       >
         Redo
-        <i class="material-icons font-size-medium margin-medium-right">redo</i>
+        <i class="material-icons text-base mr-3">redo</i>
       </button>
     </div>
     <div
-      class="display-flex margin-medium height-100-percent"
-      [ngClass]="{ 'flex-direction-col': !verticalPosition }"
+      class="flex m-3 h-full"
+      [ngClass]="{ 'flex-col': !verticalPosition }"
     >
       <app-quicktool-wrapper
         #replaceWrapper
@@ -68,9 +66,9 @@
         </div>
       </app-quicktool-wrapper>
     </div>
-    <div id="button-bar" class="display-flex flex-space-between-v margin-xlarge">
-      <button mat-raised-button class="font-color" (click)="cancelChanges()">Cancel</button>
-      <button mat-flat-button class="font-color" (click)="applyChanges()">RENAME</button>
+    <div id="button-bar" class="flex justify-between m-5">
+      <button class="button-basics decline-button" (click)="cancelChanges()">Cancel</button>
+      <button class="button-basics action-button" (click)="applyChanges()">RENAME</button>
     </div>
   </div>
 </div>

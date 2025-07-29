@@ -1,13 +1,13 @@
-<div class="display-flex height-100-percent width-100-percent">
-  <div class="display-flex height-100-percent width-100-percent">
+<div class="flex h-full w-full">
+  <div class="flex h-full w-full">
     <div
-      class="display-flex flex-direction-col height-100-percent overflow-hidden width-100-percent"
+      class="flex flex-col h-full overflow-hidden w-full"
     >
-      <app-file-manager class="height-100-percent"></app-file-manager>
+      <app-file-manager class="h-full"></app-file-manager>
     </div>
 
     @if (workflowService.isProcessing()) {
-      <div class="z-index-king header-bg-color material-box-shadow-intense" style="width: 550px">
+      <div class="z-king header-bg-color material-box-shadow-intense" style="width: 550px">
         <app-quicktools></app-quicktools>
       </div>
     }

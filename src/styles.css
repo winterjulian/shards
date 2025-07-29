@@ -1,0 +1,89 @@
+@import "tailwindcss";
+@import "./styles/styles.scss";
+@import "./styles/tailwind.scss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --z-index-emperor: 999;
+  --z-index-king: 99;
+  --z-index-lord: 9;
+}
+
+@utility z-emperor {
+  z-index: theme(--z-index-emperor);
+}
+
+@utility z-king {
+  z-index: theme(--z-index-king);
+}
+
+@utility z-lord {
+  z-index: theme(--z-index-lord);
+}
+
+@utility rounded-xs {
+  border-radius: 1px;
+}
+
+@theme {
+  --shadow-lg-dark: 0 5px 5px 0 rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+  --shadow-border-b: 2px 2px 2px 0 rgba(0, 0, 0, 0.3), 2px 2px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-border-l: 2px 2px 2px 0 rgba(0, 0, 0, 0.4), -2px 2px 2px 0 rgba(0, 0, 0, 0.4);
+}
+
+@theme {
+  --color-eggplant-50: #ece4ec;
+  --color-eggplant-100: #ecdbec;
+  --color-eggplant-200: #e4c5e4;
+  --color-eggplant-300: #e3ace3;
+  --color-eggplant-400: #d17ad1;
+  --color-eggplant-500: #b657b6;
+  --color-eggplant-600: #b548b5;
+  --color-eggplant-700: #9a3c9a;
+  --color-eggplant-800: #7d317d;
+  --color-eggplant-900: #682968;
+  --color-eggplant-950: #4e1e4e;
+}
+
+@theme {
+  --color-ruby-50: #fdf2f5;
+  --color-ruby-100: #fce7ed;
+  --color-ruby-200: #f9d0dc;
+  --color-ruby-300: #f4aabf;
+  --color-ruby-400: #ed7a9b;
+  --color-ruby-500: #ba3f6a;
+  --color-ruby-600: #a8325a;
+  --color-ruby-700: #8d284c;
+  --color-ruby-800: #752442;
+  --color-ruby-900: #64223b;
+  --color-ruby-950: #390f1f;
+}
+
+@theme {
+  --color-azure-50: #f4f6ff;
+  --color-azure-100: #eaedff;
+  --color-azure-200: #d7ddff;
+  --color-azure-300: #b8c2ff;
+  --color-azure-400: #929dff;
+  --color-azure-500: #6b76ff;
+  --color-azure-600: #4c56f5;
+  --color-azure-700: #3d47e1;
+  --color-azure-800: #313bb6;
+  --color-azure-900: #2d3691;
+  --color-azure-950: #212971;
+}
+
+@theme {
+  --color-amethyst-50: #f8f5ff;
+  --color-amethyst-100: #f1ebff;
+  --color-amethyst-200: #e5daff;
+  --color-amethyst-300: #d2beff;
+  --color-amethyst-400: #b896ff;
+  --color-amethyst-500: #9b69ff;
+  --color-amethyst-600: #884df7;
+  --color-amethyst-700: #753ee3;
+  --color-amethyst-800: #6235bf;
+  --color-amethyst-900: #522d9c;
+  --color-amethyst-950: #341c6a;
+}

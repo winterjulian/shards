@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { StoreService } from '../../services/store.service';
-import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-file-monitor',
-  imports: [MatButton],
+  imports: [],
   templateUrl: './file-monitor.component.html',
   standalone: true,
   styleUrl: './file-monitor.component.css',

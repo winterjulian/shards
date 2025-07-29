@@ -1,24 +1,24 @@
-<div class="basic-border padding-small bg-color">
-  <div class="display-flex flex-centralize-v padding-small">
-    <div class="display-flex width-100-percent">
+<div class="basic-border bg-color">
+  <div class="flex items-center p-1">
+    <div class="flex w-full">
       <input
         [(ngModel)]="pattern"
         (keyup)="highlightString()"
         type="text"
         placeholder="Particle to be replaced"
-        class="basic-input-field width-100-percent"
+        class="input-field-basics w-full"
       />
     </div>
   </div>
 
-  <div class="display-flex flex-centralize-v padding-small">
-    <div class="display-flex width-100-percent">
+  <div class="flex items-center p-1">
+    <div class="flex w-full">
       <input
         [(ngModel)]="replacement"
         (input)="changePattern()"
         type="text"
         placeholder="Replacement particle"
-        class="basic-input-field width-100-percent"
+        class="input-field-basics w-full"
       />
     </div>
   </div>

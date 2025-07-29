@@ -1,14 +1,11 @@
-import { Component, EventEmitter, inject, Output, viewChild } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { ReplaceToolComponent } from '../quicktools_components/replace-tool/replace-tool.component';
 import { StoreService } from '../../services/store.service';
 import { IndexerToolComponent } from '../quicktools_components/indexer-tool/indexer-tool.component';
 import { WorkflowService } from '../../services/workflow.service';
-import { MatButton } from '@angular/material/button';
 import { QuicktoolWrapperComponent } from '../quicktool-wrapper/quicktool-wrapper.component';
 import { CaseConverterToolComponent } from '../quicktools_components/case-converter-tool/case-converter-tool.component';
-import { MatDialog } from '@angular/material/dialog';
-import { DialogRenameComponent } from '../dialog-rename/dialog-rename.component';
 
 @Component({
   selector: 'app-quicktools',
@@ -16,7 +13,6 @@ import { DialogRenameComponent } from '../dialog-rename/dialog-rename.component'
     NgClass,
     ReplaceToolComponent,
     IndexerToolComponent,
-    MatButton,
     QuicktoolWrapperComponent,
     CaseConverterToolComponent,
   ],
@@ -27,7 +23,7 @@ import { DialogRenameComponent } from '../dialog-rename/dialog-rename.component'
 export class QuicktoolsComponent {
   @Output() onVerticalPositionChange = new EventEmitter();
 
-  readonly dialog = inject(MatDialog);
+  // readonly dialog = inject(MatDialog);
   activeTool: { name: string; cancelFn: () => void } | null = null;
   verticalPosition: boolean = false;
 
@@ -49,16 +45,16 @@ export class QuicktoolsComponent {
   }
 
   openDialog(): void {
-    console.log(this.store.getChangedFilesAsNumber());
-    const dialogRef = this.dialog.open(DialogRenameComponent, {
-      data: { changedFiles: this.store.getChangedFilesAsNumber() },
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.store.renameFiles();
-      }
-    });
+    // console.log(this.store.getChangedFilesAsNumber());
+    // const dialogRef = this.dialog.open(DialogRenameComponent, {
+    //   data: { changedFiles: this.store.getChangedFilesAsNumber() },
+    // });
+    //
+    // dialogRef.afterClosed().subscribe(result => {
+    //   if (result) {
+    //     this.store.renameFiles();
+    //   }
+    // });
   }
 
   cancelChanges() {

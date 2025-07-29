@@ -16,37 +16,37 @@ For every project identically
   border-radius: 5px !important;
 }
 
-.height-100-percent {
-  height: 100%;
-}
-
-.height-50-percent {
-  height: 50%;
-}
-
-.width-100-percent {
-  width: 100%;
-}
-
-.width-50-percent {
-  width: 50%;
-}
-
-.scroll-container-y {
-  overflow-y: auto;
-}
-
-.scroll-container-x {
-  overflow-x: auto;
-}
-
-.scroll-container-y-scroll {
-  overflow-y: scroll;
-}
-
-.scroll-container-x-scroll {
-  overflow-x: scroll;
-}
+//.h-full {
+//  height: 100%;
+//}
+//
+//.height-50-percent {
+//  height: 50%;
+//}
+//
+//.w-full {
+//  width: 100%;
+//}
+//
+//.width-50-percent {
+//  width: 50%;
+//}
+//
+//.overflow-y-auto {
+//  overflow-y: auto;
+//}
+//
+//.overflow-x-auto {
+//  overflow-x: auto;
+//}
+//
+//.overflow-y-scroll {
+//  overflow-y: scroll;
+//}
+//
+//.overflow-x-scroll {
+//  overflow-x: scroll;
+//}
 
 .font-weight-bold {
   font-weight: bold;
@@ -67,77 +67,75 @@ For every project identically
 .font-size-xsmall {
   font-size: 10px;
 }
-
-.font-size-small {
-  font-size: 12px;
-}
-
-.font-size-medium {
-  font-size: 16px;
-}
-
-.font-size-large {
-  font-size: 20px;
-}
-
-.font-size-xlarge {
-  font-size: 24px;
-}
-
-.font-size-xxlarge {
-  font-size: 28px;
-}
-
-.font-size-xxxlarge {
-  font-size: 32px;
-}
+//
+//.text-xs {
+//  font-size: 12px;
+//}
+//
+//.text-base {
+//  font-size: 16px;
+//}
+//
+//.text-xl {
+//  font-size: 20px;
+//}
+//
+//.text-2xl {
+//  font-size: 24px;
+//}
+//
+//.text-3xl {
+//  font-size: 28px;
+//}
+//
+//.text-4xl {
+//  font-size: 32px;
+//}
 
 /* FLEX */
 
-.display-flex {
-  display: flex;
-}
-
-.flex-centralize-h {
-  display: flex;
-  justify-content: center;
-}
-
-.flex-centralize-v {
-  display: flex;
-  align-items: center;
-}
-
-.flex-space-between-v {
-  justify-content: space-between;
-}
-
-.flex-space-between-h {
-  align-content: space-between;
-}
-
-.flex-flex-end {
-  justify-content: flex-end;
-}
-
-.flex-flex-start {
-  justify-content: flex-start;
-}
-
-.basic-flex-1 {
-  flex: 1;
-}
+//.flex {
+//  display: flex;
+//}
+//
+//.justify-center {
+//  justify-content: center;
+//}
+//
+//.items-center {
+//  align-items: center;
+//}
+//
+//.justify-between {
+//  justify-content: space-between;
+//}
+//
+//.content-between {
+//  align-content: space-between;
+//}
+//
+//.justify-end {
+//  justify-content: flex-end;
+//}
+//
+//.justify-start {
+//  justify-content: flex-start;
+//}
+//
+//.flex-col {
+//  flex-direction: column;
+//}
+//
+//.flex-row {
+//  flex-direction: row;
+//}
+//
+//.flex-1 {
+//  flex: 1;
+//}
 
 .basic-flex-4 {
   flex: 4;
-}
-
-.flex-direction-col {
-  flex-direction: column;
-}
-
-.flex-direction-row {
-  flex-direction: row;
 }
 
 .small-event {
@@ -195,17 +193,17 @@ For every project identically
   width: 15px;
 }
 
-.z-index-emperor {
-  z-index: 999;
-}
-
-.z-index-king {
-  z-index: 99;
-}
-
-.z-index-lord {
-  z-index: 9;
-}
+//.z-emperor {
+//  z-index: 999;
+//}
+//
+//.z-king {
+//  z-index: 99;
+//}
+//
+//.z-lord {
+//  z-index: 9;
+//}
 
 .cursor-grab {
   cursor: grab;

@@ -1,0 +1,60 @@
+<div class="flex flex-col h-full">
+
+  <div *ngIf="store.filesSignal().length === 0" class="h-1/2 p-3">
+    <app-file-selector></app-file-selector>
+  </div>
+
+  <div #overlay tabindex="0" class="blocked-area z-lord hidden"></div>
+
+  <div
+    *ngIf="store.filesSignal().length > 0"
+    [attr.inert]="workflowService.isProcessing() ? true : null"
+    class="flex flex-col h-full"
+  >
+
+    <div class="pt-5 pl-5 pr-5">
+      <app-file-monitor></app-file-monitor>
+    </div>
+
+    <div class="flex p-5 overflow-hidden h-full">
+      @if(!store.isRearrangingFiles()) {
+        <div class="flex w-full">
+          <div class="w-9 mr-3">
+            <app-percentage-vertical></app-percentage-vertical>
+          </div>
+          <app-file-list-wrapper class="w-full">
+            <div content>
+              <app-file-list></app-file-list>
+            </div>
+          </app-file-list-wrapper>
+        </div>
+      } @else {
+        <app-file-list-wrapper class="w-full">
+          <div content>
+            <app-file-group-list></app-file-group-list>
+          </div>
+        </app-file-list-wrapper>
+      }
+    </div>
+
+    <div class="flex justify-between m-5 mt-0">
+      <div class="flex">
+        <div class="mr-4">
+          <button class="button-basics decline-button" (click)="getFiles()">Change source</button>
+        </div>
+        <div>
+          <button class="button-basics action-button" (click)="arrangeFiles()">Arrange files</button>
+        </div>
+      </div>
+      <div>
+        <button class="button-basics action-button"
+          [disabled]="store.selectionCounterSignal() === 0 || workflowService.isProcessing()"
+          (click)="changeFileNames()"
+        >
+          Change names!
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>

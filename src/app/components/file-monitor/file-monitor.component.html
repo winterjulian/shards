@@ -1,8 +1,8 @@
 <div>
-  <div class="display-flex">
-    <div class="padding-small padding-none-left">
+  <div class="flex">
+    <div class="p-2 pl-0">
       <button
-        mat-flat-button
+        class="button-basics action-button"
         [disabled]="
           store.filesSignal().length === 0 ||
           store.selectionCounterSignal() === store.visibilitySignal()
@@ -12,26 +12,26 @@
         Select All
       </button>
     </div>
-    <div class="padding-small">
+    <div class="p-2">
       <button
-        mat-flat-button
+        class="button-basics action-button"
         [disabled]="store.filesSignal().length === 0 || store.selectionCounterSignal() === 0"
         (click)="deselectAll()"
       >
         Deselect All
       </button>
     </div>
-    <div class="padding-small">
+    <div class="p-2">
       <button
-        mat-flat-button
+        class="button-basics action-button"
         [disabled]="store.filesSignal().length === 0"
         (click)="invertSelection()"
       >
         Invert selection
       </button>
     </div>
-    <div class="display-flex">
-      <div class="padding-small padding-none-right">
+    <div class="flex">
+      <div class="p-2 pr-0">
         <input
           class="basic-input-field material-box-shadow-inset"
           #searchField
