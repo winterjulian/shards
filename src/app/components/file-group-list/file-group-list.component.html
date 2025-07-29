@@ -3,7 +3,7 @@
     @for (fileGroup of store.rearrangeFilesSignal(); track fileGroup; let index = $index) {
       <div class="flex file-item">
 
-        <div class="side-col-width mr-3">
+        <div class="w-9 mr-3">
           @if(fileGroup.isSelected
               && store.rearrangeFilesSignal()[index+1].isSelected
               && !store.rearrangeFilesSignal()[index-1].isSelected
