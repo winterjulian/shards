@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ThemeService } from '../../services/theme.service';
 import { NgClass, NgOptimizedImage } from '@angular/common';
 import { WorkflowService } from '../../services/workflow.service';
-import { MatButton } from '@angular/material/button';
 import { StoreService } from '../../services/store.service';
 
 @Component({

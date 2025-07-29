@@ -37,9 +37,7 @@
               }
             ],
             "styles": [
-              "src/styles/theme-light.scss",
-              "src/styles/theme-dark.scss",
-              "src/styles.scss"
+              "src/styles.css"
             ],
             "scripts": []
           },
@@ -97,7 +95,7 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.css"
             ],
             "scripts": []
           }

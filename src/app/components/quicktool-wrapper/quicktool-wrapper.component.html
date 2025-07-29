@@ -16,7 +16,6 @@
     <div>
       <div class="display-flex padding-medium flex-space-between-v">
         <button
-          mat-raised-button
           class="font-color"
           [disabled]="isCancelDisabled()"
           (click)="cancelChanges()"
@@ -24,7 +23,6 @@
           Cancel
         </button>
         <button
-          mat-flat-button
           class="font-color"
           [disabled]="isAcceptDisabled()"
           (click)="acceptChanges()"

@@ -2,7 +2,6 @@
   <div class="display-flex">
     <div class="padding-small padding-none-left">
       <button
-        mat-flat-button
         [disabled]="
           store.filesSignal().length === 0 ||
           store.selectionCounterSignal() === store.visibilitySignal()
@@ -14,7 +13,6 @@
     </div>
     <div class="padding-small">
       <button
-        mat-flat-button
         [disabled]="store.filesSignal().length === 0 || store.selectionCounterSignal() === 0"
         (click)="deselectAll()"
       >
@@ -23,7 +21,6 @@
     </div>
     <div class="padding-small">
       <button
-        mat-flat-button
         [disabled]="store.filesSignal().length === 0"
         (click)="invertSelection()"
       >

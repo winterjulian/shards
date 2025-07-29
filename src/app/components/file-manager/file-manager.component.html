@@ -38,19 +38,18 @@
     <div class="display-flex flex-space-between-v margin-xlarge margin-none-top">
       <div class="display-flex">
         <div class="margin-large-right">
-          <button class="font-color" mat-raised-button (click)="getFiles()">Change source</button>
+          <button class="font-color" (click)="getFiles()">Change source</button>
         </div>
         <div>
-          <button class="font-color" mat-flat-button (click)="arrangeFiles()">Arrange files</button>
+          <button class="font-color" (click)="arrangeFiles()">Arrange files</button>
         </div>
       </div>
       <div>
-        <button
-          mat-flat-button
+        <button class="standard-button"
           [disabled]="store.selectionCounterSignal() === 0 || workflowService.isProcessing()"
           (click)="changeFileNames()"
         >
-          Change names
+          Change names!
         </button>
       </div>
     </div>

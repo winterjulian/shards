@@ -3,7 +3,6 @@
     <div class="display-flex flex-space-between-v margin-xlarge margin-none-bottom">
       <button
         [disabled]="!this.store.canUndo()"
-        mat-raised-button
         class="font-color"
         (click)="undoChanges()"
       >
@@ -12,7 +11,6 @@
       </button>
       <button
         [disabled]="!this.store.canRedo()"
-        mat-flat-button
         class="font-color"
         (click)="redoChanges()"
       >
@@ -69,8 +67,8 @@
       </app-quicktool-wrapper>
     </div>
     <div id="button-bar" class="display-flex flex-space-between-v margin-xlarge">
-      <button mat-raised-button class="font-color" (click)="cancelChanges()">Cancel</button>
-      <button mat-flat-button class="font-color" (click)="applyChanges()">RENAME</button>
+      <button class="font-color" (click)="cancelChanges()">Cancel</button>
+      <button class="font-color" (click)="applyChanges()">RENAME</button>
     </div>
   </div>
 </div>

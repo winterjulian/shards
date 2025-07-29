@@ -7,7 +7,6 @@ import { NgIf } from '@angular/common';
 import { StoreService } from '../../services/store.service';
 import { WorkflowService } from '../../services/workflow.service';
 import { PercentageVerticalComponent } from '../percentage-vertical/percentage-vertical.component';
-import { MatButton } from '@angular/material/button';
 import {FileListWrapperComponent} from '../file-list-wrapper/file-list-wrapper.component';
 import {FileGroupListComponent} from '../file-group-list/file-group-list.component';
 
@@ -22,7 +21,6 @@ import {FileGroupListComponent} from '../file-group-list/file-group-list.compone
     NgIf,
     PercentageVerticalComponent,
     FileMonitorComponent,
-    MatButton,
     FileListWrapperComponent,
     FileGroupListComponent,
   ],
