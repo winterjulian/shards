@@ -1,9 +1,37 @@
-<div>
-<!--  <mat-radio-group class="case-selection" [(ngModel)]="selectedCase" (change)="onSelectionChange()">-->
-<!--    <div class="display-flex flex-direction-col margin-small">-->
-<!--      <mat-radio-button value="upper">ALL CAPITALIZED</mat-radio-button>-->
-<!--      <mat-radio-button value="lower">all lower case</mat-radio-button>-->
-<!--      <mat-radio-button value="capitalize">First Letter Capitalized</mat-radio-button>-->
-<!--    </div>-->
-<!--  </mat-radio-group>-->
+<div class="space-y-2 pl-2 pr-2">
+  <label class="block">
+    <input
+      type="radio"
+      name="case"
+      [(ngModel)]="selectedCase"
+      (change)="onSelectionChange()"
+      value="upper"
+      class="mr-2"
+    />
+    ALL CAPITALIZED
+  </label>
+
+  <label class="block">
+    <input
+      type="radio"
+      name="case"
+      [(ngModel)]="selectedCase"
+      (change)="onSelectionChange()"
+      value="lower"
+      class="mr-2"
+    />
+    all lower case
+  </label>
+
+  <label class="block">
+    <input
+      type="radio"
+      name="case"
+      [(ngModel)]="selectedCase"
+      (change)="onSelectionChange()"
+      value="capitalize"
+      class="mr-2"
+    />
+    First Letter Capitalized
+  </label>
 </div>
