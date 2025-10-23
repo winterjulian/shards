@@ -5,7 +5,7 @@ import {ResponseObject} from './responseObject';
 declare global {
   interface Window {
     electron: {
-      openFiles: () => Promise<ExtendedFile[]>;
+      openFiles: (path?: string) => Promise<ExtendedFile[]>;
       getFilesFromDirectory: (directoryPath: string) => Promise<ExtendedFile[]>;
       renameFiles: (filesToRename: ExtendedFile[]) => Promise<{
         success: boolean;

@@ -1,11 +1,10 @@
 .loader-shiny {
-  width: 40px;
-  aspect-ratio: 1;
-  background:
-    linear-gradient(to bottom right,#0000 calc(50% - 40px), rgba(255, 255, 255, 0.8) 50%,#0000 calc(50% + 40px))
-    bottom right/calc(200% + 80px) calc(200% + 80px)
-    #4e1e4e;
-  animation: l8 1s infinite ;
+  @apply w-10 aspect-square;
+  @apply bg-purple-400 dark:bg-purple-900;
+  background-image: linear-gradient(to bottom right, #0000 calc(50% - 40px), rgba(255, 255, 255, 0.8) 50%, #0000 calc(50% + 40px));
+  background-size: calc(200% + 80px) calc(200% + 80px);
+  background-position: bottom right;
+  animation: l8 1s infinite;
 }
 @keyframes l8 {
   100% {background-position: top left}

@@ -37,13 +37,13 @@ export class StoreService {
   lastSelectedFile = signal<ExtendedFile | undefined>(undefined);
   favoriteDirectories = signal<FavoriteDirectory[] | undefined>(undefined);
 
-  setIsLoading(bool: boolean) {
+  setIsLoading(bool: boolean, msDelay: number = 0) {
     if (bool) {
       this.isLoading.set(bool);
     } else {
       setTimeout(() => {
         this.isLoading.set(bool);
-      }, 2000)
+      }, msDelay)
     }
   }
 
@@ -79,7 +79,6 @@ export class StoreService {
     }
 
     baseGroup.files = newArray;
-    console.log("Gruppierte Dateien:", newArray);
   }
 
   ungroupFiles(index: number): void {
@@ -406,17 +405,16 @@ export class StoreService {
     return counter;
   }
 
-  getFilesByDialogue() {
+  getFilesByDialogue(path?: string) {
     this.setIsLoading(true);
-    window.electron.openFiles().then((files: Array<ExtendedFile>) => {
-      console.log(files);
+    window.electron.openFiles(path).then((files: Array<ExtendedFile>) => {
       if (!files.length) {
         this.setIsLoading(false);
         return;
       } else {
         this.setFiles(files)
       }
-      this.setIsLoading(false);
+      this.setIsLoading(false, 2000);
     });
   }
 
@@ -424,7 +422,7 @@ export class StoreService {
     this.setIsLoading(true);
     window.electron.getFilesFromDirectory(directoryPath).then((files: Array<ExtendedFile>) => {
       if (!files.length) {
-        this.setIsLoading(false);
+        this.setIsLoading(false, 2000);
         return;
       } else {
         this.setFiles(files);
@@ -433,11 +431,10 @@ export class StoreService {
   }
 
   setFiles(files: Array<ExtendedFile>) {
-    console.log('SETTING');
     this.filesSignal.set(files);
     this.resetVisibility();
     this.addSnapshotToHistory();
-    this.setIsLoading(false);
+    this.setIsLoading(false, 1500);
   }
 
   getFavoriteDirectories() {
@@ -449,6 +446,10 @@ export class StoreService {
   rearrangeFiles(): void {
     this.isRearrangingFiles.set(true);
     this.createRearrangeFilesSignal();
+  }
+
+  removeAllFiles() {
+    this.filesSignal.set([]);
   }
 
   createRearrangeFilesSignal(): void {

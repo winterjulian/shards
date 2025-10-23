@@ -50,7 +50,6 @@ export class FileGroupListComponent {
   }
 
   dropFile(event: CdkDragDrop<ExtendedFileGroup[]>): void {
-    console.log('drop file');
     this.store.changeFileGroupIndex(event)
   }
 

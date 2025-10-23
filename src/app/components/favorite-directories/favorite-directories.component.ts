@@ -54,9 +54,7 @@ export class FavoriteDirectoriesComponent implements OnInit {
   onSubmit(): void {
     if (this.favoriteForm.valid) {
       const formData: FavoriteDirectory = this.favoriteForm.value;
-      console.log('Form submitted:', formData);
       this.favoritesService.addFavoriteDirectory(formData).then((response: ResponseObject) => {
-        console.log(response);
         if (!response.isError) {
           this.store.getFavoriteDirectories();
         }
@@ -67,7 +65,6 @@ export class FavoriteDirectoriesComponent implements OnInit {
 
   removeFavoriteDirectory(directory: FavoriteDirectory) {
     this.favoritesService.removeFavoriteDirectory(directory).then((response: ResponseObject) => {
-      console.log(response);
       if (!response.isError) {
         this.store.getFavoriteDirectories();
       }
@@ -81,6 +78,10 @@ export class FavoriteDirectoriesComponent implements OnInit {
 
   getFilesFromDirectory(directoryPath: string) {
     this.store.getFilesByDirectory(directoryPath);
+  }
+
+  getFiles(path: string) {
+    this.store.getFilesByDialogue(path);
   }
 
   testFunc(inp: any) {

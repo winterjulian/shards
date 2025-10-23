@@ -17,8 +17,8 @@ export class FileListFooterComponent {
     this.workflowService.isProcessing.set(true);
   }
 
-  getFiles() {
-    this.store.getFilesByDialogue();
+  changeSource() {
+    this.store.removeAllFiles();
   }
 
   arrangeFiles() {
