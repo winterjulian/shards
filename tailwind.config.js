@@ -4,13 +4,13 @@ module.exports = {
   theme: {
     extend: {
       keyframes: {
-        shine: {
-          '0%': { left: '-75%' },
-          '100%': { left: '125%' },
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
         },
       },
       animation: {
-        shine: 'shine 0.7s forwards',
+        'fade-in': 'fadeIn 1s ease-in forwards',
       },
     },
   },

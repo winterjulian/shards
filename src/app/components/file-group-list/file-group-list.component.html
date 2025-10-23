@@ -9,12 +9,12 @@
               && store.rearrangeFilesSignal()[index+1].isSelected
               && !store.rearrangeFilesSignal()[index-1].isSelected
             ) {
-            <button class="button-basics button-small" (click)="groupFiles(index)">
+            <button class="button-basics shine-effect button-small" (click)="groupFiles(index)">
               <i class="material-symbols-outlined !text-lg">lock</i>
             </button>
           }
           @if(entry.files.length > 1 && !entry.isSelected) {
-            <button class="button-basics button-small" (click)="ungroupFiles(index)">
+            <button class="button-basics shine-effect button-small" (click)="ungroupFiles(index)">
               <i class="material-symbols-outlined !text-lg">lock_open</i>
             </button>
           }

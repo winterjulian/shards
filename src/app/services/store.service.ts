@@ -450,6 +450,7 @@ export class StoreService {
 
   removeAllFiles() {
     this.filesSignal.set([]);
+    this.selectionCounterSignal.set(0);
   }
 
   createRearrangeFilesSignal(): void {

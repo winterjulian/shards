@@ -2,7 +2,7 @@
 <div class="flex">
     <div class="p-2 pl-0">
       <button
-        class="button-basics action-button"
+        class="button-basics shine-effect action-button"
         [disabled]="
           store.filesSignal().length === 0 ||
           store.selectionCounterSignal() === store.visibilitySignal()
@@ -14,7 +14,7 @@
     </div>
     <div class="p-2">
       <button
-        class="button-basics action-button"
+        class="button-basics shine-effect action-button"
         [disabled]="store.filesSignal().length === 0 || store.selectionCounterSignal() === 0"
         (click)="deselectAll()"
       >
@@ -23,7 +23,7 @@
     </div>
     <div class="p-2">
       <button
-        class="button-basics action-button"
+        class="button-basics shine-effect action-button"
         [disabled]="store.filesSignal().length === 0"
         (click)="invertSelection()"
       >
@@ -44,7 +44,7 @@
         (keyup.enter)="store.filterFilesWithRegex(store.searchStringSignal())"
       />
       <button
-        class="input-field-basics input-field-cobutton"
+        class="input-field-basics input-field-co-button shine-effect  shine-effect "
         [disabled]="!store.isClearable()"
         (click)="clearSearchString()"
       >

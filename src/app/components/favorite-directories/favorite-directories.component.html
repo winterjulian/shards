@@ -31,7 +31,7 @@
           </div>
 
           <div class="form-group pl-2">
-            <div class="flex button-basics decline-button" (click)="selectDirectory()">
+            <div class="flex button-basics shine-effect decline-button" (click)="selectDirectory()">
               <i class="material-symbols-outlined text-lg cursor-pointer">folder</i>
               <div class="pl-2">
                 Browse
@@ -50,13 +50,13 @@
 <!--            </div>-->
 
           <div class="pl-2">
-            <button class="button-basics decline-button" (click)="cancelNewFavorite()">
+            <button class="button-basics shine-effect decline-button" (click)="cancelNewFavorite()">
               Cancel
             </button>
           </div>
 
           <div class="pl-2">
-            <button class="button-basics action-button" type="submit" [disabled]="favoriteForm.invalid">
+            <button class="button-basics shine-effect action-button" type="submit" [disabled]="favoriteForm.invalid">
               Save
             </button>
           </div>
@@ -66,7 +66,7 @@
     }
     @if (!isAdding()) {
       <div class="flex">
-        <div class="button-basics add-button flex justify-center items-center" (click)="addFavoriteFolders()">
+        <div class="button-basics shine-effect decline-button flex justify-center items-center" (click)="addFavoriteFolders()">
           <i class="material-symbols-outlined">add</i>
         </div>
         <div class="flex h-auto justify-center items-center text-xl pl-2">
@@ -78,15 +78,20 @@
 
   <div class="grid grid-cols-[auto_auto_auto_auto_1fr] gap-2 items-center">
     @for (directory of store.favoriteDirectories(); track directory.path) {
-      <div (click)="removeFavoriteDirectory(directory)" class="button-basics decline-button">
+      <div (click)="removeFavoriteDirectory(directory)" class="button-basics shine-effect decline-button">
         <i class="material-symbols-outlined text-lg cursor-pointer">delete</i>
       </div>
       <div>{{ directory.name }}</div>
-      <div (click)="getFiles(directory.path)" class="button-basics decline-button">
-        <i class="material-symbols-outlined text-lg cursor-pointer">open_jam</i>
+      <div (click)="getFilesFromDirectory(directory.path)" class="button-basics shine-effect decline-button">
+        <div class="flex">
+          <i class="material-symbols-outlined text-lg cursor-pointer">file_save</i>
+        </div>
+        <div class="pl-2">
+          Get all files
+        </div>
       </div>
-      <div (click)="getFilesFromDirectory(directory.path)" class="button-basics decline-button">
-        <i class="material-symbols-outlined text-lg cursor-pointer">file_save</i>
+      <div (click)="getFiles(directory.path)" class="button-basics shine-effect decline-button">
+        <i class="material-symbols-outlined text-lg cursor-pointer">open_jam</i>
       </div>
       <div>{{ directory.path }}</div>
     }

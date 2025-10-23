@@ -1,9 +1,9 @@
-<div class="w-full h-full quicktool-bg shadow-2xl">
+<div class="w-full h-full quicktool-bg shadow-2xl p-4">
   <div class="flex h-full flex-col justify-between">
     <div class="flex justify-between m-6 mb-0">
       <button
         [disabled]="!this.store.canUndo()"
-        class="button-basics action-button"
+        class="button-basics shine-effect action-button"
         (click)="undoChanges()"
       >
         <i class="material-symbols-outlined text-base mr-3">undo</i>
@@ -11,7 +11,7 @@
       </button>
       <button
         [disabled]="!this.store.canRedo()"
-        class="button-basics action-button"
+        class="button-basics shine-effect action-button"
         (click)="redoChanges()"
       >
         Redo
@@ -68,8 +68,8 @@
     </div>
     <div id="button-bar" class="flex justify-between m-5">
       <!--- TODO: When searching in replacement, text gets higlighted and when leaving via cancel, highlighting stays --->
-      <button class="button-basics decline-button" (click)="cancelChanges()">Cancel</button>
-      <button class="button-basics action-button" (click)="applyChanges()">RENAME</button>
+      <button class="button-basics shine-effect decline-button" (click)="cancelChanges()">Cancel</button>
+      <button class="button-basics shine-effect action-button" (click)="applyChanges()">RENAME</button>
     </div>
   </div>
 </div>
