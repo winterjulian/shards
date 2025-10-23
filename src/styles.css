@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "./styles/styles.scss";
 @import "./styles/tailwind.scss";
+@import "./styles/loader-shiny.scss";
 
 @custom-variant dark (&:where(.dark, .dark *));
 

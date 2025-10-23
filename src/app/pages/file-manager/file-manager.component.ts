@@ -2,7 +2,7 @@ import { Component, effect, ElementRef, ViewChild } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FileSelectorComponent } from '../../components/file-selector/file-selector.component';
 import { FileListComponent } from '../../components/file-list/file-list.component';
-import { NgIf } from '@angular/common';
+import {NgClass, NgIf} from '@angular/common';
 import { StoreService } from '../../services/store.service';
 import { WorkflowService } from '../../services/workflow.service';
 import { PercentageVerticalComponent } from '../../components/percentage-vertical/percentage-vertical.component';
@@ -31,7 +31,6 @@ import {FileListFooterComponent} from '../../components/file-list-footer/file-li
 })
 export class FileManagerComponent {
   @ViewChild('overlay') overlay: ElementRef | undefined;
-
 
   constructor(
     public store: StoreService,

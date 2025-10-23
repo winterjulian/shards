@@ -1,45 +1,53 @@
 <div class="flex flex-col h-full">
 
-  <div *ngIf="store.filesSignal().length === 0" class="h-1/2 p-3">
-    <app-file-selector></app-file-selector>
+  <div [hidden]="!store.isLoading()" class="flex h-full justify-center items-center">
+    <div>
+      <div class="loader-shiny shadow-lg-dark"></div>
+    </div>
   </div>
-
-  <div #overlay tabindex="0" class="blocked-area z-lord hidden"></div>
-
-  <div
-    *ngIf="store.filesSignal().length > 0"
-    [attr.inert]="workflowService.isProcessing() ? true : null"
-    class="flex flex-col h-full"
-  >
-
-    <div class="pt-5 pl-5 pr-5">
-      <app-file-list-header></app-file-list-header>
+  <div [hidden]="store.isLoading()" class="flex flex-col h-full p-4">
+    <div *ngIf="store.filesSignal().length === 0" class="h-full">
+      <app-file-selector></app-file-selector>
     </div>
 
-    <div class="flex p-5 overflow-hidden h-full">
-      @if(!store.isRearrangingFiles()) {
-        <div class="flex w-full">
-          <div class="w-9 mr-3">
-            <app-percentage-vertical></app-percentage-vertical>
+    <div #overlay tabindex="0" class="blocked-area z-lord hidden"></div>
+
+    <div
+      *ngIf="store.filesSignal().length > 0"
+      [attr.inert]="workflowService.isProcessing() ? true : null"
+      class="flex flex-col h-full"
+    >
+
+      <div class="pt-5 pl-5 pr-5">
+        <app-file-list-header></app-file-list-header>
+      </div>
+
+      <div class="flex p-5 overflow-hidden h-full">
+        @if(!store.isRearrangingFiles()) {
+          <div class="flex w-full">
+            <div class="w-9 mr-3">
+              <app-percentage-vertical></app-percentage-vertical>
+            </div>
+            <app-file-list-wrapper class="w-full">
+              <div content>
+                <app-file-list></app-file-list>
+              </div>
+            </app-file-list-wrapper>
           </div>
+        } @else {
           <app-file-list-wrapper class="w-full">
             <div content>
-              <app-file-list></app-file-list>
+              <app-file-group-list></app-file-group-list>
             </div>
           </app-file-list-wrapper>
-        </div>
-      } @else {
-        <app-file-list-wrapper class="w-full">
-          <div content>
-            <app-file-group-list></app-file-group-list>
-          </div>
-        </app-file-list-wrapper>
-      }
-    </div>
+        }
+      </div>
 
-    <div>
-      <app-file-list-footer></app-file-list-footer>
-    </div>
+      <div>
+        <app-file-list-footer></app-file-list-footer>
+      </div>
 
+    </div>
   </div>
+
 </div>

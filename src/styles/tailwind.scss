@@ -4,6 +4,32 @@
   @apply rounded-xs;
   @apply shadow-lg-dark;
   @apply cursor-pointer;
+  @apply relative overflow-hidden;
+
+  &::before {
+    content: '';
+    left: -110%;
+    @apply absolute top-0;
+    @apply w-full h-full;
+    @apply bg-gradient-to-r from-transparent via-white/40 to-transparent;
+    @apply opacity-0;
+    transform: skewX(-20deg);
+    transition: left 0.5s ease-out, opacity 0s;
+  }
+
+  &:hover:not([disabled])::before {
+    left: 110%;
+    @apply opacity-100;
+    transition: left 0.5s ease-out, opacity 0s;
+  }
+
+  &:not(:hover)::before {
+    transition: left 0s, opacity 0s 0.5s;
+  }
+
+  &.disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
 }
 
 .standard-button {
@@ -120,4 +146,10 @@
   @apply min-h-8 border-1;
   @apply border-neutral-300;
   @apply dark:border-neutral-800;
+}
+
+.add-button {
+  @apply min-w-11;
+  @apply bg-ruby-400 hover:bg-ruby-300 text-neutral-900;
+  @apply dark:bg-ruby-800 hover:dark:bg-ruby-700 dark:text-neutral-100;
 }

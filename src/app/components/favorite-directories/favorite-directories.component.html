@@ -1,0 +1,90 @@
+<div>
+  <div>
+    @for (directory of store.favoriteDirectories(); track directory.path) {
+      <div class="flex">
+        @if(directory.name) {
+          <div class="pr-2">
+            {{ directory.name }}
+          </div>
+        }
+        <div class="pr-2">
+          {{ directory.path }}
+        </div>
+        <div class="pr-2">
+          <button (click)="getFilesFromDirectory(directory.path)">
+            <i class="material-icons !text-lg">system_update_alt</i>
+          </button>
+        </div>
+        <div class="pr-2">
+          <button (click)="removeFavoriteDirectory(directory)">
+            <i class="material-icons !text-lg">delete</i>
+          </button>
+        </div>
+      </div>
+    }
+  </div>
+  @if (isAdding()) {
+    <div>
+      <form [formGroup]="favoriteForm" (ngSubmit)="onSubmit()" class="favorite-form">
+        <div class="form-group">
+          <label for="path">Pfad</label>
+          <div class="path-input-group">
+            <input
+              type="text"
+              id="path"
+              formControlName="path"
+              readonly
+              placeholder="Wähle einen Ordner..."
+            >
+            <button type="button" (click)="selectDirectory()">📁 Durchsuchen</button>
+          </div>
+          @if (favoriteForm.get('path')?.invalid && favoriteForm.get('path')?.touched) {
+            <div class="error">
+              Pfad ist erforderlich
+            </div>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            formControlName="name"
+            placeholder="z.B. Mein Projekt"
+          >
+          @if (favoriteForm.get('name')?.invalid && favoriteForm.get('name')?.touched) {
+            <div class="error">
+              Name ist erforderlich
+            </div>
+          }
+
+        </div>
+
+        <div class="form-group">
+          <label>
+            <input
+              type="checkbox"
+              formControlName="pinned"
+            >
+            📌 Angepinnt
+          </label>
+        </div>
+
+        <button type="submit" [disabled]="favoriteForm.invalid">
+          Speichern
+        </button>
+        <button (click)="cancelNewFavorite()">
+          Abbrechen
+        </button>
+      </form>
+    </div>
+  }
+  @if (!isAdding()) {
+    <div class="flex">
+      <div class="button-basics add-button flex justify-center items-center" (click)="addFavoriteFolders()">
+        <i class="material-icons !text-lg">add</i>
+      </div>
+    </div>
+  }
+</div>

@@ -4,9 +4,6 @@ import {NgClass} from '@angular/common';
 
 @Component({
   selector: 'app-file-list-header',
-  imports: [
-    NgClass
-  ],
   standalone: true,
   templateUrl: './file-list-header.component.html',
   styleUrl: './file-list-header.component.scss'

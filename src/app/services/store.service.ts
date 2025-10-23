@@ -3,6 +3,7 @@ import { ExtendedFile } from '../interfaces/extendedFile';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { HistoryService } from './history.service';
 import {ExtendedFileGroup} from '../interfaces/extendedFileGroup';
+import {FavoriteDirectory} from '../interfaces/favoriteDirectory';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +11,7 @@ import {ExtendedFileGroup} from '../interfaces/extendedFileGroup';
 export class StoreService {
   public history = inject(HistoryService);
   private interSnapshot: string[] = [];
+  isLoading = signal<boolean>(false);
   filesSignal = signal<ExtendedFile[]>([]);
   selectionCounterSignal = signal<number>(0);
   visibilitySignal = signal<number>(0);
@@ -27,12 +29,23 @@ export class StoreService {
   });
   searchStringSignal = signal<string>('');
   matchingShards = signal<string[]>([]);
-  isLoading = signal<boolean>(false);
+  isRenaming = signal<boolean>(false);
   rearrangeFilesSignal = signal<ExtendedFileGroup[]>([]);
   isRearrangingFiles = signal<boolean>(false);
   isClearable = signal<boolean>(false);
 
   lastSelectedFile = signal<ExtendedFile | undefined>(undefined);
+  favoriteDirectories = signal<FavoriteDirectory[] | undefined>(undefined);
+
+  setIsLoading(bool: boolean) {
+    if (bool) {
+      this.isLoading.set(bool);
+    } else {
+      setTimeout(() => {
+        this.isLoading.set(bool);
+      }, 2000)
+    }
+  }
 
   setFileIsSelected(file: ExtendedFile, isSelected: boolean) {
     if (file.isSelected === isSelected) return;
@@ -394,14 +407,43 @@ export class StoreService {
   }
 
   getFilesByDialogue() {
+    this.setIsLoading(true);
     window.electron.openFiles().then((files: Array<ExtendedFile>) => {
+      console.log(files);
       if (!files.length) {
+        this.setIsLoading(false);
         return;
+      } else {
+        this.setFiles(files)
       }
-      this.filesSignal.set(files);
-      this.resetVisibility();
-      this.addSnapshotToHistory();
+      this.setIsLoading(false);
     });
+  }
+
+  getFilesByDirectory(directoryPath: string) {
+    this.setIsLoading(true);
+    window.electron.getFilesFromDirectory(directoryPath).then((files: Array<ExtendedFile>) => {
+      if (!files.length) {
+        this.setIsLoading(false);
+        return;
+      } else {
+        this.setFiles(files);
+      }
+    });
+  }
+
+  setFiles(files: Array<ExtendedFile>) {
+    console.log('SETTING');
+    this.filesSignal.set(files);
+    this.resetVisibility();
+    this.addSnapshotToHistory();
+    this.setIsLoading(false);
+  }
+
+  getFavoriteDirectories() {
+    window.electron.getFavoriteDirectories().then((directories: FavoriteDirectory[]) => {
+      this.favoriteDirectories.set(directories);
+    })
   }
 
   rearrangeFiles(): void {
@@ -423,7 +465,7 @@ export class StoreService {
   }
 
   renameFiles() {
-    this.isLoading.set(true);
+    this.isRenaming.set(true);
     const filesToRename = this.filesSignal().filter(f => f.changedName !== f.name);
 
     window.electron.renameFiles(filesToRename).then(result => {
@@ -434,7 +476,7 @@ export class StoreService {
       } else {
         console.error('Fehler beim Umbenennen:', result.errors);
       }
-      this.isLoading.set(false);
+      this.isRenaming.set(false);
     });
   }
 }

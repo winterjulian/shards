@@ -1,14 +1,27 @@
-<div class="h-full flex items-center justify-center">
-  <div>
-    <input
-      type="text"
-      style="width: 500px"
-      disabled="disabled"
-      [value]="store.filesSignal().length > 0 ? store.filesSignal()[0].path : ''"
-      class="basic-input-field basic-font-color"
-    />
+<div class="h-full items-center justify-center">
+
+  <div class="h-1/2 flex items-center justify-center">
+    <div>
+      <input
+        type="text"
+        style="width: 500px"
+        disabled="disabled"
+        [value]="store.filesSignal().length > 0 ? store.filesSignal()[0].path : ''"
+        class="basic-input-field basic-font-color"
+      />
+    </div>
+    <div>
+      <button class="basic-button basic-button-red m-2" (click)="getFiles()">Open</button>
+    </div>
   </div>
-  <div>
-    <button class="basic-button basic-button-red m-2" (click)="getFiles()">Open</button>
+
+  <div class="h-1/2">
+    <div>
+      <app-favorite-directories
+        (clickFavorite)="onClickFavorites($event)"
+        (loadFiles)="onLoadFiles($event)"
+      ></app-favorite-directories>
+    </div>
   </div>
+
 </div>

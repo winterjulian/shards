@@ -2,7 +2,17 @@
 module.exports = {
   content: ["./src/**/*.{html,ts}"],
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        shine: {
+          '0%': { left: '-75%' },
+          '100%': { left: '125%' },
+        },
+      },
+      animation: {
+        shine: 'shine 0.7s forwards',
+      },
+    },
   },
   plugins: [],
 };
