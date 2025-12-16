@@ -1,6 +1,6 @@
 <div class="flex flex-col h-full">
   <div [hidden]="store.isLoading()" class="flex flex-col h-full p-4">
-    <div *ngIf="store.filesSignal().length === 0" class="h-full animate-fade-in">
+    <div class="h-full animate-fade-in">
       <app-file-selector></app-file-selector>
     </div>
   </div>

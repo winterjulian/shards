@@ -5,8 +5,13 @@ import { Injectable, signal } from '@angular/core';
 })
 export class WorkflowService {
   readonly isProcessing = signal<boolean>(false);
+  readonly isInShardMode = signal<boolean>(false);
 
-  setIsProcessing(isProcessing: boolean) {
+  setIsProcessing(isProcessing: boolean): void {
     this.isProcessing.update(() => isProcessing);
+  }
+
+  setIsInShardMode(isInShardMode: boolean): void {
+    this.isProcessing.update(() => isInShardMode);
   }
 }

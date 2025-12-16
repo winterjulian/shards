@@ -1,6 +1,7 @@
 import {Component, inject} from '@angular/core';
 import {StoreService} from '../../services/store.service';
 import {WorkflowService} from '../../services/workflow.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-file-list-footer',
@@ -12,6 +13,7 @@ import {WorkflowService} from '../../services/workflow.service';
 export class FileListFooterComponent {
   public store = inject(StoreService);
   public workflowService = inject(WorkflowService);
+  public router = inject(Router);
 
   openQuicktools(): void {
     this.workflowService.isProcessing.set(true);
@@ -26,6 +28,6 @@ export class FileListFooterComponent {
   }
 
   openShards(): void {
-    // TODO: Implement shards
+    this.router.navigate(['/fileManagement']).then();
   }
 }
