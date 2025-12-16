@@ -1,9 +1,10 @@
-import { computed, inject, Injectable, signal } from '@angular/core';
+import {computed, effect, inject, Injectable, signal} from '@angular/core';
 import { ExtendedFile } from '../interfaces/extendedFile';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { HistoryService } from './history.service';
 import {ExtendedFileGroup} from '../interfaces/extendedFileGroup';
 import {FavoriteDirectory} from '../interfaces/favoriteDirectory';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -36,6 +37,18 @@ export class StoreService {
 
   lastSelectedFile = signal<ExtendedFile | undefined>(undefined);
   favoriteDirectories = signal<FavoriteDirectory[] | undefined>(undefined);
+
+  constructor(private router: Router) {
+    effect(() => {
+      const hasFiles = this.filesSignal().length > 0;
+      console.log(hasFiles);
+      if (hasFiles) {
+        this.router.navigate(['/fileManagement']).then();
+      } else {
+        this.router.navigate(['/directorySelection']).then();
+      }
+    });
+  }
 
   setIsLoading(bool: boolean, msDelay: number = 0) {
     if (bool) {

@@ -1,18 +1,36 @@
 <div class="flex justify-between m-5 mt-0">
   <div class="flex">
-    <div class="mr-4">
+    <div>
       <button class="button-basics shine-effect decline-button" (click)="changeSource()">Change source</button>
     </div>
-    <div>
+<!--    <div class="ml-4">-->
 <!--      <button class="button-basics shine-effect action-button" (click)="arrangeFiles()">Arrange files</button>-->
-    </div>
+<!--    </div>-->
   </div>
-  <div>
-    <button class="button-basics shine-effect action-button"
-            [disabled]="store.selectionCounterSignal() === 0"
-            (click)="changeFileNames()"
-    >
-      Change names!
-    </button>
+  <div class="flex">
+    <div>
+      <button
+        [disabled]="store.selectionCounterSignal() === 0"
+        (click)="openQuicktools()" class="button-basics shine-effect action-button">
+        <div class="flex">
+          <i class="material-symbols-outlined text-lg cursor-pointer">timer</i>
+        </div>
+        <div class="pl-2">
+          Quick tools
+        </div>
+      </button>
+    </div>
+    <div class="ml-4">
+      <button
+        [disabled]="store.selectionCounterSignal() === 0"
+        (click)="openShards()" class="button-basics shine-effect action-button">
+        <div class="flex">
+          <i class="material-symbols-outlined text-lg cursor-pointer">edit_square</i>
+        </div>
+        <div class="pl-2">
+          Rewrite Shards
+        </div>
+      </button>
+    </div>
   </div>
 </div>

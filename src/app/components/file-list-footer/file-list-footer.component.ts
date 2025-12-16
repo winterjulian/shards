@@ -13,7 +13,7 @@ export class FileListFooterComponent {
   public store = inject(StoreService);
   public workflowService = inject(WorkflowService);
 
-  changeFileNames(): void {
+  openQuicktools(): void {
     this.workflowService.isProcessing.set(true);
   }
 
@@ -23,5 +23,9 @@ export class FileListFooterComponent {
 
   arrangeFiles() {
     this.store.rearrangeFiles();
+  }
+
+  openShards(): void {
+    // TODO: Implement shards
   }
 }
