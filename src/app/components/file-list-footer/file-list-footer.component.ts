@@ -28,6 +28,6 @@ export class FileListFooterComponent {
   }
 
   openShards(): void {
-    this.router.navigate(['/fileManagement']).then();
+    this.workflowService.isInShardMode.set(true);
   }
 }

@@ -16,7 +16,6 @@ import {StoreService} from '../../services/store.service';
   selector: 'app-directory-selection-page',
   imports: [
     FileSelectorComponent,
-    NgIf,
   ],
   standalone: true,
   templateUrl: './directory-selection-page.component.html',

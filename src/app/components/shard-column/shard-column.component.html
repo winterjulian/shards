@@ -1,0 +1,49 @@
+<div class="flex">
+  <div class="flex-col">
+    <div>
+      <input
+        type="text"
+        id="name"
+        class="input-field-basics h-full"
+        placeholder="Shard name"
+        [value]="givenShardCol().name"
+      >
+    </div>
+    <div>
+      <input
+        type="text"
+        id="name"
+        #contentField
+        class="input-field-basics h-full"
+        placeholder="Content"
+        [disabled]="!givenShardCol().omnipresent"
+        [value]="givenShardCol().content"
+        (input)="updateContent(contentField.value)"
+      >
+    </div>
+    <div>
+      {{ givenShardCol().omnipresent }}
+
+      <button (click)="setOmnipresence()" class="button-basics shine-effect decline-button">
+        @if (givenShardCol().omnipresent) {
+          <i class="material-symbols-outlined text-lg cursor-pointer">lock</i>
+        } @else {
+          <i class="material-symbols-outlined text-lg cursor-pointer">lock_open</i>
+        }
+      </button>
+    </div>
+
+    <div>
+      <div *ngFor="let file of givenFiles(); index as f">
+        {{ givenShardCol().content }}
+        <input
+          [disabled]="givenShardCol().omnipresent"
+          type="text"
+          id="name"
+          class="input-field-basics h-full"
+          [value]="givenShardCol().content"
+        >
+      </div>
+    </div>
+  </div>
+</div>

@@ -40,7 +40,7 @@
     </div>
   </div>
   <div class="flex">
-    <ng-content *ngFor="let shard of store.matchingShards(); index as i">
+    <div *ngFor="let shard of store.matchingShards(); index as i">
       @if (i > -5) {
         <div
           class="text-xs basic-border border-radius-medium m-1 p-1 bg-color-violet"
@@ -48,6 +48,6 @@
           {{ shard }}
         </div>
       }
-    </ng-content>
+    </div>
   </div>
 </div>
