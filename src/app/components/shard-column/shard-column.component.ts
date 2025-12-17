@@ -18,7 +18,7 @@ import {ExtendedFile} from '../../interfaces/extendedFile';
 export class ShardColumnComponent {
   @Input({ required: true }) givenShardCol!: WritableSignal<ShardColumn>;
   @Input({ required: true }) givenFiles!: Signal<ExtendedFile[]>;
-  shardColChange = output<ShardColumn>();
+  emitRemoveColumn = output<null>();
 
   setOmnipresence() {
     this.givenShardCol.update(value => ({
@@ -33,5 +33,9 @@ export class ShardColumnComponent {
       ...value,
       content: newContent
     }));
+  }
+
+  removeColumn() {
+    this.emitRemoveColumn.emit(null)
   }
 }

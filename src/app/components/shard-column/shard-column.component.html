@@ -1,29 +1,33 @@
 <div class="flex">
   <div class="flex-col">
-    <div>
-      <input
-        type="text"
-        id="name"
-        class="input-field-basics h-full"
-        placeholder="Shard name"
-        [value]="givenShardCol().name"
-      >
+    <div class="flex justify-center">
+      <div class="button-basics shine-effect decline-button flex justify-center items-center" (click)="removeColumn()">
+        <i class="material-symbols-outlined">delete</i>
+      </div>
     </div>
+<!--    <div>-->
+<!--      <input-->
+<!--        tabindex="-1"-->
+<!--        type="text"-->
+<!--        id="name"-->
+<!--        class="input-field-basics input-field-dyn-w h-full"-->
+<!--        placeholder="Shard name"-->
+<!--        [value]="givenShardCol().name"-->
+<!--      >-->
+<!--    </div>-->
     <div>
       <input
         type="text"
         id="name"
         #contentField
-        class="input-field-basics h-full"
+        class="input-field-basics input-field-dyn-w h-full"
         placeholder="Content"
         [disabled]="!givenShardCol().omnipresent"
         [value]="givenShardCol().content"
         (input)="updateContent(contentField.value)"
       >
     </div>
-    <div>
-      {{ givenShardCol().omnipresent }}
-
+    <div class="flex justify-center">
       <button (click)="setOmnipresence()" class="button-basics shine-effect decline-button">
         @if (givenShardCol().omnipresent) {
           <i class="material-symbols-outlined text-lg cursor-pointer">lock</i>
@@ -33,14 +37,13 @@
       </button>
     </div>
 
-    <div>
+    <div tabindex="-1">
       <div *ngFor="let file of givenFiles(); index as f">
-        {{ givenShardCol().content }}
         <input
           [disabled]="givenShardCol().omnipresent"
           type="text"
           id="name"
-          class="input-field-basics h-full"
+          class="input-field-basics input-field-dyn-w h-full"
           [value]="givenShardCol().content"
         >
       </div>
