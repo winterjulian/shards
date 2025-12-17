@@ -132,6 +132,14 @@
   @apply dark:border-neutral-500 dark:bg-neutral-800;
 }
 
+.input-field-shard {
+  @apply w-40;
+}
+
+.input-field-dyn-w {
+  @apply field-sizing-content min-w-20;
+}
+
 .input-field-co-button {
   @apply border-l-0;
   @apply hover:bg-neutral-300;
