@@ -34,7 +34,7 @@ export class ShardsManagementPageComponent {
     const newArray = [...this.shardColumns()];
     newArray.splice(index, 0, newColumn);
 
-    this.shardColumns.set(newArray); // <-- triggern
+    this.shardColumns.set(newArray);
   }
 
   removeColumn(index: number): void {

@@ -23,10 +23,19 @@ export class ShardsRowComponent {
 
   constructor() {
     effect(() => {
-      this.shardColumns;
-      this.shardColumns();
-      console.log(this.shardColumns(), 'TEST')
-    })
+      this.columnStates = this.shardColumns().map((shardColSignal, i) => {
+        const existing = this.columnStates[i];
+        const value = existing?.value ?? signal(shardColSignal().content);
+        const locked = existing?.locked ?? signal(false);
+        locked(); value();
+
+        if (!locked()) {
+          value.set(shardColSignal().content);
+        }
+
+        return { value, locked };
+      });
+    });
   }
 
   toggleLock(index: number) {

@@ -1,28 +1,27 @@
 <div class="flex">
-  {{ columnStates.length }}
-<!--  <div class="flex" *ngFor="let shardsCol of shardColumns(); index as columnIndex;">-->
+  <div class="flex" *ngFor="let shardsCol of shardColumns(); index as columnIndex;">
 
-<!--      <div class="p-1">-->
-<!--        <button (click)="toggleLock(columnIndex)">-->
-<!--          @if (columnStates[columnIndex].locked()) {-->
-<!--            <i class="material-symbols-outlined text-lg cursor-pointer">lock</i>-->
-<!--          } @else {-->
-<!--            <i class="material-symbols-outlined text-lg cursor-pointer">lock_open</i>-->
-<!--          }-->
-<!--        </button>-->
-<!--      </div>-->
-<!--      <div class="p-1">-->
-<!--        <input-->
-<!--          type="text"-->
-<!--          class="input-field-basics input-field-shard h-full"-->
-<!--          #subInputField-->
-<!--          [attr.data-col]="columnIndex"-->
-<!--          [attr.data-row]="rowIndex"-->
-<!--          [value]="columnStates[columnIndex].value()"-->
-<!--          (input)="updateValue(columnIndex, subInputField.value)"-->
-<!--          columnJump-->
-<!--        >-->
-<!--      </div>-->
-<!--    </div>-->
-
+      <div class="p-1">
+        <button (click)="toggleLock(columnIndex)" class="button-basics shine-effect action-button">
+          @if (columnStates[columnIndex].locked()) {
+            <i class="material-symbols-outlined text-lg cursor-pointer">lock</i>
+          } @else {
+            <i class="material-symbols-outlined text-lg cursor-pointer">lock_open_right</i>
+          }
+        </button>
+      </div>
+      <div class="p-1">
+        <input
+          type="text"
+          class="input-field-basics input-field-shard h-full"
+          #subInputField
+          [attr.data-col]="columnIndex"
+          [attr.data-row]="rowIndex"
+          [value]="columnStates[columnIndex].value()"
+          (input)="updateValue(columnIndex, subInputField.value)"
+          columnJump
+        >
+      </div>
+  </div>
+  <div class="button-spacer m-1"></div>
 </div>

@@ -30,6 +30,10 @@
   }
 }
 
+.button-spacer {
+  @apply w-10 h-10;
+}
+
 .button-text-left {
   @apply justify-start
 }
@@ -71,8 +75,13 @@
 }
 
 .tailwind-font-color {
-  @apply text-gray-950 ;
+  @apply text-gray-950;
   @apply dark:text-gray-300;
+}
+
+.tailwind-font-color-light {
+  @apply text-gray-500;
+  @apply dark:text-gray-500;
 }
 
 .header-bg {
