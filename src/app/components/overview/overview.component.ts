@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { QuicktoolsComponent } from '../quicktools/quicktools.component';
-import { FileManagerComponent } from '../../pages/file-manager/file-manager.component';
+import { FileManagerComponent } from '../file-manager/file-manager.component';
 import { WorkflowService } from '../../services/workflow.service';
 
 @Component({

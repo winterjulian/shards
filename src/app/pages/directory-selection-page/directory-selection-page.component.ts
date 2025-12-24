@@ -1,5 +1,5 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {FileManagerComponent} from '../file-manager/file-manager.component';
+import {FileManagerComponent} from '../../components/file-manager/file-manager.component';
 import {QuicktoolsComponent} from '../../components/quicktools/quicktools.component';
 import {WorkflowService} from '../../services/workflow.service';
 import {FileGroupListComponent} from '../../components/file-group-list/file-group-list.component';
