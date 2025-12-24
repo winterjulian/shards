@@ -16,8 +16,20 @@
             ></div>
             <div class="flex items-center w-full h-full">
               <div
+                (mousedown)="onMouseDown($event, entry)"
+                (mouseenter)="onMouseEnterFile(entry)"
+                (click)="onFileClick($event, entry, index)"
+                class="flex justify-end pl-2 pr-3">
+                @if (entry.isSelected) {
+                  <i class="material-symbols-outlined">check_box</i>
+                } @else {
+                  <i class="material-symbols-outlined">check_box_outline_blank</i>
+                }
+              </div>
+              <div
                 cdkDragHandle
                 class="flex justify-end cursor-grab pl-2 pr-3 w-16">
+                <i class="material-symbols-outlined">drag_indicator</i>
                 {{ entry.index + 1 }}.
               </div>
               <div class="flex items-center w-8 pr-3">
