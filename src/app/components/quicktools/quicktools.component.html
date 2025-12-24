@@ -1,4 +1,5 @@
 <div class="w-full h-full quicktool-bg shadow-2xl p-4">
+  {{ workflowService.isProcessing() }}
   <div class="flex h-full flex-col justify-between">
     <div class="flex justify-between m-6 mb-0">
       <button
@@ -24,7 +25,7 @@
     >
       <app-quicktool-wrapper
         #replaceWrapper
-        (expand)="onExpand('replace', replaceWrapper.cancelChanges.bind(replaceWrapper))"
+        (expand)="onExpand($event, 'replace', replaceWrapper.cancelChanges.bind(replaceWrapper))"
         (accept)="onAccept(); replaceTool.onAccept()"
         (cancel)="onCancel(); replaceTool.onCancel()"
         [isAcceptDisabled]="replaceTool.isAcceptDisabled()"
@@ -38,7 +39,7 @@
 
       <app-quicktool-wrapper
         #indexerWrapper
-        (expand)="onExpand('indexer', indexerWrapper.cancelChanges.bind(indexerWrapper))"
+        (expand)="onExpand($event,'indexer', indexerWrapper.cancelChanges.bind(indexerWrapper))"
         (accept)="onAccept(); indexerTool.onAccept()"
         (cancel)="onCancel(); indexerTool.onCancel()"
         [isAcceptDisabled]="indexerTool.isAcceptDisabled()"
@@ -53,7 +54,7 @@
       <app-quicktool-wrapper
         #caseConverterWrapper
         (expand)="
-          onExpand('caseConverter', caseConverterWrapper.cancelChanges.bind(caseConverterWrapper))
+          onExpand($event,'caseConverter', caseConverterWrapper.cancelChanges.bind(caseConverterWrapper))
         "
         (accept)="onAccept(); caseConverter.onAccept()"
         (cancel)="onCancel(); caseConverter.onCancel()"

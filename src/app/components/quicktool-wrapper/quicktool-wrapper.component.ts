@@ -14,20 +14,23 @@ export class QuicktoolWrapperComponent {
   isAcceptDisabled = input<boolean>(false);
   isCancelDisabled = input<boolean>(false);
   stopClosingAfterAccept = input<boolean>(false);
+
+  readonly isButtonClick = true;
+
   accept = output<void>();
-  cancel = output<void>();
+  cancel = output<boolean>();
   expand = output<boolean>();
 
   isExpanded = false;
 
   toggle(): void {
-    this.expand.emit(this.isExpanded);
     this.isExpanded = !this.isExpanded;
+    this.expand.emit(this.isExpanded);
   }
 
   cancelChanges(): void {
     this.isExpanded = false;
-    this.cancel.emit();
+    this.cancel.emit(this.isButtonClick);
   }
 
   acceptChanges(): void {

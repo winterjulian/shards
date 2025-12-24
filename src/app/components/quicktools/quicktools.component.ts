@@ -61,22 +61,28 @@ export class QuicktoolsComponent {
     this.workflowService.setIsProcessing(false);
   }
 
-  onExpand(name: string, cancelFn: () => void) {
+  onExpand(isExpanded: boolean, name: string, cancelFn: () => void) {
     this.store.addIntermediateSnapshot();
 
     if (this.activeTool && this.activeTool.name !== name) {
       this.activeTool.cancelFn();
     }
     this.activeTool = { name, cancelFn };
+
+    if (isExpanded) {
+      this.workflowService.setIsProcessing(true);
+    }
   }
 
   onAccept() {
+    this.workflowService.setIsProcessing(false);
     this.store.transferDisplayToChangedName();
     this.store.addSnapshotToHistory();
     this.store.clearIntermediateSnapshot();
   }
 
   onCancel() {
+    this.workflowService.setIsProcessing(false);
     this.store.resetFileNamesFromIntermediateSnapshot();
     this.store.clearIntermediateSnapshot();
   }
