@@ -9,7 +9,7 @@
         "
         (click)="selectAll()"
       >
-        Select All
+        <i class="material-symbols-outlined text-lg cursor-pointer">check_circle</i>
       </button>
     </div>
     <div class="p-2">
@@ -18,7 +18,8 @@
         [disabled]="store.filesSignal().length === 0 || store.selectionCounterSignal() === 0"
         (click)="deselectAll()"
       >
-        Deselect All
+        <i class="material-symbols-outlined text-lg cursor-pointer">circle</i>
+
       </button>
     </div>
     <div class="p-2">
@@ -27,7 +28,8 @@
         [disabled]="store.filesSignal().length === 0"
         (click)="invertSelection()"
       >
-        Invert selection
+        <i class="material-symbols-outlined text-lg cursor-pointer">change_circle</i>
+        <!---Invert selection--->
       </button>
     </div>
   </div>

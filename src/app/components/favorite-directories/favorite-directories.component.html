@@ -84,14 +84,19 @@
       <div>{{ directory.name }}</div>
       <div (click)="getFilesFromDirectory(directory.path)" class="button-basics shine-effect decline-button">
         <div class="flex">
-          <i class="material-symbols-outlined text-lg cursor-pointer">file_save</i>
+          Get all files
         </div>
         <div class="pl-2">
-          Get all files
+          <i class="material-symbols-outlined text-lg cursor-pointer">file_save</i>
         </div>
       </div>
       <div (click)="getFiles(directory.path)" class="button-basics shine-effect decline-button">
-        <i class="material-symbols-outlined text-lg cursor-pointer">open_jam</i>
+        <div class="flex">
+          Open at directory
+        </div>
+        <div class="pl-2">
+          <i class="material-symbols-outlined text-lg cursor-pointer">open_jam</i>
+        </div>
       </div>
       <div>{{ directory.path }}</div>
     }
