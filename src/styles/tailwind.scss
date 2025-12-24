@@ -63,8 +63,18 @@
   @apply dark:bg-ruby-800 hover:dark:bg-ruby-700 dark:text-neutral-100;
 
   &:disabled {
-    @apply bg-ruby-100 text-neutral-500;
-    @apply dark:bg-ruby-950 dark:text-neutral-400;
+    @apply bg-neutral-200 text-neutral-500;
+    @apply dark:bg-neutral-800 dark:text-neutral-400;
+  }
+}
+
+.alteration-button {
+  @apply bg-indigo-400 hover:bg-indigo-300 text-neutral-950;
+  @apply dark:bg-indigo-800 hover:dark:bg-indigo-700 dark:text-neutral-100;
+
+  &:disabled {
+    @apply bg-neutral-200 text-neutral-500;
+    @apply dark:bg-neutral-800 dark:text-neutral-400;
   }
 }
 

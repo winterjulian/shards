@@ -22,7 +22,12 @@ export class ShardsManagementPageComponent {
   private store = inject(StoreService);
 
   protected files = computed(() => this.store.filesSignal().filter(f => f.isSelected));
-  protected shardColumns: WritableSignal<WritableSignal<ShardColumn>[]> = signal([]);
+  protected shardColumns: WritableSignal<WritableSignal<ShardColumn>[]> = signal([signal({
+      name: 'test',
+      content: '',
+      omnipresent: true
+    }
+  )]);
 
   addColumn(index: number): void {
     const newColumn = signal({
