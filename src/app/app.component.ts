@@ -3,10 +3,11 @@ import {Router, RouterOutlet} from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import {StoreService} from './services/store.service';
 import {WorkflowService} from './services/workflow.service';
+import {DialogComponent} from './components/dialog/dialog.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent],
+  imports: [RouterOutlet, HeaderComponent, DialogComponent],
   templateUrl: './app.component.html',
   standalone: true,
   styleUrls: ['./app.component.css'],

@@ -305,26 +305,12 @@ export class StoreService {
     this.lastSelectedFile.set(undefined);
   }
 
-  // HISTORY SERVICE
-
   addIntermediateSnapshot(): void {
     this.intermediateSnapshot = this.filesSignal().map(f => f.changedName);
   }
 
   clearIntermediateSnapshot(): void {
     this.intermediateSnapshot = [];
-  }
-
-  transferIntermediateSnapshot(): void {
-    this.history.addSnapshot(this.intermediateSnapshot);
-  }
-
-  canUndo() {
-    return this.history.canUndo();
-  }
-
-  canRedo() {
-    return this.history.canRedo();
   }
 
   resetFileNamesFromIntermediateSnapshot(): void {
@@ -342,6 +328,20 @@ export class StoreService {
     });
 
     this.filesSignal.set(updatedFiles);
+  }
+
+  // HISTORY SERVICE
+
+  transferIntermediateSnapshot(): void {
+    this.history.addSnapshot(this.intermediateSnapshot);
+  }
+
+  canUndo() {
+    return this.history.canUndo();
+  }
+
+  canRedo() {
+    return this.history.canRedo();
   }
 
   addSnapshotToHistory(): void {
@@ -433,6 +433,7 @@ export class StoreService {
   setFiles(files: Array<ExtendedFile>) {
     this.filesSignal.set(files);
     this.resetVisibility();
+    this.clearHistory();
     this.addSnapshotToHistory();
     this.setIsLoading(false, 1500);
   }
