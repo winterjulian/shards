@@ -14,7 +14,7 @@ export class ReplaceToolComponent {
   pattern = signal('');
   replacement = signal('');
   isAcceptDisabled = computed(() => {
-    return this.pattern().trim() === '' || this.replacement().trim() === '';
+    return this.pattern().trim() === '';
   });
 
   opened = false;
@@ -30,6 +30,7 @@ export class ReplaceToolComponent {
       return;
     }
 
+    this.changePattern()
     this.resetComponent();
   }
 
@@ -41,7 +42,7 @@ export class ReplaceToolComponent {
   // OTHERS
 
   highlightString() {
-    const pattern = this.pattern().trim();
+    const pattern = this.pattern();
     if (!pattern) return;
 
     const escapedSearchString = pattern.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
@@ -57,8 +58,10 @@ export class ReplaceToolComponent {
   }
 
   changePattern() {
-    const pattern = this.pattern().trim();
-    const replacement = this.replacement().trim();
+    const pattern = this.pattern();
+    const replacement = this.replacement();
+
+    console.log('replacement', replacement);
 
     const escapedPattern = pattern.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
     const regex = new RegExp(escapedPattern, 'gi');
@@ -66,6 +69,7 @@ export class ReplaceToolComponent {
     this.store.filesSignal().forEach((file: ExtendedFile) => {
       if (file.isSelected) {
         const replaced = file.changedName.replace(regex, replacement);
+        console.log(replaced);
         file.displayName = replaced.replace(
           new RegExp(escapedPattern, 'gi'),
           '<span class="highlight-text">$&</span>'

@@ -25,8 +25,8 @@
       <app-quicktool-wrapper
         #replaceWrapper
         (expand)="onExpand($event, 'replace', replaceWrapper.cancelChanges.bind(replaceWrapper))"
-        (accept)="onAccept(); replaceTool.onAccept()"
-        (cancel)="onCancel(); replaceTool.onCancel()"
+        (accept)="replaceTool.onAccept(); onAccept()"
+        (cancel)="replaceTool.onCancel(); onCancel()"
         [isAcceptDisabled]="replaceTool.isAcceptDisabled()"
         [stopClosingAfterAccept]="true"
         title="Replacement"
