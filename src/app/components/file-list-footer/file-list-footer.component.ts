@@ -11,23 +11,30 @@ import {Router} from '@angular/router';
   styleUrl: './file-list-footer.component.scss'
 })
 export class FileListFooterComponent {
+  // readonly dialog = inject(MatDialog);
   public store = inject(StoreService);
   public workflowService = inject(WorkflowService);
   public router = inject(Router);
-
-  openQuicktools(): void {
-    this.workflowService.isProcessing.set(true);
-  }
 
   changeSource() {
     this.store.removeAllFiles();
   }
 
-  arrangeFiles() {
-    this.store.rearrangeFiles();
+  startRenamingProcess(): void {
+    this.openDialogue();
+    console.log('I\'ve been clicked')
   }
 
-  openShards(): void {
-    this.workflowService.isInShardMode.set(true);
+  openDialogue(): void {
+    // console.log(this.store.getChangedFilesAsNumber());
+    // const dialogRef = this.dialog.open(DialogRenameComponent, {
+    //   data: { changedFiles: this.store.getChangedFilesAsNumber() },
+    // });
+    //
+    // dialogRef.afterClosed().subscribe(result => {
+    //   if (result) {
+    //     this.store.renameFiles();
+    //   }
+    // });
   }
 }

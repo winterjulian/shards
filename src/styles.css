@@ -29,7 +29,8 @@
 
 @theme {
   --shadow-lg-dark: 0 5px 5px 0 rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
-  --shadow-border-b: 2px 2px 2px 0 rgba(0, 0, 0, 0.3), 2px 2px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-border-t: 0 -2px 2px -1px rgba(0, 0, 0, 0.3);
+  --shadow-border-b: 0 2px 2px -1px rgba(0, 0, 0, 0.3);
   --shadow-border-l: 2px 2px 2px 0 rgba(0, 0, 0, 0.4), -2px 2px 2px 0 rgba(0, 0, 0, 0.4);
 }
 
@@ -76,15 +77,15 @@
 }
 
 @theme {
-  --color-amethyst-50: #f8f5ff;
-  --color-amethyst-100: #f1ebff;
-  --color-amethyst-200: #e5daff;
-  --color-amethyst-300: #d2beff;
-  --color-amethyst-400: #b896ff;
-  --color-amethyst-500: #9b69ff;
-  --color-amethyst-600: #884df7;
-  --color-amethyst-700: #753ee3;
-  --color-amethyst-800: #6235bf;
-  --color-amethyst-900: #522d9c;
-  --color-amethyst-950: #341c6a;
+  --color-amethyst-50: #d4c8ef;
+  --color-amethyst-100: #bfb1df;
+  --color-amethyst-200: #b09fd8;
+  --color-amethyst-300: #a793d6;
+  --color-amethyst-400: #896acc;
+  --color-amethyst-500: #845ecf;
+  --color-amethyst-600: #8053d6;
+  --color-amethyst-700: #6a42bc;
+  --color-amethyst-800: #5e39a8;
+  --color-amethyst-900: #482d7c;
+  --color-amethyst-950: #301d5a;
 }

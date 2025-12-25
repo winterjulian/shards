@@ -40,37 +40,19 @@ export class QuicktoolsComponent {
     this.store.redo();
   }
 
-  applyChanges() {
-    this.openDialog();
-  }
-
-  openDialog(): void {
-    // console.log(this.store.getChangedFilesAsNumber());
-    // const dialogRef = this.dialog.open(DialogRenameComponent, {
-    //   data: { changedFiles: this.store.getChangedFilesAsNumber() },
-    // });
-    //
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if (result) {
-    //     this.store.renameFiles();
-    //   }
-    // });
-  }
-
-  cancelChanges() {
-    this.workflowService.setIsProcessing(false);
-  }
-
   onExpand(isExpanded: boolean, name: string, cancelFn: () => void) {
     this.store.addIntermediateSnapshot();
 
-    if (this.activeTool && this.activeTool.name !== name) {
+    if (this.activeTool && (this.activeTool.name !== name || !isExpanded)) {
       this.activeTool.cancelFn();
     }
+
     this.activeTool = { name, cancelFn };
 
     if (isExpanded) {
       this.workflowService.setIsProcessing(true);
+    } else {
+      this.workflowService.setIsProcessing(false);
     }
   }
 

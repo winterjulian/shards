@@ -69,8 +69,8 @@
 }
 
 .alteration-button {
-  @apply bg-indigo-400 hover:bg-indigo-300 text-neutral-950;
-  @apply dark:bg-indigo-800 hover:dark:bg-indigo-700 dark:text-neutral-100;
+  @apply bg-amethyst-400 hover:bg-amethyst-300 text-neutral-950;
+  @apply dark:bg-amethyst-800 hover:dark:bg-amethyst-700 dark:text-neutral-100;
 
   &:disabled {
     @apply bg-neutral-200 text-neutral-500;
@@ -90,7 +90,7 @@
 }
 
 .tailwind-font-color-light {
-  @apply text-gray-500;
+  @apply text-gray-400;
   @apply dark:text-gray-500;
 }
 
@@ -115,8 +115,8 @@
 }
 
 .file-selected-bg {
-  @apply bg-gradient-to-r from-eggplant-400 to-neutral-300;
-  @apply dark:bg-gradient-to-r dark:from-eggplant-700 dark:to-neutral-800;
+  @apply bg-gradient-to-r from-eggplant-200 to-neutral-300;
+  @apply dark:bg-gradient-to-r dark:from-eggplant-900 dark:to-neutral-800;
 }
 
 .file-group-selected-bg {
@@ -135,7 +135,6 @@
 }
 
 .quicktool-bg {
-  @apply shadow-border-l;
   @apply bg-neutral-300;
   @apply dark:bg-neutral-800;
 }

@@ -10,6 +10,7 @@ import {FileListWrapperComponent} from '../file-list-wrapper/file-list-wrapper.c
 import {FileGroupListComponent} from '../file-group-list/file-group-list.component';
 import {FileListHeaderComponent} from '../file-list-header/file-list-header.component';
 import {FileListFooterComponent} from '../file-list-footer/file-list-footer.component';
+import {QuicktoolsComponent} from '../quicktools/quicktools.component';
 
 @Component({
   selector: 'app-file-manager',
@@ -24,6 +25,7 @@ import {FileListFooterComponent} from '../file-list-footer/file-list-footer.comp
     FileGroupListComponent,
     FileListHeaderComponent,
     FileListFooterComponent,
+    QuicktoolsComponent,
   ],
   templateUrl: './file-manager.component.html',
   standalone: true,
@@ -36,15 +38,15 @@ export class FileManagerComponent {
     public store: StoreService,
     public workflowService: WorkflowService
   ) {
-    effect(() => {
-      const isProcessing = this.workflowService.isProcessing();
-      const overlay = document.querySelector('.blocked-area');
-
-      if (isProcessing) {
-        overlay?.classList.remove('hidden');
-      } else {
-        overlay?.classList.add('hidden');
-      }
-    });
+    // effect(() => {
+    //   const isProcessing = this.workflowService.isProcessing();
+    //   const overlay = document.querySelector('.blocked-area');
+    //
+    //   if (isProcessing) {
+    //     overlay?.classList.remove('hidden');
+    //   } else {
+    //     overlay?.classList.add('hidden');
+    //   }
+    // });
   }
 }

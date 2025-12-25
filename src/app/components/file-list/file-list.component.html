@@ -19,18 +19,20 @@
                 (mousedown)="onMouseDown($event, entry)"
                 (mouseenter)="onMouseEnterFile(entry)"
                 (click)="onFileClick($event, entry, index)"
-                class="flex justify-end pl-2 pr-3">
+                class="flex justify-end pl-2 pr-3 tailwind-font-color-light">
                 @if (entry.isSelected) {
                   <i class="material-symbols-outlined">check_box</i>
                 } @else {
                   <i class="material-symbols-outlined">check_box_outline_blank</i>
                 }
               </div>
+              <div class="pl-2 pr-2 w-10 tailwind-font-color-light">
+                {{ entry.index + 1 }}.
+              </div>
               <div
                 cdkDragHandle
-                class="flex justify-end cursor-grab pl-2 pr-3 w-16">
+                class="cursor-grab pl-2 pr-2 w-10 tailwind-font-color-light">
                 <i class="material-symbols-outlined">drag_indicator</i>
-                {{ entry.index + 1 }}.
               </div>
               <div class="flex items-center w-8 pr-3">
                 @if (entry.name !== entry.changedName) {

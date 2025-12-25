@@ -9,7 +9,7 @@
         "
         (click)="selectAll()"
       >
-        <i class="material-symbols-outlined text-lg cursor-pointer">check_circle</i>
+        <i class="material-symbols-outlined text-lg cursor-pointer">check_box</i>
       </button>
     </div>
     <div class="p-2">
@@ -18,7 +18,7 @@
         [disabled]="store.filesSignal().length === 0 || store.selectionCounterSignal() === 0"
         (click)="deselectAll()"
       >
-        <i class="material-symbols-outlined text-lg cursor-pointer">circle</i>
+        <i class="material-symbols-outlined text-lg cursor-pointer">check_box_outline_blank</i>
 
       </button>
     </div>
@@ -28,7 +28,7 @@
         [disabled]="store.filesSignal().length === 0"
         (click)="invertSelection()"
       >
-        <i class="material-symbols-outlined text-lg cursor-pointer">change_circle</i>
+        <i class="material-symbols-outlined text-lg cursor-pointer">exposure</i>
         <!---Invert selection--->
       </button>
     </div>

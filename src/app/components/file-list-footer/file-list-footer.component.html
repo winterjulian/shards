@@ -1,4 +1,4 @@
-<div class="flex justify-between m-5 mt-0">
+<div class="flex justify-between m-5">
   <div class="flex">
     <div>
       <button class="button-basics shine-effect decline-button" (click)="changeSource()">Change source</button>
@@ -8,27 +8,15 @@
 <!--    </div>-->
   </div>
   <div class="flex">
-    <div>
-      <button
-        [disabled]="store.selectionCounterSignal() === 0"
-        (click)="openQuicktools()" class="button-basics shine-effect action-button">
-        <div class="flex">
-          <i class="material-symbols-outlined text-lg cursor-pointer">timer</i>
-        </div>
-        <div class="pl-2">
-          Quick tools
-        </div>
-      </button>
-    </div>
     <div class="ml-4">
       <button
         [disabled]="store.selectionCounterSignal() === 0"
-        (click)="openShards()" class="button-basics shine-effect action-button">
+        (click)="startRenamingProcess()" class="button-basics shine-effect alteration-button">
         <div class="flex">
-          <i class="material-symbols-outlined text-lg cursor-pointer">table_edit</i>
+          <i class="material-symbols-outlined text-lg cursor-pointer">edit</i>
         </div>
         <div class="pl-2">
-          Shards
+          Rename
         </div>
       </button>
     </div>
