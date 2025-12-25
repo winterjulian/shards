@@ -2,6 +2,7 @@ import {Component, inject} from '@angular/core';
 import {StoreService} from '../../services/store.service';
 import {WorkflowService} from '../../services/workflow.service';
 import {Router} from '@angular/router';
+import {DialogService} from '../../services/dialog.service';
 
 @Component({
   selector: 'app-file-list-footer',
@@ -11,9 +12,8 @@ import {Router} from '@angular/router';
   styleUrl: './file-list-footer.component.scss'
 })
 export class FileListFooterComponent {
-  // readonly dialog = inject(MatDialog);
   public store = inject(StoreService);
-  public workflowService = inject(WorkflowService);
+  public dialogService = inject(DialogService);
   public router = inject(Router);
 
   changeSource() {
@@ -26,15 +26,14 @@ export class FileListFooterComponent {
   }
 
   openDialogue(): void {
-    // console.log(this.store.getChangedFilesAsNumber());
-    // const dialogRef = this.dialog.open(DialogRenameComponent, {
-    //   data: { changedFiles: this.store.getChangedFilesAsNumber() },
-    // });
-    //
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if (result) {
-    //     this.store.renameFiles();
-    //   }
-    // });
+    this.dialogService.openWithMessage(
+      'Rename files',
+      'Do you want to rename all changed files?',
+      {
+        accept: () => {
+          console.log('I\'ve been clicked')
+        }
+      }
+    )
   }
 }

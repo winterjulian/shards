@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import {Component, EventEmitter, inject, Output} from '@angular/core';
 import { NgClass } from '@angular/common';
 import { ReplaceToolComponent } from '../quicktools_components/replace-tool/replace-tool.component';
 import { StoreService } from '../../services/store.service';
@@ -6,6 +6,7 @@ import { IndexerToolComponent } from '../quicktools_components/indexer-tool/inde
 import { WorkflowService } from '../../services/workflow.service';
 import { QuicktoolWrapperComponent } from '../quicktool-wrapper/quicktool-wrapper.component';
 import { CaseConverterToolComponent } from '../quicktools_components/case-converter-tool/case-converter-tool.component';
+import {HistoryService} from '../../services/history.service';
 
 @Component({
   selector: 'app-quicktools',
@@ -22,6 +23,7 @@ import { CaseConverterToolComponent } from '../quicktools_components/case-conver
 })
 export class QuicktoolsComponent {
   @Output() onVerticalPositionChange = new EventEmitter();
+  historyService = inject(HistoryService)
 
   // readonly dialog = inject(MatDialog);
   activeTool: { name: string; cancelFn: () => void } | null = null;

@@ -1,0 +1,31 @@
+@if (popupService.isOpen()) {
+  <div>
+    <div class="backdrop"></div>
+    <div class="flex flex-col justify-between dialog-content tailwind-font-color tailwindy-dialog">
+      <div>
+        @if (popupService.getTitle()) {
+          <div class="text-xl pb-2 font-bold">
+            {{ popupService.getTitle() }}
+          </div>
+        }
+        @if (popupService.getMessage()) {
+          <div>
+            {{ popupService.getMessage() }}
+          </div>
+        }
+        @if (popupService.getComponent()) {
+          @let content = popupService.getComponent();
+          <ng-container>
+            <ng-container *ngComponentOutlet="content"></ng-container>
+          </ng-container>
+        }
+      </div>
+      <div class="flex gap-2 justify-end mt-4">
+        @if (!popupService.isHint()) {
+          <button class="button-basics shine-effect action-button" (click)="popupService.cancel()">Cancel</button>
+        }
+        <button class="button-basics shine-effect alteration-button" (click)="popupService.confirm()">Confirm</button>
+      </div>
+    </div>
+  </div>
+}
