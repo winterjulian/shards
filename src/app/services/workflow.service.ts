@@ -8,7 +8,6 @@ export class WorkflowService {
   readonly isInShardMode = signal<boolean>(false);
 
   setIsProcessing(isProcessing: boolean): void {
-    console.log('setIsProcessing', isProcessing);
     this.isProcessing.update(() => isProcessing);
   }
 

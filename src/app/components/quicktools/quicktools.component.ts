@@ -41,8 +41,6 @@ export class QuicktoolsComponent {
   }
 
   onExpand(isExpanded: boolean, name: string, cancelFn: () => void) {
-    this.store.addIntermediateSnapshot();
-
     if (this.activeTool && (this.activeTool.name !== name || !isExpanded)) {
       this.activeTool.cancelFn();
     }
@@ -51,6 +49,7 @@ export class QuicktoolsComponent {
 
     if (isExpanded) {
       this.workflowService.setIsProcessing(true);
+      this.store.addIntermediateSnapshot();
     } else {
       this.workflowService.setIsProcessing(false);
     }
@@ -64,6 +63,7 @@ export class QuicktoolsComponent {
   }
 
   onCancel() {
+    console.log('onCancel()')
     this.workflowService.setIsProcessing(false);
     this.store.resetFileNamesFromIntermediateSnapshot();
     this.store.clearIntermediateSnapshot();

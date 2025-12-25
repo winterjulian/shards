@@ -10,7 +10,7 @@ import {FavoriteDirectory} from '../interfaces/favoriteDirectory';
 })
 export class StoreService {
   public history = inject(HistoryService);
-  private interSnapshot: string[] = [];
+  private intermediateSnapshot: string[] = [];
   isLoading = signal<boolean>(false);
   filesSignal = signal<ExtendedFile[]>([]);
   selectionCounterSignal = signal<number>(0);
@@ -308,15 +308,15 @@ export class StoreService {
   // HISTORY SERVICE
 
   addIntermediateSnapshot(): void {
-    this.interSnapshot = this.filesSignal().map(f => f.changedName);
+    this.intermediateSnapshot = this.filesSignal().map(f => f.changedName);
   }
 
   clearIntermediateSnapshot(): void {
-    this.interSnapshot = [];
+    this.intermediateSnapshot = [];
   }
 
   transferIntermediateSnapshot(): void {
-    this.history.addSnapshot(this.interSnapshot);
+    this.history.addSnapshot(this.intermediateSnapshot);
   }
 
   canUndo() {
@@ -328,7 +328,7 @@ export class StoreService {
   }
 
   resetFileNamesFromIntermediateSnapshot(): void {
-    const intermediate = this.interSnapshot;
+    const intermediate = this.intermediateSnapshot;
 
     if (!intermediate || intermediate.length === 0) return;
 
