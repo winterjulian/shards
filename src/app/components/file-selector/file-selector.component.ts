@@ -40,6 +40,7 @@ export class FileSelectorComponent implements OnInit {
   public onClickFavorites(favorite: string) {
     console.log(favorite);
   }
+
   public onLoadFiles(favorite: string) {
     console.log(favorite);
   }
