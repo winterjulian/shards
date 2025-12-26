@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   standalone: true,
   templateUrl: './quicktool-wrapper.component.html',
   imports: [NgIf, ReactiveFormsModule],
+  styleUrl: './quicktool-wrapper.component.css',
 })
 export class QuicktoolWrapperComponent {
   title = input.required<string>();

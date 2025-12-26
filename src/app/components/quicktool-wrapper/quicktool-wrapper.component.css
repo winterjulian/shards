@@ -1,0 +1,20 @@
+.quicktool-container {
+  transition: transform 200ms ease-in-out;
+}
+
+.quicktool-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  transition: grid-template-rows 300ms ease-in-out, opacity 250ms ease-in-out;
+  opacity: 0;
+}
+
+.quicktool-content.expanded {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.quicktool-content-inner {
+  min-height: 0;
+}
