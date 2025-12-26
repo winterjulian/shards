@@ -4,6 +4,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { HistoryService } from './history.service';
 import {ExtendedFileGroup} from '../interfaces/extendedFileGroup';
 import {FavoriteDirectory} from '../interfaces/favoriteDirectory';
+import {RenamingEntry} from '../interfaces/renamingEntry';
 
 @Injectable({
   providedIn: 'root',
@@ -518,5 +519,29 @@ export class StoreService {
       }
       this.isRenaming.set(false);
     });
+  }
+
+  checkForFileNameDuplicates() {
+    console.log('checkForFileNameDuplicates');
+    const seen = new Set<string>();
+
+    for (const file of this.filesSignal()) {
+      if (!file.changed) {
+        seen.add(file.name.toLowerCase());
+      }
+    }
+
+    for (const file of this.filesSignal()) {
+      if (!file.changed) continue;
+
+      const key = file.changedName.toLowerCase();
+
+      if (seen.has(key)) {
+        file.internalWarning = true;
+      } else {
+        seen.add(key);
+      }
+    }
+    // TODO: Rename all files in plan that are internalWarning=false && changed=true;
   }
 }

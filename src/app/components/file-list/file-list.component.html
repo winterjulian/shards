@@ -35,8 +35,14 @@
                 <i class="material-symbols-outlined">drag_indicator</i>
               </div>
               <div class="flex items-center w-8 pr-3">
-                @if (file.changed) {
-                  <i class="material-symbols-outlined !text-base">settings</i>
+                @if (file.externalWarning) {
+                  <i class="material-symbols-outlined !text-lg">computer_cancel</i>
+                }
+                @else if (file.internalWarning) {
+                  <i class="material-symbols-outlined !text-lg">warning</i>
+                }
+                @else if (file.changed) {
+                  <i class="material-symbols-outlined !text-lg">settings</i>
                 }
               </div>
               <div

@@ -4,7 +4,6 @@ export interface ExtendedFile {
   readonly name: string;
   index: number;
   displayName: string;
-  groups: string[];
   path: string;
   isSelected: boolean;
   changed: boolean;
@@ -12,6 +11,9 @@ export interface ExtendedFile {
   length: number;
   extension: string;
   changedName: string;
-  changeApproved: boolean;
-  shards?: Shard[];
+  changeApproved: boolean; // deprecated
+  groups: string[]; // deprecated
+  shards?: Shard[]; // deprecated
+  internalWarning: boolean;
+  externalWarning: boolean;
 }

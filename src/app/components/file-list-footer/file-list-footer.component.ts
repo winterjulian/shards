@@ -21,16 +21,16 @@ export class FileListFooterComponent {
   }
 
   startRenamingProcess(): void {
-    this.openDialogue();
+    this.openRenamingDialogue();
   }
 
-  openDialogue(): void {
+  openRenamingDialogue(): void {
     this.dialogService.openWithMessage(
       'Rename files',
       'Do you want to rename all changed files?',
       {
         accept: () => {
-          console.log('I\'ve been clicked')
+          this.store.checkForFileNameDuplicates();
         }
       }
     )
