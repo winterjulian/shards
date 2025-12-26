@@ -21,6 +21,7 @@ export class FileListFooterComponent {
   }
 
   startRenamingProcess(): void {
+    console.log(this.store.filesSignal()[0]);
     this.openDialogue();
     console.log('I\'ve been clicked')
   }

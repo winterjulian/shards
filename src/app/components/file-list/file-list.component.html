@@ -1,13 +1,13 @@
 <div class="h-full user-select-none">
   <div cdkDropList (cdkDropListDropped)="dropFile($event)"
        class="file-list">
-    @for (entry of store.filesSignal(); track entry; let index = $index) {
-      @if (entry.isVisible) {
+    @for (file of store.filesSignal(); track file; let index = $index) {
+      @if (file.isVisible) {
         <div class="flex">
 
           <div
             cdkDrag
-            [ngClass]="{'file-selected-bg': entry.isSelected}"
+            [ngClass]="{'file-selected-bg': file.isSelected}"
             class="list-element-basics list-element-bg flex items-center w-full"
           >
             <div
@@ -16,18 +16,18 @@
             ></div>
             <div class="flex items-center w-full h-full">
               <div
-                (mousedown)="onMouseDown($event, entry)"
-                (mouseenter)="onMouseEnterFile(entry)"
-                (click)="onFileClick($event, entry, index)"
+                (mousedown)="onMouseDown($event, file)"
+                (mouseenter)="onMouseEnterFile(file)"
+                (click)="onFileClick($event, file, index)"
                 class="flex justify-end pl-2 pr-3 tailwind-font-color-light">
-                @if (entry.isSelected) {
+                @if (file.isSelected) {
                   <i class="material-symbols-outlined">check_box</i>
                 } @else {
                   <i class="material-symbols-outlined">check_box_outline_blank</i>
                 }
               </div>
               <div class="pl-2 pr-2 w-10 tailwind-font-color-light">
-                {{ entry.index + 1 }}.
+                {{ file.index + 1 }}.
               </div>
               <div
                 cdkDragHandle
@@ -35,18 +35,18 @@
                 <i class="material-symbols-outlined">drag_indicator</i>
               </div>
               <div class="flex items-center w-8 pr-3">
-                @if (entry.name !== entry.changedName) {
+                @if (file.changed) {
                   <i class="material-symbols-outlined !text-base">settings</i>
                 }
               </div>
               <div
-                (mousedown)="onMouseDown($event, entry)"
-                (mouseenter)="onMouseEnterFile(entry)"
-                (click)="onFileClick($event, entry, index)"
+                (mousedown)="onMouseDown($event, file)"
+                (mouseenter)="onMouseEnterFile(file)"
+                (click)="onFileClick($event, file, index)"
                 class="flex items-center w-full h-full"
               >
                 <div>
-                  <div class="long-word-break" [innerHTML]="entry.displayName"></div>
+                  <div class="long-word-break" [innerHTML]="file.displayName"></div>
                 </div>
               </div>
             </div>

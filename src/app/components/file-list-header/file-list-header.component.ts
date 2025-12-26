@@ -16,6 +16,10 @@ export class FileListHeaderComponent {
     this.store.selectAll();
   }
 
+  selectAllChanged(): void {
+    this.store.selectAllChanged()
+  }
+
   deselectAll() {
     this.store.deselectAll();
   }

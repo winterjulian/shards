@@ -27,6 +27,10 @@
     <div>Selected files</div>
     <div class="text-4xl">{{ store.selectionCounterSignal() }}</div>
   </div>
+  <div>
+    <div>Changed files</div>
+    <div class="text-4xl">{{ store.changedFilesCounter() }}</div>
+  </div>
   <div class="p-2">
     <div class="flex items-center justify-center">
       <button (click)="themeService.toggleDarkMode()" class="button-basics shine-effect standard-button">

@@ -61,15 +61,12 @@ export class ReplaceToolComponent {
     const pattern = this.pattern();
     const replacement = this.replacement();
 
-    console.log('replacement', replacement);
-
     const escapedPattern = pattern.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
     const regex = new RegExp(escapedPattern, 'gi');
 
     this.store.filesSignal().forEach((file: ExtendedFile) => {
       if (file.isSelected) {
         const replaced = file.changedName.replace(regex, replacement);
-        console.log(replaced);
         file.displayName = replaced.replace(
           new RegExp(escapedPattern, 'gi'),
           '<span class="highlight-text">$&</span>'

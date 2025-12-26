@@ -10,12 +10,17 @@
   <div class="flex">
     <div class="ml-4">
       <button
+        [disabled]="store.changedFilesCounter() === 0"
         (click)="startRenamingProcess()" class="button-basics shine-effect alteration-button">
         <div class="flex">
           <i class="material-symbols-outlined text-lg cursor-pointer">edit</i>
         </div>
         <div class="pl-2">
-          Rename
+          @if (store.changedFilesCounter() === 0) {
+            Rename
+          } @else {
+            Rename {{ store.changedFilesCounter() }} files
+          }
         </div>
       </button>
     </div>

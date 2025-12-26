@@ -19,7 +19,6 @@
         (click)="deselectAll()"
       >
         <i class="material-symbols-outlined text-lg cursor-pointer">check_box_outline_blank</i>
-
       </button>
     </div>
     <div class="p-2">
@@ -30,6 +29,15 @@
       >
         <i class="material-symbols-outlined text-lg cursor-pointer">exposure</i>
         <!---Invert selection--->
+      </button>
+    </div>
+    <div class="p-2">
+      <button
+        class="button-basics shine-effect action-button"
+        [disabled]="store.changedFilesCounter() === 0"
+        (click)="selectAllChanged()"
+      >
+        <i class="material-symbols-outlined text-lg cursor-pointer">settings_applications</i>
       </button>
     </div>
   </div>

@@ -1,4 +1,4 @@
-import {computed, inject, Injectable, signal} from '@angular/core';
+import {computed, effect, inject, Injectable, signal} from '@angular/core';
 import { ExtendedFile } from '../interfaces/extendedFile';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { HistoryService } from './history.service';
@@ -33,9 +33,19 @@ export class StoreService {
   rearrangeFilesSignal = signal<ExtendedFileGroup[]>([]);
   isRearrangingFiles = signal<boolean>(false);
   isClearable = signal<boolean>(false);
+  hasChangedFiles = signal<boolean>(false);
+  changedFilesCounter = signal<number>(0);
 
   lastSelectedFile = signal<ExtendedFile | undefined>(undefined);
   favoriteDirectories = signal<FavoriteDirectory[] | undefined>(undefined);
+
+  constructor() {
+    effect(() => {
+      this.changedFilesCounter.set(
+        this.filesSignal().filter(f => f.changed).length
+      );
+    });
+  }
 
   setIsLoading(bool: boolean, msDelay: number = 0) {
     if (bool) {
@@ -126,15 +136,31 @@ export class StoreService {
   }
 
   selectAll() {
-    let counter = 0;
-    this.filesSignal().forEach((file: ExtendedFile) => {
-      if (file.isVisible) {
-        file.isSelected = true;
-        counter++;
-      } else {
-        file.isSelected = false;
-      }
+    this.filesSignal.update(files => {
+      let counter = 0;
+
+      const updatedFiles = files.map(file => {
+        const isSelected = file.isVisible;
+        if (isSelected) counter++;
+        return { ...file, isSelected };
+      });
+
+      this.selectionCounterSignal.set(counter);
+      return updatedFiles;
     });
+  }
+
+  selectAllChanged() {
+    let counter = 0;
+
+    this.filesSignal.update(files =>
+      files.map(file => {
+        const isSelected = file.changed;
+        if (isSelected) counter++;
+        return { ...file, isSelected };
+      })
+    );
+
     this.selectionCounterSignal.set(counter);
   }
 
@@ -277,9 +303,18 @@ export class StoreService {
   }
 
   transferDisplayToChangedName() {
-    this.filesSignal().forEach((file: ExtendedFile) => {
-      file.changedName = file.displayName;
+    const updatedFiles = this.filesSignal().map(file => {
+      const changedName = file.displayName;
+      const changed = file.name !== changedName;
+
+      return {
+        ...file,
+        changedName,
+        changed,
+      };
     });
+
+    this.filesSignal.set(updatedFiles);
   }
 
   changeFileIndex(event: CdkDragDrop<ExtendedFile[]>): void {
@@ -361,6 +396,7 @@ export class StoreService {
         ...file,
         changedName: snapshot[index],
         displayName: snapshot[index],
+        changed: file.name !== snapshot[index],
       }));
       this.filesSignal.set(updatedFiles);
     }
@@ -374,6 +410,7 @@ export class StoreService {
         ...file,
         changedName: snapshot[index],
         displayName: snapshot[index],
+        changed: file.name !== snapshot[index],
       }));
       this.filesSignal.set(updatedFiles);
     }
