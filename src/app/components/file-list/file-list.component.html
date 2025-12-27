@@ -1,5 +1,5 @@
 <div class="h-full user-select-none">
-  <div cdkDropList (cdkDropListDropped)="dropFile($event)"
+  <div cdkDropList (cdkDropListDropped)="onFileDrop($event)"
        class="file-list">
     @for (file of store.filesSignal(); track file; let index = $index) {
       @if (file.isVisible) {

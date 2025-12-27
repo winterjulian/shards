@@ -6,6 +6,7 @@ import {ExtendedFileGroup} from '../interfaces/extendedFileGroup';
 import {FavoriteDirectory} from '../interfaces/favoriteDirectory';
 import {DialogService} from './dialog.service';
 import {timeout} from 'rxjs';
+import {HistorySnapshot} from '../interfaces/historySnapshot';
 
 @Injectable({
   providedIn: 'root',
@@ -321,6 +322,7 @@ export class StoreService {
   }
 
   changeFileIndex(event: CdkDragDrop<ExtendedFile[]>): void {
+    console.log('changeFileIndex');
     if (event.previousIndex === event.currentIndex) return;
 
     this.filesSignal.update(files => {
@@ -344,6 +346,7 @@ export class StoreService {
   }
 
   addIntermediateSnapshot(): void {
+    console.log('addIntermediateSnapshot');
     this.intermediateSnapshot = this.filesSignal().map(f => f.changedName);
   }
 
@@ -370,9 +373,9 @@ export class StoreService {
 
   // HISTORY SERVICE
 
-  transferIntermediateSnapshot(): void {
-    this.historyService.addSnapshot(this.intermediateSnapshot);
-  }
+  // transferIntermediateSnapshot(): void {
+  //   this.historyService.addSnapshot(this.intermediateSnapshot);
+  // }
 
   canUndo() {
     return this.historyService.canUndo();
@@ -383,40 +386,57 @@ export class StoreService {
   }
 
   addSnapshotToHistory(): void {
-    const names = this.filesSignal().map(f => f.changedName);
-    this.historyService.addSnapshot(names);
+    const files = this.filesSignal();
+    const snapshot: HistorySnapshot = {
+      order: files.map(f => f.id),
+      names: Object.fromEntries(files.map(f => [f.id, f.changedName])),
+    };
+
+    this.historyService.addSnapshot(snapshot);
   }
 
-  getSnapShotFromHistory(): string[][] {
+  getSnapShotFromHistory(): HistorySnapshot[] {
     return this.historyService.history;
   }
 
   undo(): void {
     const snapshot = this.historyService.undo();
+    if (!snapshot) return;
 
-    if (snapshot) {
-      const updatedFiles = this.filesSignal().map((file, index) => ({
+    const fileMap = new Map(this.filesSignal().map(f => [f.id, f]));
+    const updatedFiles = snapshot.order.map(id => {
+      const file = fileMap.get(id)!;
+      const newName = snapshot.names[id];
+
+      return {
         ...file,
-        changedName: snapshot[index],
-        displayName: snapshot[index],
-        changed: file.name !== snapshot[index],
-      }));
-      this.filesSignal.set(updatedFiles);
-    }
+        changedName: newName,
+        displayName: newName,
+        changed: file.name !== newName,
+      };
+    });
+
+    this.filesSignal.set(updatedFiles);
   }
 
   redo(): void {
     const snapshot = this.historyService.redo();
+    if (!snapshot) return;
 
-    if (snapshot) {
-      const updatedFiles = this.filesSignal().map((file, index) => ({
+    const fileMap = new Map(this.filesSignal().map(f => [f.id, f]));
+    const updatedFiles = snapshot.order.map(id => {
+      const file = fileMap.get(id)!;
+      const newName = snapshot.names[id];
+
+      return {
         ...file,
-        changedName: snapshot[index],
-        displayName: snapshot[index],
-        changed: file.name !== snapshot[index],
-      }));
-      this.filesSignal.set(updatedFiles);
-    }
+        changedName: newName,
+        displayName: newName,
+        changed: file.name !== newName,
+      };
+    });
+
+    this.filesSignal.set(updatedFiles);
   }
 
   getChangedFilesAsNumber(): number {

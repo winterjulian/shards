@@ -54,8 +54,9 @@ export class FileListComponent {
     }
   }
 
-  dropFile(event: CdkDragDrop<ExtendedFile[]>) {
+  onFileDrop(event: CdkDragDrop<ExtendedFile[]>) {
     this.store.changeFileIndex(event);
+    this.store.addSnapshotToHistory();
   }
 
   onFileClick(event: MouseEvent, file: ExtendedFile, index: number) {

@@ -2,6 +2,7 @@ import { Shard } from './shard';
 
 export interface ExtendedFile {
   readonly name: string;
+  readonly id: string;
   index: number;
   displayName: string;
   path: string;
