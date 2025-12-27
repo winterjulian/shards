@@ -1,12 +1,11 @@
 import { Component, input, output } from '@angular/core';
-import { NgIf } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-quicktool-wrapper',
   standalone: true,
   templateUrl: './quicktool-wrapper.component.html',
-  imports: [NgIf, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   styleUrl: './quicktool-wrapper.component.css',
 })
 export class QuicktoolWrapperComponent {

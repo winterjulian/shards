@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, effect, inject} from '@angular/core';
 import {DialogService} from '../../services/dialog.service';
 import {NgComponentOutlet} from '@angular/common';
 
@@ -12,4 +12,11 @@ import {NgComponentOutlet} from '@angular/common';
 })
 export class DialogComponent {
   protected popupService = inject(DialogService);
+
+  constructor() {
+    effect(() => {
+      console.log('Dialog Component loaded');
+      this.popupService.isOpen();
+    });
+  }
 }

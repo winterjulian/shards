@@ -1,14 +1,10 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {FileManagerComponent} from '../../components/file-manager/file-manager.component';
-import {QuicktoolsComponent} from '../../components/quicktools/quicktools.component';
 import {WorkflowService} from '../../services/workflow.service';
 
 @Component({
   selector: 'app-file-management-page',
-  imports: [
-    FileManagerComponent,
-    QuicktoolsComponent
-  ],
+  imports: [FileManagerComponent],
   standalone: true,
   templateUrl: './file-management-page.component.html',
   styleUrl: './file-management-page.component.scss'

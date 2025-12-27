@@ -94,6 +94,11 @@
   @apply dark:text-gray-500;
 }
 
+.tailwind-font-color-warning {
+  @apply text-red-600;
+  @apply dark:text-red-400;
+}
+
 .header-bg {
   @apply bg-gradient-to-tr from-neutral-300 to-white;
   @apply dark:bg-gradient-to-tr dark:from-neutral-800 dark:to-neutral-700;

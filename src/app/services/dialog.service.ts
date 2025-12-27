@@ -36,7 +36,7 @@ export class DialogService {
     title: string | undefined,
     message: string,
     callbacks?: { accept?: () => void; cancel?: () => void },
-    isHint: boolean = false
+    isHint: boolean = false // hint = no cancel / abort button
   ) {
     // message enuff for now :]
     this.title.set(title);
@@ -58,13 +58,15 @@ export class DialogService {
   }
 
   confirm() {
-    this.onAcceptCallback?.();
+    const callback = this.onAcceptCallback;
     this.close();
+    callback?.();
   }
 
   cancel() {
-    this.onCancelCallback?.();
+    const callback = this.onCancelCallback;
     this.close();
+    callback?.();
   }
 
   isOpen() {

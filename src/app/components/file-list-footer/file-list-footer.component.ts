@@ -30,7 +30,7 @@ export class FileListFooterComponent {
       'Do you want to rename all changed files?',
       {
         accept: () => {
-          this.store.checkForFileNameDuplicates();
+          this.store.newRenameFiles();
         }
       }
     )

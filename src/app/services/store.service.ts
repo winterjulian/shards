@@ -4,13 +4,15 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { HistoryService } from './history.service';
 import {ExtendedFileGroup} from '../interfaces/extendedFileGroup';
 import {FavoriteDirectory} from '../interfaces/favoriteDirectory';
-import {RenamingEntry} from '../interfaces/renamingEntry';
+import {DialogService} from './dialog.service';
+import {timeout} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StoreService {
-  public history = inject(HistoryService);
+  public historyService = inject(HistoryService);
+  public dialogService = inject(DialogService);
   private intermediateSnapshot: string[] = [];
   isLoading = signal<boolean>(false);
   filesSignal = signal<ExtendedFile[]>([]);
@@ -369,28 +371,28 @@ export class StoreService {
   // HISTORY SERVICE
 
   transferIntermediateSnapshot(): void {
-    this.history.addSnapshot(this.intermediateSnapshot);
+    this.historyService.addSnapshot(this.intermediateSnapshot);
   }
 
   canUndo() {
-    return this.history.canUndo();
+    return this.historyService.canUndo();
   }
 
   canRedo() {
-    return this.history.canRedo();
+    return this.historyService.canRedo();
   }
 
   addSnapshotToHistory(): void {
     const names = this.filesSignal().map(f => f.changedName);
-    this.history.addSnapshot(names);
+    this.historyService.addSnapshot(names);
   }
 
   getSnapShotFromHistory(): string[][] {
-    return this.history.history;
+    return this.historyService.history;
   }
 
   undo(): void {
-    const snapshot = this.history.undo();
+    const snapshot = this.historyService.undo();
 
     if (snapshot) {
       const updatedFiles = this.filesSignal().map((file, index) => ({
@@ -404,7 +406,7 @@ export class StoreService {
   }
 
   redo(): void {
-    const snapshot = this.history.redo();
+    const snapshot = this.historyService.redo();
 
     if (snapshot) {
       const updatedFiles = this.filesSignal().map((file, index) => ({
@@ -428,7 +430,7 @@ export class StoreService {
   }
 
   clearHistory(): void {
-    this.history.clear();
+    this.historyService.clear();
   }
 
   // FILE MANAGEMENT
@@ -521,8 +523,33 @@ export class StoreService {
     });
   }
 
-  checkForFileNameDuplicates() {
-    console.log('checkForFileNameDuplicates');
+  public newRenameFiles(): void {
+    let conflictingFiles = this.checkForFileNameDuplicates();
+    let conflictingMessage: string = conflictingFiles.length === 1
+      ? 'file was identical to another and created a conflict. Please rename the file.'
+      : 'files were identical to other files and created a conflict. Please rename the files.';
+    console.log(conflictingFiles);
+    console.log(conflictingFiles.length > 0);
+
+    if (conflictingFiles.length > 0) {
+      this.dialogService.openWithMessage(
+        'Name conflict',
+        `${conflictingFiles.length} ${conflictingMessage}`,
+        {
+          accept: () => {
+            console.log('test');
+          }
+        },
+        true
+      )
+      console.log('end of if')
+    } else {
+      console.log('else');
+    }
+  }
+
+  checkForFileNameDuplicates(): ExtendedFile[] {
+    const conflictingFiles: ExtendedFile[] = []
     const seen = new Set<string>();
 
     for (const file of this.filesSignal()) {
@@ -538,10 +565,13 @@ export class StoreService {
 
       if (seen.has(key)) {
         file.internalWarning = true;
+        conflictingFiles.push(file);
       } else {
         seen.add(key);
       }
     }
+
+    return conflictingFiles;
     // TODO: Rename all files in plan that are internalWarning=false && changed=true;
   }
 }

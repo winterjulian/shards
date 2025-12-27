@@ -14,7 +14,10 @@
               class="file-custom-placeholder router-bg-color material-box-shadow-inset"
               *cdkDragPlaceholder
             ></div>
-            <div class="flex items-center w-full h-full">
+            <div
+              class="flex items-center w-full h-full"
+              [ngClass]="{'tailwind-font-color-warning': file.internalWarning || file.externalWarning }"
+            >
               <div
                 (mousedown)="onMouseDown($event, file)"
                 (mouseenter)="onMouseEnterFile(file)"
