@@ -525,31 +525,45 @@ export class StoreService {
       const successfulSet = new Set(result.successful);
       const erroneousMap = new Map(result.erroneous.map(e => [e.id, e]));
 
-      this.filesSignal().forEach((file: ExtendedFile) => {
-        if (successfulSet.has(file.id)) {
-          this.handleSuccessfulRenaming(file);
-        } else if (erroneousMap.has(file.id)) {
-          this.handleErroneousRenaming(file, erroneousMap);
-        }
-      });
+      this.filesSignal.update(files =>
+        files.map(file => {
+          if (successfulSet.has(file.id)) {
+            return this.handleSuccessfulRenaming(file);
+          }
+
+          if (erroneousMap.has(file.id)) {
+            return this.handleErroneousRenaming(file, erroneousMap);
+          }
+
+          return file;
+        })
+      );
 
       setTimeout(() => {
         this.isRenaming.set(false);
-      }, 1500)
+      }, 1500);
     });
   }
 
   handleSuccessfulRenaming(file: ExtendedFile) {
-    file.isChanged = false;
-    file.hasInternalWarning = false;
-    file.hasExternalWarning = false;
-    file.externalErrorMessage = '';
+    return {
+      ...file,
+      name: file.changedName,
+      isChanged: false,
+      hasInternalWarning: false,
+      hasExternalWarning: false,
+      externalErrorMessage: ''
+    };
   }
 
   handleErroneousRenaming(file: ExtendedFile, map: Map<string, ErroneousResponse>) {
     const err = map.get(file.id);
-    file.hasExternalWarning = true;
-    err ? file.externalErrorMessage = err.externalErrorMessage : 'Unknown error occurred.';
+
+    return {
+      ...file,
+      hasExternalWarning: true,
+      externalErrorMessage: err?.externalErrorMessage ?? 'Unknown error occurred.'
+    };
   }
 
   public newRenameFiles(): void {
