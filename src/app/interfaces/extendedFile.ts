@@ -1,13 +1,13 @@
 import { Shard } from './shard';
 
 export interface ExtendedFile {
-  readonly name: string;
   readonly id: string;
+  name: string;
   index: number;
   displayName: string;
   path: string;
   isSelected: boolean;
-  changed: boolean;
+  isChanged: boolean;
   isVisible: boolean;
   length: number;
   extension: string;
@@ -15,6 +15,7 @@ export interface ExtendedFile {
   changeApproved: boolean; // deprecated
   groups: string[]; // deprecated
   shards?: Shard[]; // deprecated
-  internalWarning: boolean;
-  externalWarning: boolean;
+  hasInternalWarning: boolean;
+  hasExternalWarning: boolean;
+  externalErrorMessage: string;
 }

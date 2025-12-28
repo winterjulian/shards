@@ -16,7 +16,7 @@
             ></div>
             <div
               class="flex items-center w-full h-full"
-              [ngClass]="{'tailwind-font-color-warning': file.internalWarning || file.externalWarning }"
+              [ngClass]="{'tailwind-font-color-warning': file.hasInternalWarning || file.hasExternalWarning }"
             >
               <div
                 (mousedown)="onMouseDown($event, file)"
@@ -38,13 +38,13 @@
                 <i class="material-symbols-outlined">drag_indicator</i>
               </div>
               <div class="flex items-center w-8 pr-3">
-                @if (file.externalWarning) {
+                @if (file.hasExternalWarning) {
                   <i class="material-symbols-outlined !text-lg">computer_cancel</i>
                 }
-                @else if (file.internalWarning) {
+                @else if (file.hasInternalWarning) {
                   <i class="material-symbols-outlined !text-lg">warning</i>
                 }
-                @else if (file.changed) {
+                @else if (file.isChanged) {
                   <i class="material-symbols-outlined !text-lg">settings</i>
                 }
               </div>
@@ -57,6 +57,9 @@
                 <div>
                   <div class="long-word-break" [innerHTML]="file.displayName"></div>
                 </div>
+              </div>
+              <div>
+                <button (click)="printFileInformation(file)">FILE</button>
               </div>
             </div>
           </div>

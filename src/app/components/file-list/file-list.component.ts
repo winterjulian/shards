@@ -60,6 +60,7 @@ export class FileListComponent {
   }
 
   onFileClick(event: MouseEvent, file: ExtendedFile, index: number) {
+    // TODO: Check if deprecated or partly deprecated
     const lastSelected = this.store.lastSelectedFile();
     if (event.shiftKey && lastSelected) {
       this.store.setFilesByIndices(
@@ -70,5 +71,10 @@ export class FileListComponent {
     } else {
       this.store.lastSelectedFile.set(file);
     }
+  }
+
+  printFileInformation(file: ExtendedFile) {
+    // TODO: Is debugging, remove
+    console.log(file)
   }
 }

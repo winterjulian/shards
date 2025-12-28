@@ -7,6 +7,7 @@ import {FavoriteDirectory} from '../interfaces/favoriteDirectory';
 import {DialogService} from './dialog.service';
 import {timeout} from 'rxjs';
 import {HistorySnapshot} from '../interfaces/historySnapshot';
+import {ErroneousResponse} from '../interfaces/erroneousResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -46,7 +47,7 @@ export class StoreService {
   constructor() {
     effect(() => {
       this.changedFilesCounter.set(
-        this.filesSignal().filter(f => f.changed).length
+        this.filesSignal().filter(f => f.isChanged).length
       );
     });
   }
@@ -159,7 +160,7 @@ export class StoreService {
 
     this.filesSignal.update(files =>
       files.map(file => {
-        const isSelected = file.changed;
+        const isSelected = file.isChanged;
         if (isSelected) counter++;
         return { ...file, isSelected };
       })
@@ -309,12 +310,12 @@ export class StoreService {
   transferDisplayToChangedName() {
     const updatedFiles = this.filesSignal().map(file => {
       const changedName = file.displayName;
-      const changed = file.name !== changedName;
+      const isChanged = file.name !== changedName;
 
       return {
         ...file,
         changedName,
-        changed,
+        isChanged,
       };
     });
 
@@ -529,18 +530,37 @@ export class StoreService {
 
   renameFiles() {
     this.isRenaming.set(true);
-    const filesToRename = this.filesSignal().filter(f => f.changedName !== f.name);
+    const filesToRename = this.filesSignal().filter(f => f.isChanged);
 
     window.electron.renameFiles(filesToRename).then(result => {
-      if (result.success) {
-        result.renamedFiles?.forEach((file: ExtendedFile) => {
-          this.filesSignal()[file.index] = file;
-        });
-      } else {
-        console.error('Fehler beim Umbenennen:', result.errors);
-      }
-      this.isRenaming.set(false);
+      const successfulSet = new Set(result.successful);
+      const erroneousMap = new Map(result.erroneous.map(e => [e.id, e]));
+
+      this.filesSignal().forEach((file: ExtendedFile) => {
+        if (successfulSet.has(file.id)) {
+          this.handleSuccessfulRenaming(file);
+        } else if (erroneousMap.has(file.id)) {
+          this.handleErroneousRenaming(file, erroneousMap);
+        }
+      });
+
+      setTimeout(() => {
+        this.isRenaming.set(false);
+      }, 1500)
     });
+  }
+
+  handleSuccessfulRenaming(file: ExtendedFile) {
+    file.isChanged = false;
+    file.hasInternalWarning = false;
+    file.hasExternalWarning = false;
+    file.externalErrorMessage = '';
+  }
+
+  handleErroneousRenaming(file: ExtendedFile, map: Map<string, ErroneousResponse>) {
+    const err = map.get(file.id);
+    file.hasExternalWarning = true;
+    err ? file.externalErrorMessage = err.externalErrorMessage : 'Unknown error occurred.';
   }
 
   public newRenameFiles(): void {
@@ -564,7 +584,7 @@ export class StoreService {
       )
       console.log('end of if')
     } else {
-      console.log('else');
+      this.renameFiles();
     }
   }
 
@@ -573,18 +593,18 @@ export class StoreService {
     const seen = new Set<string>();
 
     for (const file of this.filesSignal()) {
-      if (!file.changed) {
+      if (!file.isChanged) {
         seen.add(file.name.toLowerCase());
       }
     }
 
     for (const file of this.filesSignal()) {
-      if (!file.changed) continue;
+      if (!file.isChanged) continue;
 
       const key = file.changedName.toLowerCase();
 
       if (seen.has(key)) {
-        file.internalWarning = true;
+        file.hasInternalWarning = true;
         conflictingFiles.push(file);
       } else {
         seen.add(key);

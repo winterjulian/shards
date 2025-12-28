@@ -8,9 +8,8 @@ declare global {
       openFiles: (path?: string) => Promise<ExtendedFile[]>;
       getFilesFromDirectory: (directoryPath: string) => Promise<ExtendedFile[]>;
       renameFiles: (filesToRename: ExtendedFile[]) => Promise<{
-        success: boolean;
-        renamedFiles?: Array<ExtendedFile>;
-        errors?: Array<{ file: string; message: string }>;
+        successful: Array<string>;
+        erroneous: Array<{ id: string; externalErrorMessage: string }>;
       }>;
       getFavoriteDirectories: () => Promise<FavoriteDirectory[]>;
       addFavoriteDirectory: (directory: FavoriteDirectory) => Promise<ResponseObject>;
