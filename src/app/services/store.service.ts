@@ -403,27 +403,16 @@ export class StoreService {
   undo(): void {
     const snapshot = this.historyService.undo();
     if (!snapshot) return;
-
-    const fileMap = new Map(this.filesSignal().map(f => [f.id, f]));
-    const updatedFiles = snapshot.order.map(id => {
-      const file = fileMap.get(id)!;
-      const newName = snapshot.names[id];
-
-      return {
-        ...file,
-        changedName: newName,
-        displayName: newName,
-        changed: file.name !== newName,
-      };
-    });
-
-    this.filesSignal.set(updatedFiles);
+    this.processSnapshot(snapshot);
   }
 
   redo(): void {
     const snapshot = this.historyService.redo();
     if (!snapshot) return;
+    this.processSnapshot(snapshot);
+  }
 
+  processSnapshot(snapshot: HistorySnapshot): void {
     const fileMap = new Map(this.filesSignal().map(f => [f.id, f]));
     const updatedFiles = snapshot.order.map(id => {
       const file = fileMap.get(id)!;
@@ -612,6 +601,5 @@ export class StoreService {
     }
 
     return conflictingFiles;
-    // TODO: Rename all files in plan that are internalWarning=false && changed=true;
   }
 }
