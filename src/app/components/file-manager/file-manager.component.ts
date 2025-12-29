@@ -38,15 +38,15 @@ export class FileManagerComponent {
     public store: StoreService,
     public workflowService: WorkflowService
   ) {
-    // effect(() => {
-    //   const isProcessing = this.workflowService.isProcessing();
-    //   const overlay = document.querySelector('.blocked-area');
-    //
-    //   if (isProcessing) {
-    //     overlay?.classList.remove('hidden');
-    //   } else {
-    //     overlay?.classList.add('hidden');
-    //   }
-    // });
+    effect(() => {
+      const isProcessing = this.store.isRenaming();
+      const overlay = document.querySelector('.blocked-area');
+
+      if (isProcessing) {
+        overlay?.classList.remove('hidden');
+      } else {
+        overlay?.classList.add('hidden');
+      }
+    });
   }
 }

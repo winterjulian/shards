@@ -316,6 +316,8 @@ export class StoreService {
         ...file,
         changedName,
         isChanged,
+        hasInternalWarning: false,
+        hasExternalWarning: false,
       };
     });
 
@@ -323,7 +325,6 @@ export class StoreService {
   }
 
   changeFileIndex(event: CdkDragDrop<ExtendedFile[]>): void {
-    console.log('changeFileIndex');
     if (event.previousIndex === event.currentIndex) return;
 
     this.filesSignal.update(files => {
@@ -347,7 +348,6 @@ export class StoreService {
   }
 
   addIntermediateSnapshot(): void {
-    console.log('addIntermediateSnapshot');
     this.intermediateSnapshot = this.filesSignal().map(f => f.changedName);
   }
 
@@ -422,7 +422,7 @@ export class StoreService {
         ...file,
         changedName: newName,
         displayName: newName,
-        changed: file.name !== newName,
+        isChanged: file.name !== newName,
       };
     });
 
@@ -571,21 +571,16 @@ export class StoreService {
     let conflictingMessage: string = conflictingFiles.length === 1
       ? 'file was identical to another and created a conflict. Please rename the file.'
       : 'files were identical to other files and created a conflict. Please rename the files.';
-    console.log(conflictingFiles);
-    console.log(conflictingFiles.length > 0);
 
     if (conflictingFiles.length > 0) {
       this.dialogService.openWithMessage(
         'Name conflict',
         `${conflictingFiles.length} ${conflictingMessage}`,
         {
-          accept: () => {
-            console.log('test');
-          }
+          accept: () => {}
         },
         true
       )
-      console.log('end of if')
     } else {
       this.renameFiles();
     }

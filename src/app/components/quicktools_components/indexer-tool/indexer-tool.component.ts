@@ -33,7 +33,7 @@ export class IndexerToolComponent {
     this.store.filesSignal().forEach((file: ExtendedFile) => {
       if (file.isSelected) {
         let indexString = (counter++).toString().padStart(placeholderLength, '0');
-        let fileName = file.name;
+        let fileName = file.changedName;
 
         if (this.alternativeName) {
           fileName = this.alternativeName;

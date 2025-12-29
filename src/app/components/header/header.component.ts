@@ -21,4 +21,8 @@ export class HeaderComponent {
   testFunc($event: boolean): void {
     this.workflowService.setIsProcessing($event);
   }
+
+  triggerWorkflow() {
+    this.workflowService.setIsProcessing(!this.workflowService.isProcessing());
+  }
 }

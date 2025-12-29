@@ -31,7 +31,6 @@ export class DialogService {
     this.open.set(true);
   }
 
-
   openWithMessage(
     title: string | undefined,
     message: string,
