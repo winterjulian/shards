@@ -1,4 +1,4 @@
-import {Component, HostListener, input} from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 import { StoreService } from '../../services/store.service';
 import { ExtendedFile } from '../../interfaces/extendedFile';
 import {
@@ -7,11 +7,8 @@ import {
   CdkDragHandle,
   CdkDragPlaceholder,
   CdkDropList,
-  moveItemInArray,
 } from '@angular/cdk/drag-drop';
 import { NgClass } from '@angular/common';
-import {ExtendedFileGroup} from '../../interfaces/extendedFileGroup';
-import {PercentageVerticalComponent} from '../percentage-vertical/percentage-vertical.component';
 import {FileListRowComponent} from '../file-list-row/file-list-row.component';
 
 @Component({
@@ -32,7 +29,7 @@ export class FileListComponent {
 
   constructor(public store: StoreService) {}
 
-  onMouseDown(event: MouseEvent, file: ExtendedFile) {
+  protected onMouseDown(event: MouseEvent, file: ExtendedFile) {
     if (event.shiftKey) {
       return;
     }
@@ -41,7 +38,7 @@ export class FileListComponent {
     this.applySelectionToFile(file);
   }
 
-  onMouseEnterFile(file: ExtendedFile) {
+  protected onMouseEnterFile(file: ExtendedFile) {
     if (this.isMouseDown) {
       this.applySelectionToFile(file);
     }
@@ -55,12 +52,12 @@ export class FileListComponent {
     }
   }
 
-  onFileDrop(event: CdkDragDrop<ExtendedFile[]>) {
+  protected onFileDrop(event: CdkDragDrop<ExtendedFile[]>) {
     this.store.changeFileIndex(event);
     this.store.addSnapshotToHistory();
   }
 
-  onFileClick(event: MouseEvent, file: ExtendedFile, index: number) {
+  protected onFileClick(event: MouseEvent, file: ExtendedFile, index: number) {
     // TODO: Check if deprecated or partly deprecated
     const lastSelected = this.store.lastSelectedFile();
     if (event.shiftKey && lastSelected) {
@@ -72,10 +69,5 @@ export class FileListComponent {
     } else {
       this.store.lastSelectedFile.set(file);
     }
-  }
-
-  printFileInformation(file: ExtendedFile) {
-    // TODO: Is debugging, remove
-    console.log(file)
   }
 }

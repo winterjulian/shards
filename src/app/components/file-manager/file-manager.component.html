@@ -10,13 +10,7 @@
       <app-file-selector></app-file-selector>
     </div>
 
-<!--    <div #overlay tabindex="0" class="blocked-area z-lord hidden"></div>-->
-
     @if (store.filesSignal().length > 0) {
-<!--      <div-->
-<!--        [attr.inert]="workflowService.isProcessing() ? true : null"-->
-<!--        class="flex flex-col h-full animate-fade-in"-->
-<!--      >-->
       <div
         class="flex flex-col h-full animate-fade-in"
       >
@@ -58,7 +52,7 @@
 
         </div>
 
-        <div class="shadow-border-t quicktool-bg">
+        <div class="shadow-border-t edit-tool-bg">
           <app-file-list-footer></app-file-list-footer>
         </div>
 
