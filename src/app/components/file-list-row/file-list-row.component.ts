@@ -1,14 +1,17 @@
 import {Component, EventEmitter, HostListener, Input, Output} from '@angular/core';
 import {CdkDragHandle} from '@angular/cdk/drag-drop';
-import {NgClass} from '@angular/common';
+import {DecimalPipe, NgClass} from '@angular/common';
 import {ExtendedFile} from '../../interfaces/extendedFile';
 import {StoreService} from '../../services/store.service';
+import {FilesizePipe} from '../../pipes/file-size.pipe';
 
 @Component({
   selector: 'app-file-list-row',
   imports: [
     CdkDragHandle,
-    NgClass
+    NgClass,
+    DecimalPipe,
+    FilesizePipe
   ],
   standalone: true,
   templateUrl: './file-list-row.component.html',
@@ -52,9 +55,9 @@ export class FileListRowComponent {
     e.preventDefault(); e.stopPropagation()
   }
 
-  testFunc(e: any){
+  testFunc(e: any, file: ExtendedFile){
     e.preventDefault();
     e.stopPropagation();
-    console.log('testFunc');
+    console.log(file);
   }
 }

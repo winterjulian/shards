@@ -1,4 +1,4 @@
-<div class="w-full">
+<div class="w-full h-full">
   <div
     class="flex items-center w-full h-full"
     [ngClass]="{'tailwind-font-color-warning': file.hasInternalWarning || file.hasExternalWarning }"
@@ -7,22 +7,22 @@
       (mousedown)="onNewMouseDown($event)"
       (mouseenter)="onNewMouseEnter()"
       (click)="onNewFileClick($event)"
-      class="flex justify-end pl-2 pr-2 tailwind-font-color-light">
+      class="flex center-basics pl-1 pr-2 tailwind-font-color-light h-full">
       @if (file.isSelected) {
         <i class="material-symbols-outlined">check_box</i>
       } @else {
         <i class="material-symbols-outlined">check_box_outline_blank</i>
       }
     </div>
-    <div class="pl-2 pr-2 w-14 tailwind-font-color-light">
+    <div class="flex center-basics pl-2 pr-2 w-14 tailwind-font-color-light">
       {{ file.index + 1 }}
     </div>
     <div
       cdkDragHandle
-      class="cursor-grab pl-2 pr-2 w-10 tailwind-font-color-light">
+      class="flex center-basics cursor-grab pl-2 pr-2 w-10 tailwind-font-color-light">
       <i class="material-symbols-outlined">drag_indicator</i>
     </div>
-    <div class="flex items-center w-10 pr-2">
+    <div class="flex center-basics items-center w-10 pr-2">
       @if (file.hasExternalWarning) {
         <i class="material-symbols-outlined !text-lg">computer_cancel</i>
       }
@@ -37,22 +37,22 @@
       (mousedown)="onNewMouseDown($event)"
       (mouseenter)="onNewMouseEnter()"
       (click)="onNewFileClick($event)"
-      class="flex items-center w-full h-full"
+      class="flex-1 flex items-center items-center h-full w-full"
     >
       <div class="flex">
         <div class="long-word-break" [innerHTML]="file.displayName"></div>
-        <div
-          (mousedown)="preventCalling($event);"
-          (click)="testFunc($event)" class="pl-2">
-          <i class="material-symbols-outlined text-sm">edit</i>
-        </div>
+<!--        <div-->
+<!--          (mousedown)="preventCalling($event);"-->
+<!--          (click)="testFunc($event, file)" class="pl-2">-->
+<!--          <i class="material-symbols-outlined text-sm">edit</i>-->
+<!--        </div>-->
       </div>
     </div>
-    <div>
-      TYPE
+    <div class="flex justify-start tailwind-font-color-light w-10">
+      {{ file.extension }}
     </div>
-    <div>
-      SIZE
+    <div class="flex justify-end tailwind-font-color-light pr-2 w-25">
+      {{ file.size | filesize }}
     </div>
   </div>
 </div>
