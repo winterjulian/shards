@@ -2,13 +2,11 @@ import {Component, OnInit, signal} from '@angular/core';
 import {FavoriteDirectory} from '../../interfaces/favoriteDirectory';
 import {StoreService} from '../../services/store.service';
 import {FavoritesService} from '../../services/favorites.service';
-import {FavoriteDirectoriesComponent} from '../favorite-directories/favorite-directories.component';
 import {DirectoryFavoritesComponent} from '../directory-favorites/directory-favorites.component';
 
 @Component({
   selector: 'app-directory-file-selector',
   imports: [
-    FavoriteDirectoriesComponent,
     DirectoryFavoritesComponent
   ],
   standalone: true,

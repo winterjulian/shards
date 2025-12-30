@@ -31,7 +31,7 @@ export class FileListRowComponent {
 
   constructor(public store: StoreService) {}
 
-  printFileInformation(file: ExtendedFile) {
+  renameFileDirectly(file: ExtendedFile) {
     // TODO: Is debugging, remove
     console.log(file)
   }
@@ -46,5 +46,15 @@ export class FileListRowComponent {
 
   onNewFileClick(e: any) {
     this.fileClick.emit(e)
+  }
+
+  preventCalling(e: any) {
+    e.preventDefault(); e.stopPropagation()
+  }
+
+  testFunc(e: any){
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('testFunc');
   }
 }

@@ -18,4 +18,5 @@ export interface ExtendedFile {
   hasInternalWarning: boolean;
   hasExternalWarning: boolean;
   externalErrorMessage: string;
+  size: number; //bytes
 }
