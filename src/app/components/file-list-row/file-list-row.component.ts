@@ -1,27 +1,27 @@
-import {Component, HostListener, input} from '@angular/core';
-import { StoreService } from '../../services/store.service';
-import { ExtendedFile } from '../../interfaces/extendedFile';
-import {
-  CdkDrag,
-  CdkDragDrop,
-  CdkDragHandle,
-  CdkDragPlaceholder,
-  CdkDropList,
-  moveItemInArray,
-} from '@angular/cdk/drag-drop';
-import { NgClass } from '@angular/common';
-import {ExtendedFileGroup} from '../../interfaces/extendedFileGroup';
-import {PercentageVerticalComponent} from '../percentage-vertical/percentage-vertical.component';
-import {FileListRowComponent} from '../file-list-row/file-list-row.component';
+import {Component, EventEmitter, HostListener, Input, Output} from '@angular/core';
+import {CdkDragDrop, CdkDragHandle} from '@angular/cdk/drag-drop';
+import {NgClass} from '@angular/common';
+import {ExtendedFile} from '../../interfaces/extendedFile';
+import {StoreService} from '../../services/store.service';
 
 @Component({
-  selector: 'app-file-list',
-  imports: [CdkDropList, CdkDrag, CdkDragHandle, CdkDragPlaceholder, NgClass, FileListRowComponent],
-  templateUrl: './file-list.component.html',
+  selector: 'app-file-list-row',
+  imports: [
+    CdkDragHandle,
+    NgClass
+  ],
   standalone: true,
-  styleUrl: './file-list.component.scss',
+  templateUrl: './file-list-row.component.html',
+  styleUrl: './file-list-row.component.scss'
 })
-export class FileListComponent {
+export class FileListRowComponent {
+  @Input() file!: ExtendedFile;
+  @Input() index!: number;
+
+  @Output() mouseDown = new EventEmitter<MouseEvent>();
+  @Output() mouseEnter = new EventEmitter<void>();
+  @Output() fileClick = new EventEmitter<MouseEvent>();
+
   private selectionMode: 'select' | 'deselect' | null = null;
   public isMouseDown: boolean = false;
 
@@ -64,6 +64,7 @@ export class FileListComponent {
     // TODO: Check if deprecated or partly deprecated
     const lastSelected = this.store.lastSelectedFile();
     if (event.shiftKey && lastSelected) {
+      console.log('HERE');
       this.store.setFilesByIndices(
         file.index - (file.index - index),
         lastSelected.index,
@@ -77,5 +78,17 @@ export class FileListComponent {
   printFileInformation(file: ExtendedFile) {
     // TODO: Is debugging, remove
     console.log(file)
+  }
+
+  onNewMouseDown(e: any) {
+    this.mouseDown.emit(e);
+  }
+
+  onNewMouseEnter() {
+    this.mouseEnter.emit();
+  }
+
+  onNewFileClick(e: any) {
+    this.fileClick.emit(e)
   }
 }

@@ -14,54 +14,14 @@
               class="file-custom-placeholder router-bg-color material-box-shadow-inset"
               *cdkDragPlaceholder
             ></div>
-            <div
-              class="flex items-center w-full h-full"
-              [ngClass]="{'tailwind-font-color-warning': file.hasInternalWarning || file.hasExternalWarning }"
-            >
-              <div
-                (mousedown)="onMouseDown($event, file)"
-                (mouseenter)="onMouseEnterFile(file)"
-                (click)="onFileClick($event, file, index)"
-                class="flex justify-end pl-2 pr-2 tailwind-font-color-light">
-                @if (file.isSelected) {
-                  <i class="material-symbols-outlined">check_box</i>
-                } @else {
-                  <i class="material-symbols-outlined">check_box_outline_blank</i>
-                }
-              </div>
-              <div class="pl-2 pr-2 w-14 tailwind-font-color-light">
-                {{ file.index + 1 }}
-              </div>
-              <div
-                cdkDragHandle
-                class="cursor-grab pl-2 pr-2 w-10 tailwind-font-color-light">
-                <i class="material-symbols-outlined">drag_indicator</i>
-              </div>
-              <div class="flex items-center w-10 pr-2">
-                @if (file.hasExternalWarning) {
-                  <i class="material-symbols-outlined !text-lg">computer_cancel</i>
-                }
-                @else if (file.hasInternalWarning) {
-                  <i class="material-symbols-outlined !text-lg">warning</i>
-                }
-                @else if (file.isChanged) {
-                  <i class="material-symbols-outlined !text-lg">settings</i>
-                }
-              </div>
-              <div
-                (mousedown)="onMouseDown($event, file)"
-                (mouseenter)="onMouseEnterFile(file)"
-                (click)="onFileClick($event, file, index)"
-                class="flex items-center w-full h-full"
-              >
-                <div>
-                  <div class="long-word-break" [innerHTML]="file.displayName"></div>
-                </div>
-              </div>
-              <div>
-                <button (click)="printFileInformation(file)">FILE</button>
-              </div>
-            </div>
+            <app-file-list-row
+              [file]="file"
+              [index]="index"
+              (mouseDown)="onMouseDown($event, file)"
+              (mouseEnter)="onMouseEnterFile(file)"
+              (fileClick)="onFileClick($event, file, index)"
+              class="w-full"
+            ></app-file-list-row>
           </div>
 
         </div>
