@@ -17,7 +17,6 @@ export class FileManagementPageComponent {
   constructor() {
     effect(() => {
       const isRenaming = this.store.isRenaming();
-      console.log('isRenaming', isRenaming);
       const overlay = document.querySelector('.renaming-blocked-area');
 
       if (isRenaming) {

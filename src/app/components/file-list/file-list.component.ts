@@ -4,7 +4,6 @@ import { ExtendedFile } from '../../interfaces/extendedFile';
 import {
   CdkDrag,
   CdkDragDrop,
-  CdkDragHandle,
   CdkDragPlaceholder,
   CdkDropList,
 } from '@angular/cdk/drag-drop';
@@ -13,7 +12,7 @@ import {FileListRowComponent} from '../file-list-row/file-list-row.component';
 
 @Component({
   selector: 'app-file-list',
-  imports: [CdkDropList, CdkDrag, CdkDragHandle, CdkDragPlaceholder, NgClass, FileListRowComponent],
+  imports: [CdkDropList, CdkDrag, CdkDragPlaceholder, NgClass, FileListRowComponent],
   templateUrl: './file-list.component.html',
   standalone: true,
   styleUrl: './file-list.component.scss',

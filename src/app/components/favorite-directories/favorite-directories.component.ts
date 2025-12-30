@@ -76,8 +76,8 @@ export class FavoriteDirectoriesComponent implements OnInit {
     this.favoriteForm.reset();
   }
 
-  getFilesFromDirectory(directoryPath: string) {
-    this.store.getFilesByDirectory(directoryPath);
+  getAllFilesFromGivenDirectory(directoryPath: string) {
+    this.store.getAllFilesFromGivenDirectory(directoryPath);
   }
 
   getFiles(path: string) {

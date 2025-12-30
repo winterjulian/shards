@@ -1,0 +1,15 @@
+<div class="flex justify-between m-5">
+  <div class="flex">
+  </div>
+  <div class="flex">
+    <div>
+      <button
+        [disabled]="!this.store.currentDirectory()"
+        (click)="returnToFileManagement()"
+        class="button-basics shine-effect decline-button"
+      >
+        <i class="material-symbols-outlined text-lg">chevron_right</i>
+        Return to files</button>
+    </div>
+  </div>
+</div>

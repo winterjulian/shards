@@ -8,6 +8,7 @@ import {DialogService} from './dialog.service';
 import {timeout} from 'rxjs';
 import {HistorySnapshot} from '../interfaces/historySnapshot';
 import {ErroneousResponse} from '../interfaces/erroneousResponse';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,9 @@ import {ErroneousResponse} from '../interfaces/erroneousResponse';
 export class StoreService {
   public historyService = inject(HistoryService);
   public dialogService = inject(DialogService);
+  public router = inject(Router);
   private intermediateSnapshot: string[] = [];
+  currentDirectory = signal<string | null>(null);
   isLoading = signal<boolean>(false);
   filesSignal = signal<ExtendedFile[]>([]);
   selectionCounterSignal = signal<number>(0);
@@ -455,29 +458,40 @@ export class StoreService {
     return counter;
   }
 
-  getFilesByDialogue(path?: string) {
+  getFilesByDialogue(directoryPath?: string) {
     this.setIsLoading(true);
-    window.electron.openFiles(path).then((files: Array<ExtendedFile>) => {
+    // if directoryPath undefined => open dialog
+    window.electron.openFiles(directoryPath).then((files: Array<ExtendedFile>) => {
       if (!files.length) {
         this.setIsLoading(false);
         return;
       } else {
+        this.setCurrentDirectory(files[0].path);
         this.setFiles(files)
       }
       this.setIsLoading(false, 1500);
     });
   }
 
-  getFilesByDirectory(directoryPath: string) {
+  getAllFilesFromGivenDirectory(directoryPath: string) {
     this.setIsLoading(true);
     window.electron.getFilesFromDirectory(directoryPath).then((files: Array<ExtendedFile>) => {
       if (!files.length) {
-        this.setIsLoading(false, 2000);
+        this.setIsLoading(false, 1500);
         return;
       } else {
+        this.setCurrentDirectory(directoryPath);
         this.setFiles(files);
       }
     });
+  }
+
+  setCurrentDirectory(path: string) {
+    this.currentDirectory.set(path);
+  }
+
+  removeCurrentDirectory() {
+    this.currentDirectory.set(null);
   }
 
   setFiles(files: Array<ExtendedFile>) {
@@ -485,6 +499,7 @@ export class StoreService {
     this.resetVisibility();
     this.clearHistory();
     this.addSnapshotToHistory();
+    this.router.navigate(['fileManagement']).then();
     this.setIsLoading(false, 1500);
   }
 
@@ -494,14 +509,10 @@ export class StoreService {
     })
   }
 
-  rearrangeFiles(): void {
-    this.isRearrangingFiles.set(true);
-    this.createRearrangeFilesSignal();
-  }
-
   removeAllFiles() {
-    this.filesSignal.set([]);
-    this.selectionCounterSignal.set(0);
+    // this.filesSignal.set([]);
+    // this.selectionCounterSignal.set(0);
+    this.router.navigate(['directorySelection']).then();
   }
 
   createRearrangeFilesSignal(): void {

@@ -23,7 +23,8 @@ export class FileSelectorComponent implements OnInit {
     this.getFavorites();
   }
 
-  getFiles() {
+  getFiles(e: any) {
+    console.log(e);
     this.store.getFilesByDialogue();
   }
 

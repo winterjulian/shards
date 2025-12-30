@@ -11,11 +11,13 @@ import {FileSelectorComponent} from '../../components/file-selector/file-selecto
 import {NgIf} from '@angular/common';
 import {PercentageVerticalComponent} from '../../components/percentage-vertical/percentage-vertical.component';
 import {StoreService} from '../../services/store.service';
+import {DirectoryFooterComponent} from '../../components/directory-footer/directory-footer.component';
 
 @Component({
   selector: 'app-directory-selection-page',
   imports: [
     FileSelectorComponent,
+    DirectoryFooterComponent,
   ],
   standalone: true,
   templateUrl: './directory-selection-page.component.html',
