@@ -1,6 +1,5 @@
 import {Component, inject} from '@angular/core';
 import {StoreService} from '../../services/store.service';
-import {DialogService} from '../../services/dialog.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -12,26 +11,9 @@ import {Router} from '@angular/router';
 })
 export class DirectoryFooterComponent {
   public store = inject(StoreService);
-  public dialogService = inject(DialogService);
   public router = inject(Router);
 
   returnToFileManagement() {
     this.router.navigate(['fileManagement']).then();
-  }
-
-  startRenamingProcess(): void {
-    this.openRenamingDialogue();
-  }
-
-  openRenamingDialogue(): void {
-    this.dialogService.openWithMessage(
-      'Rename files',
-      'Do you want to rename all changed files?',
-      {
-        accept: () => {
-          this.store.newRenameFiles();
-        }
-      }
-    )
   }
 }

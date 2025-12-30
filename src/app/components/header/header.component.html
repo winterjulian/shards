@@ -17,7 +17,7 @@
   </div>
   <div>
     <div class="text-4xl">Source</div>
-    <div class="fade-text">{{ store.filesSignal().length > 0 ? store.filesSignal()[0].path : '&ensp;' }}</div>
+    <div class="fade-text">{{ store.currentDirectory() }}</div>
   </div>
   <div>
     <div>Imported files</div>
@@ -30,9 +30,6 @@
   <div>
     <div>Changed files</div>
     <div class="text-4xl">{{ store.changedFilesCounter() }}</div>
-  </div>
-  <div>
-    <button (click)="triggerWorkflow()">CLICK</button>
   </div>
   <div class="p-2">
     <div class="flex items-center justify-center">

@@ -1,20 +1,18 @@
 <div class="flex flex-col h-full">
-  <div [hidden]="!store.isLoading()" class="flex h-full justify-center items-center animate-fade-in">
+
+  <div
+    [hidden]="!store.isLoading()"
+    class="flex h-full justify-center items-center animate-fade-in">
     <div>
       <div class="loader-shiny shadow-lg-dark"></div>
     </div>
   </div>
 
-  <div [hidden]="store.isLoading()" class="flex flex-col h-full">
-    <div *ngIf="store.filesSignal().length === 0" class="h-full animate-fade-in">
-      <app-file-selector></app-file-selector>
-    </div>
-
-    @if (store.filesSignal().length > 0) {
-      <div
-        class="flex flex-col h-full animate-fade-in"
-      >
-
+  <div class="flex flex-col overflow-hidden">
+    <div
+      [hidden]="store.isLoading()"
+      class="flex flex-col h-full">
+      <div class="flex flex-col h-full animate-fade-in">
         <div class="flex overflow-hidden shadow-border-b h-full">
 
           <div class="flex flex-col overflow-hidden h-full flex-1">
@@ -51,13 +49,12 @@
           </div>
 
         </div>
-
-        <div class="shadow-border-t edit-tool-bg">
-          <app-file-list-footer></app-file-list-footer>
-        </div>
-
       </div>
-    }
+    </div>
+  </div>
+
+  <div class="shadow-border-t edit-tool-bg">
+    <app-file-list-footer></app-file-list-footer>
   </div>
 
 </div>

@@ -1,8 +1,6 @@
 import {Component, effect, ElementRef, ViewChild } from '@angular/core';
 import {FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {FileSelectorComponent } from '../file-selector/file-selector.component';
 import {FileListComponent } from '../file-list/file-list.component';
-import {NgIf} from '@angular/common';
 import {StoreService } from '../../services/store.service';
 import {PercentageVerticalComponent } from '../percentage-vertical/percentage-vertical.component';
 import {FileListWrapperComponent} from '../file-list-wrapper/file-list-wrapper.component';
@@ -16,9 +14,7 @@ import {QuicktoolsComponent} from '../quicktools/quicktools.component';
   imports: [
     ReactiveFormsModule,
     FormsModule,
-    FileSelectorComponent,
     FileListComponent,
-    NgIf,
     PercentageVerticalComponent,
     FileListWrapperComponent,
     FileGroupListComponent,

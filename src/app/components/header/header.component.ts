@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { ThemeService } from '../../services/theme.service';
-import { NgClass, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import { WorkflowService } from '../../services/workflow.service';
 import { StoreService } from '../../services/store.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -15,12 +16,9 @@ export class HeaderComponent {
   constructor(
     public themeService: ThemeService,
     public workflowService: WorkflowService,
-    public store: StoreService
+    public store: StoreService,
+    public router: Router
   ) {}
-
-  testFunc($event: boolean): void {
-    this.workflowService.setIsProcessing($event);
-  }
 
   triggerWorkflow() {
     this.workflowService.setIsProcessing(!this.workflowService.isProcessing());
