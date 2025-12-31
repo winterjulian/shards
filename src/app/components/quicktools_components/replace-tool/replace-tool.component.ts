@@ -30,7 +30,7 @@ export class ReplaceToolComponent {
       return;
     }
 
-    this.changePattern()
+    this.changePattern(true)
     this.resetComponent();
   }
 
@@ -57,7 +57,7 @@ export class ReplaceToolComponent {
     });
   }
 
-  changePattern() {
+  changePattern(isAccepting: boolean = false) {
     const pattern = this.pattern();
     const replacement = this.replacement();
 
@@ -71,6 +71,9 @@ export class ReplaceToolComponent {
           new RegExp(escapedPattern, 'gi'),
           '<span class="highlight-text">$&</span>'
         );
+        if (isAccepting) {
+          file.displayName = replaced;
+        }
       } else {
         file.displayName = file.changedName;
       }
