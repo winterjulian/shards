@@ -3,27 +3,27 @@
   <div
     [hidden]="!store.isLoading()"
     class="flex h-full justify-center items-center animate-fade-in">
-    <div>
       <div class="loader-shiny shadow-lg-dark"></div>
-    </div>
   </div>
 
-  <div class="flex flex-col overflow-hidden">
-    <div
-      [hidden]="store.isLoading()"
-      class="flex flex-col h-full">
-      <div class="flex flex-col h-full animate-fade-in">
-        <div class="flex overflow-hidden shadow-border-b h-full">
+  <div
+    [hidden]="store.isLoading()"
+    class="flex overflow-hidden flex-col h-full">
+    <div class="flex flex-col h-full animate-fade-in">
+      <div class="flex overflow-hidden shadow-border-b h-full">
 
-          <div class="flex flex-col overflow-hidden h-full flex-1">
+        <div class="flex flex-col overflow-hidden h-full flex-1">
 
-            <div class="pt-5 pl-5 pr-5">
-              <app-file-list-header></app-file-list-header>
-            </div>
+          <div class="pt-5 pl-5 pr-5">
+            <app-file-list-header></app-file-list-header>
+          </div>
 
-            <div class="flex m-5 overflow-hidden flex-1 h-full">
-              @if(!store.isRearrangingFiles()) {
-                <div class="flex w-full">
+          <div class="flex m-5 overflow-hidden flex-1 h-full">
+<!--              <button (click)="testFunc()">CLICK</button>-->
+            @if(!store.isRearrangingFiles()) {
+              <div class="flex flex-col overflow-hidden w-full">
+<!--                  <div style="border: 1px solid blue">Table-Header</div>-->
+                <div class="flex overflow-hidden w-full">
                   <div class="w-9 mr-3">
                     <app-percentage-vertical></app-percentage-vertical>
                   </div>
@@ -33,22 +33,22 @@
                     </div>
                   </app-file-list-wrapper>
                 </div>
-              } @else {
-                <app-file-list-wrapper class="w-full">
-                  <div content>
-                    <app-file-group-list></app-file-group-list>
-                  </div>
-                </app-file-list-wrapper>
-              }
-            </div>
-
-          </div>
-
-          <div class="z-king material-box-shadow-intense" style="width: 400px">
-            <app-quicktools></app-quicktools>
+              </div>
+            } @else {
+              <app-file-list-wrapper class="w-full">
+                <div content>
+                  <app-file-group-list></app-file-group-list>
+                </div>
+              </app-file-list-wrapper>
+            }
           </div>
 
         </div>
+
+        <div class="z-king material-box-shadow-intense" style="width: 400px">
+          <app-quicktools></app-quicktools>
+        </div>
+
       </div>
     </div>
   </div>

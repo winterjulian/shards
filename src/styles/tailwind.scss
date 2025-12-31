@@ -54,7 +54,7 @@
 
   &:disabled {
     @apply bg-neutral-400 text-neutral-600;
-    @apply dark:bg-neutral-700 dark:text-neutral-400;
+    @apply dark:bg-neutral-700 dark:text-neutral-500;
   }
 }
 
@@ -64,7 +64,7 @@
 
   &:disabled {
     @apply bg-neutral-200 text-neutral-500;
-    @apply dark:bg-neutral-800 dark:text-neutral-400;
+    @apply dark:bg-neutral-800 dark:text-neutral-500;
   }
 }
 
@@ -74,7 +74,7 @@
 
   &:disabled {
     @apply bg-neutral-200 text-neutral-500;
-    @apply dark:bg-neutral-800 dark:text-neutral-400;
+    @apply dark:bg-neutral-800 dark:text-neutral-500;
   }
 }
 
@@ -97,6 +97,11 @@
 .tailwind-font-color-warning {
   @apply text-red-600;
   @apply dark:text-red-400;
+}
+
+.tailwind-font-color-disabled {
+  @apply text-neutral-500;
+  @apply dark:text-neutral-500;
 }
 
 .header-bg {
@@ -167,6 +172,11 @@
   @apply border-l-0;
   @apply hover:bg-neutral-300;
   @apply dark:hover:bg-neutral-700;
+
+  &:disabled {
+    @apply bg-neutral-200 text-neutral-500;
+    @apply dark:bg-neutral-800 dark:text-neutral-500;
+  }
 }
 
 

@@ -1,11 +1,12 @@
 import { Component, input, output } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import {NgClass} from '@angular/common';
 
 @Component({
   selector: 'app-quicktool-wrapper',
   standalone: true,
   templateUrl: './quicktool-wrapper.component.html',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NgClass],
   styleUrl: './quicktool-wrapper.component.css',
 })
 export class QuicktoolWrapperComponent {
@@ -14,6 +15,7 @@ export class QuicktoolWrapperComponent {
   isAcceptDisabled = input<boolean>(false);
   isCancelDisabled = input<boolean>(false);
   stopClosingAfterAccept = input<boolean>(false);
+  disabled = input<boolean>(false);
 
   readonly isButtonClick = true;
 
@@ -24,6 +26,9 @@ export class QuicktoolWrapperComponent {
   isExpanded = false;
 
   toggle(): void {
+    if (this.disabled()) {
+      return;
+    }
     this.isExpanded = !this.isExpanded;
     this.expand.emit(this.isExpanded);
   }

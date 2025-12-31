@@ -41,4 +41,13 @@ export class FileManagerComponent {
       }
     });
   }
+
+  testFunc() {
+    this.store.isRearrangingFiles.update(value => {
+      if (!value) {
+        this.store.createRearrangeFilesSignal();
+      }
+      return !value
+    })
+  }
 }

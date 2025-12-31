@@ -1,16 +1,16 @@
 import {Component, EventEmitter, HostListener, Input, Output} from '@angular/core';
 import {CdkDragHandle} from '@angular/cdk/drag-drop';
-import {DecimalPipe, NgClass} from '@angular/common';
+import {NgClass} from '@angular/common';
 import {ExtendedFile} from '../../interfaces/extendedFile';
 import {StoreService} from '../../services/store.service';
 import {FilesizePipe} from '../../pipes/file-size.pipe';
+import {DialogService} from '../../services/dialog.service';
 
 @Component({
   selector: 'app-file-list-row',
   imports: [
     CdkDragHandle,
     NgClass,
-    DecimalPipe,
     FilesizePipe
   ],
   standalone: true,
@@ -32,7 +32,10 @@ export class FileListRowComponent {
     this.isMouseDown = false;
   }
 
-  constructor(public store: StoreService) {}
+  constructor(
+    public store: StoreService,
+    public dialogService: DialogService,
+  ) {}
 
   renameFileDirectly(file: ExtendedFile) {
     // TODO: Is debugging, remove
@@ -53,6 +56,17 @@ export class FileListRowComponent {
 
   preventCalling(e: any) {
     e.preventDefault(); e.stopPropagation()
+  }
+
+  openWarning(warning: string) {
+    this.dialogService.openWithMessage(
+      'OS renaming error',
+      warning,
+      {
+        accept: () => {}
+      },
+      true
+    )
   }
 
   testFunc(e: any, file: ExtendedFile){

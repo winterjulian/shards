@@ -30,13 +30,23 @@
             >
           </div>
 
-          <div class="form-group pl-2">
-            <div class="flex button-basics shine-effect decline-button" (click)="selectDirectory()">
-              <i class="material-symbols-outlined text-lg cursor-pointer">folder</i>
-              <div class="pl-2">
-                Browse
-              </div>
+          <div class="form-group">
+            <div>
+              <button class="input-field-basics input-field-co-button shine-effect" (click)="selectDirectory()">
+                <div class="flex center-basics">
+                  <div>
+                    Open
+                  </div>
+                  <i class="material-symbols-outlined text-lg cursor-pointer pl-2">folder</i>
+                </div>
+              </button>
             </div>
+<!--            <div class="flex button-basics shine-effect decline-button" (click)="selectDirectory()">-->
+<!--              <i class="material-symbols-outlined text-lg cursor-pointer">folder</i>-->
+<!--              <div class="pl-2">-->
+<!--                Browse-->
+<!--              </div>-->
+<!--            </div>-->
           </div>
 
           <!--            <div class="form-group">-->
@@ -81,23 +91,27 @@
       <div (click)="removeFavoriteDirectory(directory)" class="button-basics shine-effect decline-button">
         <i class="material-symbols-outlined text-lg cursor-pointer">delete</i>
       </div>
-      <div>{{ directory.name }}</div>
-      <div (click)="getAllFilesFromGivenDirectory(directory.path)" class="button-basics shine-effect decline-button">
-        <div class="flex">
+      <div class="min-w-8">{{ directory.name }}</div>
+      <button
+        (click)="getAllFilesFromGivenDirectory(directory.path)"
+        class="button-basics shine-effect decline-button flex center-basics">
+        <div class="flex center-basics">
           Get all files
         </div>
-        <div class="pl-2">
+        <div class="flex center-basics pl-2">
           <i class="material-symbols-outlined text-lg cursor-pointer">file_save</i>
         </div>
-      </div>
-      <div (click)="getFiles(directory.path)" class="button-basics shine-effect decline-button">
-        <div class="flex">
+      </button>
+      <button
+        (click)="getFiles(directory.path)"
+        class="button-basics shine-effect decline-button flex center-basics">
+        <div class="flex center-basics">
           Open at directory
         </div>
-        <div class="pl-2">
+        <div class="flex center-basics pl-2">
           <i class="material-symbols-outlined text-lg cursor-pointer">open_jam</i>
         </div>
-      </div>
+      </button>
       <div>{{ directory.path }}</div>
     }
   </div>

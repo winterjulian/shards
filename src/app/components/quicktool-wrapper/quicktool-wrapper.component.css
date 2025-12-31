@@ -2,7 +2,7 @@
   transition: transform 200ms ease-in-out;
 }
 
-.quicktool-content {
+.edit-tool-content {
   display: grid;
   grid-template-rows: 0fr;
   overflow: hidden;
@@ -10,11 +10,11 @@
   opacity: 0;
 }
 
-.quicktool-content.expanded {
+.edit-tool-content.expanded {
   grid-template-rows: 1fr;
   opacity: 1;
 }
 
-.quicktool-content-inner {
+.edit-tool-content-inner {
   min-height: 0;
 }

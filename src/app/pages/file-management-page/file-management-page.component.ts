@@ -19,13 +19,13 @@ export class FileManagementPageComponent implements OnInit {
   constructor() {
     effect(() => {
       const isRenaming = this.store.isRenaming();
-      const overlay = document.querySelector('.renaming-blocked-area');
-
-      if (isRenaming) {
-        overlay?.classList.remove('hidden');
-      } else {
-        overlay?.classList.add('hidden');
-      }
+      // const overlay = document.querySelector('.renaming-blocked-area');
+      //
+      // if (isRenaming) {
+      //   overlay?.classList.remove('hidden');
+      // } else {
+      //   overlay?.classList.add('hidden');
+      // }
     });
   }
 

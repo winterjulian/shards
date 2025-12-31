@@ -15,7 +15,6 @@ export class DialogComponent {
 
   constructor() {
     effect(() => {
-      console.log('Dialog Component loaded');
       this.popupService.isOpen();
     });
   }

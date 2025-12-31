@@ -14,17 +14,13 @@
         <i class="material-symbols-outlined">check_box_outline_blank</i>
       }
     </div>
-    <div class="flex center-basics pl-2 pr-2 w-14 tailwind-font-color-light">
+    <div cdkDragHandle class="flex cursor-grab items-center justify-end pl-2 pr-2 w-16 tailwind-font-color-light">
       {{ file.index + 1 }}
-    </div>
-    <div
-      cdkDragHandle
-      class="flex center-basics cursor-grab pl-2 pr-2 w-10 tailwind-font-color-light">
       <i class="material-symbols-outlined">drag_indicator</i>
     </div>
     <div class="flex center-basics items-center w-10 pr-2">
       @if (file.hasExternalWarning) {
-        <i class="material-symbols-outlined !text-lg">computer_cancel</i>
+        <i (click)="openWarning(file.externalErrorMessage)" class="material-symbols-outlined !text-lg">computer_cancel</i>
       }
       @else if (file.hasInternalWarning) {
         <i class="material-symbols-outlined !text-lg">warning</i>
@@ -37,7 +33,7 @@
       (mousedown)="onNewMouseDown($event)"
       (mouseenter)="onNewMouseEnter()"
       (click)="onNewFileClick($event)"
-      class="flex-1 flex items-center items-center h-full w-full"
+      class="flex-1 flex items-center h-full w-full"
     >
       <div class="flex">
         <div class="long-word-break" [innerHTML]="file.displayName"></div>

@@ -4,7 +4,7 @@
     @for (entry of store.rearrangeFilesSignal(); track entry; let index = $index) {
       <div class="flex">
 
-        <div class="flex justify-center items-center w-9 mr-3">
+        <div class="flex justify-center items-center w-19 mr-3">
           @if(entry.isSelected
               && store.rearrangeFilesSignal()[index+1].isSelected
               && !store.rearrangeFilesSignal()[index-1].isSelected

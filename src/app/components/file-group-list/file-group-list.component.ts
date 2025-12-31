@@ -72,4 +72,8 @@ export class FileGroupListComponent {
   ungroupFiles(index: number): void {
     this.store.ungroupFiles(index);
   }
+
+  testFunc(entry: ExtendedFileGroup) {
+    console.log(entry);
+  }
 }

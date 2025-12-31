@@ -1,4 +1,4 @@
-import {Component, EventEmitter, inject, Output} from '@angular/core';
+import {Component, effect, EventEmitter, inject, Output} from '@angular/core';
 import { NgClass } from '@angular/common';
 import { ReplaceToolComponent } from '../quicktools_components/replace-tool/replace-tool.component';
 import { StoreService } from '../../services/store.service';
@@ -32,7 +32,13 @@ export class QuicktoolsComponent {
   constructor(
     public store: StoreService,
     public workflowService: WorkflowService
-  ) {}
+  ) {
+    effect(() => {
+      if (this.store.selectionCounterSignal() === 0) {
+        this.activeTool?.cancelFn();
+      }
+    });
+  }
 
   undoChanges() {
     this.store.undo();

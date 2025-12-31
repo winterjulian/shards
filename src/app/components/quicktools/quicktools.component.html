@@ -24,11 +24,12 @@
     >
       <app-quicktool-wrapper
         #replaceWrapper
+        [isAcceptDisabled]="replaceTool.isAcceptDisabled()"
+        [stopClosingAfterAccept]="true"
+        [disabled]="this.store.selectionCounterSignal() === 0"
         (expand)="onExpand($event, 'replace', replaceWrapper.cancelChanges.bind(replaceWrapper))"
         (accept)="replaceTool.onAccept(); onAccept()"
         (cancel)="replaceTool.onCancel(); onCancel()"
-        [isAcceptDisabled]="replaceTool.isAcceptDisabled()"
-        [stopClosingAfterAccept]="true"
         title="Replacement"
       >
         <div tool-content>
@@ -38,10 +39,11 @@
 
       <app-quicktool-wrapper
         #indexerWrapper
+        [isAcceptDisabled]="indexerTool.isAcceptDisabled()"
+        [disabled]="this.store.selectionCounterSignal() === 0"
         (expand)="onExpand($event,'indexer', indexerWrapper.cancelChanges.bind(indexerWrapper))"
         (accept)="onAccept(); indexerTool.onAccept()"
         (cancel)="onCancel(); indexerTool.onCancel()"
-        [isAcceptDisabled]="indexerTool.isAcceptDisabled()"
         icon="list"
         title="Indexer"
       >
@@ -52,12 +54,13 @@
 
       <app-quicktool-wrapper
         #caseConverterWrapper
+        [isAcceptDisabled]="caseConverter.isAcceptDisabled()"
+        [disabled]="this.store.selectionCounterSignal() === 0"
         (expand)="
           onExpand($event,'caseConverter', caseConverterWrapper.cancelChanges.bind(caseConverterWrapper))
         "
         (accept)="onAccept(); caseConverter.onAccept()"
         (cancel)="onCancel(); caseConverter.onCancel()"
-        [isAcceptDisabled]="caseConverter.isAcceptDisabled()"
         title="Case Converter"
         icon="text_format"
       >
@@ -65,6 +68,16 @@
           <app-case-converter-tool #caseConverter></app-case-converter-tool>
         </div>
       </app-quicktool-wrapper>
+      <div class="application-2-bg tailwind-font-color-disabled m-3 p-3">
+        Upcoming features:
+        <div>
+          <li>SHARDS - open dynamic amounts of input fields per file</li>
+          <li>Multi file rearrangement</li>
+          <li>File sorting by size / extension</li>
+          <li>Direct editing of files</li>
+          <li>All changes reset</li>
+        </div>
+      </div>
     </div>
     <div id="button-bar" class="flex justify-between m-5">
 <!--      <button class="button-basics shine-effect action-button">Placeholder</button>-->

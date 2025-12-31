@@ -1,4 +1,6 @@
-<div class="application-4-bg shadow-lg-dark m-3">
+<div
+  [ngClass]="disabled() ? 'application-2-bg tailwind-font-color-disabled' : 'application-4-bg shine-effect'"
+  class="shadow-lg-dark m-3">
   <div
     class="text-base p-3 flex items-center cursor-pointer"
     (click)="toggle()"
@@ -9,8 +11,8 @@
     </div>
   </div>
 
-  <div class="quicktool-content" [class.expanded]="isExpanded">
-    <div class="quicktool-content-inner">
+  <div class="edit-tool-content" [class.expanded]="isExpanded">
+    <div class="edit-tool-content-inner">
       <div class="p-2 pt-0">
         <ng-content select="[tool-content]"></ng-content>
       </div>
