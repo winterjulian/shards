@@ -5,7 +5,16 @@
   background-size: calc(200% + 80px) calc(200% + 80px);
   background-position: bottom right;
   animation: l8 1s infinite;
+
+  &.small {
+    @apply w-6 aspect-square;
+  }
+
+  &.grey {
+    @apply bg-neutral-400 dark:bg-neutral-800;
+  }
 }
+
 @keyframes l8 {
   100% {background-position: top left}
 }

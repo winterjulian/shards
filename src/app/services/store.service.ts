@@ -459,14 +459,13 @@ export class StoreService {
   }
 
   getFilesByDialogue(directoryPath?: string) {
-    this.setIsLoading(true);
     // if directoryPath undefined => open dialog
     window.electron.openFiles(directoryPath).then((files: Array<ExtendedFile>) => {
       if (!files.length) {
         this.setIsLoading(false);
         return;
       } else {
-        this.setCurrentDirectory(files[0].path);
+        this.setFileLoadingBasics(files[0].path)
         this.setFiles(files)
       }
       this.setIsLoading(false, 1500);
@@ -474,16 +473,24 @@ export class StoreService {
   }
 
   getAllFilesFromGivenDirectory(directoryPath: string) {
-    this.setIsLoading(true);
+    this.setFileLoadingBasics(directoryPath)
+
     window.electron.getFilesFromDirectory(directoryPath).then((files: Array<ExtendedFile>) => {
       if (!files.length) {
-        this.setIsLoading(false, 1500);
+        this.setIsLoading(false);
         return;
       } else {
         this.setCurrentDirectory(directoryPath);
         this.setFiles(files);
       }
+      this.setIsLoading(false, 1500);
     });
+  }
+
+  private setFileLoadingBasics(directoryPath: string) {
+    this.setIsLoading(true);
+    this.setCurrentDirectory(directoryPath);
+    this.router.navigate(['fileManagement']).then();
   }
 
   setCurrentDirectory(path: string) {
@@ -499,8 +506,6 @@ export class StoreService {
     this.resetVisibility();
     this.clearHistory();
     this.addSnapshotToHistory();
-    this.router.navigate(['fileManagement']).then();
-    this.setIsLoading(false, 1500);
   }
 
   getFavoriteDirectories() {

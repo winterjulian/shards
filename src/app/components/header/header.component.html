@@ -21,15 +21,27 @@
   </div>
   <div>
     <div>Imported files</div>
-    <div class="text-4xl">{{ store.filesSignal().length }}</div>
+    @if (store.isLoading()) {
+      <div class="loader-shiny small grey shadow-lg-dark m-2"></div>
+    } @else {
+      <div class="text-4xl">{{ store.filesSignal().length }}</div>
+    }
   </div>
   <div>
     <div>Selected files</div>
-    <div class="text-4xl">{{ store.selectionCounterSignal() }}</div>
+    @if (store.isLoading()) {
+      <div class="loader-shiny small grey shadow-lg-dark m-2"></div>
+    } @else {
+      <div class="text-4xl">{{ store.selectionCounterSignal() }}</div>
+    }
   </div>
   <div>
     <div>Changed files</div>
-    <div class="text-4xl">{{ store.changedFilesCounter() }}</div>
+    @if (store.isLoading()) {
+      <div class="loader-shiny small grey shadow-lg-dark m-2"></div>
+    } @else {
+      <div class="text-4xl">{{ store.changedFilesCounter() }}</div>
+    }
   </div>
   <div class="p-2">
     <div class="flex items-center justify-center">

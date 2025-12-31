@@ -23,7 +23,6 @@ export class DirectoryFileSelectorComponent implements OnInit {
   }
 
   getFiles(e: any) {
-    console.log(e);
     this.store.getFilesByDialogue();
   }
 

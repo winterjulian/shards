@@ -1,4 +1,4 @@
-import {Component, effect, ElementRef, ViewChild } from '@angular/core';
+import {Component, ElementRef, ViewChild } from '@angular/core';
 import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {FileListComponent } from '../file-list/file-list.component';
 import {StoreService } from '../../services/store.service';
@@ -30,24 +30,15 @@ export class FileManagerComponent {
   @ViewChild('overlay') overlay: ElementRef | undefined;
 
   constructor(public store: StoreService,) {
-    effect(() => {
-      const isProcessing = this.store.isRenaming();
-      const overlay = document.querySelector('.blocked-area');
-
-      if (isProcessing) {
-        overlay?.classList.remove('hidden');
-      } else {
-        overlay?.classList.add('hidden');
-      }
-    });
-  }
-
-  testFunc() {
-    this.store.isRearrangingFiles.update(value => {
-      if (!value) {
-        this.store.createRearrangeFilesSignal();
-      }
-      return !value
-    })
+    // effect(() => {
+    //   const isProcessing = this.store.isRenaming();
+    //   const overlay = document.querySelector('.blocked-area');
+    //
+    //   if (isProcessing) {
+    //     overlay?.classList.remove('hidden');
+    //   } else {
+    //     overlay?.classList.add('hidden');
+    //   }
+    // });
   }
 }
