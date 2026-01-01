@@ -7,6 +7,7 @@ import { WorkflowService } from '../../services/workflow.service';
 import { QuicktoolWrapperComponent } from '../quicktool-wrapper/quicktool-wrapper.component';
 import { CaseConverterToolComponent } from '../quicktools_components/case-converter-tool/case-converter-tool.component';
 import {HistoryService} from '../../services/history.service';
+import {ShardsToolComponent} from '../shards/shards-tool/shards-tool.component';
 
 @Component({
   selector: 'app-quicktools',
@@ -16,6 +17,7 @@ import {HistoryService} from '../../services/history.service';
     IndexerToolComponent,
     QuicktoolWrapperComponent,
     CaseConverterToolComponent,
+    ShardsToolComponent,
   ],
   templateUrl: './quicktools.component.html',
   standalone: true,

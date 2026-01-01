@@ -68,6 +68,24 @@
           <app-case-converter-tool #caseConverter></app-case-converter-tool>
         </div>
       </app-quicktool-wrapper>
+
+      <app-quicktool-wrapper
+        #shardsToolWrapper
+        [isAcceptDisabled]="shardsTool.isAcceptDisabled()"
+        [disabled]="this.store.selectionCounterSignal() === 0"
+        (expand)="
+          onExpand($event,'shardsTool', shardsToolWrapper.cancelChanges.bind(shardsToolWrapper))
+        "
+        (accept)="onAccept(); shardsTool.onAccept()"
+        (cancel)="onCancel(); shardsTool.onCancel()"
+        title="SHARDS"
+        icon="auto_awesome_mosaic"
+      >
+        <div tool-content>
+          <app-shards-tool #shardsTool [isExpanded]="shardsToolWrapper.isExpanded"></app-shards-tool>
+        </div>
+      </app-quicktool-wrapper>
+
       <div class="application-2-bg tailwind-font-color-disabled m-3 p-3">
         Upcoming features:
         <div>

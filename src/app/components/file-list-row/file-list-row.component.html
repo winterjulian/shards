@@ -29,20 +29,34 @@
         <i class="material-symbols-outlined !text-lg">settings</i>
       }
     </div>
-    <div
-      (mousedown)="onNewMouseDown($event)"
-      (mouseenter)="onNewMouseEnter()"
-      (click)="onNewFileClick($event)"
-      class="flex-1 flex items-center h-full w-full"
-    >
-      <div class="flex">
-        <div class="long-word-break" [innerHTML]="file.displayName"></div>
-<!--        <div-->
-<!--          (mousedown)="preventCalling($event);"-->
-<!--          (click)="testFunc($event, file)" class="pl-2">-->
-<!--          <i class="material-symbols-outlined text-sm">edit</i>-->
-<!--        </div>-->
+    <div class="flex-1">
+      <div
+        (mousedown)="onNewMouseDown($event)"
+        (mouseenter)="onNewMouseEnter()"
+        (click)="onNewFileClick($event)"
+        class="flex-1 flex items-center h-full w-full"
+      >
+        <div class="flex">
+          <div class="long-word-break" [innerHTML]="file.displayName"></div>
+          <!--        <div-->
+          <!--          (mousedown)="preventCalling($event);"-->
+          <!--          (click)="testFunc($event, file)" class="pl-2">-->
+          <!--          <i class="material-symbols-outlined text-sm">edit</i>-->
+          <!--        </div>-->
+        </div>
       </div>
+      @if (shardsService.isShardsActive() && file.isSelected) {
+        <div class="flex">
+          @for (shardColumn of shardsService.shardColumns(); track shardColumn; let index = $index) {
+            <div>
+              <input
+                type="text"
+                class="input-field-basics input-field-shard w-full"
+              />
+            </div>
+          }
+        </div>
+      }
     </div>
     <div class="flex justify-start tailwind-font-color-light w-10">
       {{ file.extension }}

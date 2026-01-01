@@ -1,17 +1,20 @@
-import {Component, EventEmitter, HostListener, Input, Output} from '@angular/core';
+import {Component, effect, EventEmitter, HostListener, Input, Output, signal} from '@angular/core';
 import {CdkDragHandle} from '@angular/cdk/drag-drop';
 import {NgClass} from '@angular/common';
 import {ExtendedFile} from '../../interfaces/extendedFile';
 import {StoreService} from '../../services/store.service';
 import {FilesizePipe} from '../../pipes/file-size.pipe';
 import {DialogService} from '../../services/dialog.service';
+import {ShardService} from '../../services/shard.service';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-file-list-row',
   imports: [
     CdkDragHandle,
     NgClass,
-    FilesizePipe
+    FilesizePipe,
+    ReactiveFormsModule
   ],
   standalone: true,
   templateUrl: './file-list-row.component.html',
@@ -35,6 +38,7 @@ export class FileListRowComponent {
   constructor(
     public store: StoreService,
     public dialogService: DialogService,
+    public shardsService: ShardService
   ) {}
 
   renameFileDirectly(file: ExtendedFile) {
