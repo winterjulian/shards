@@ -84,6 +84,11 @@
   @apply shadow-lg
 }
 
+.button-extra-small {
+  @apply flex items-center justify-center;
+  @apply p-1 h-5 w-5
+}
+
 .tailwind-font-color {
   @apply text-gray-950;
   @apply dark:text-gray-300;

@@ -1,0 +1,23 @@
+<div class="flex-1 flex application-4-bg list-element-basics h-12 w-full">
+  <div class="w-35"><!-- Spacer --></div>
+  @for (shardCol of this.shardsService.shardColumns(); track shardCol; let index = $index) {
+    <div>
+      <div class="flex justify-between">
+        <div class="button-basics button-extra-small shine-effect">
+          <i class="material-symbols-outlined !text-sm">add</i>
+        </div>
+        <div class="button-basics button-extra-small shine-effect">
+          <i class="material-symbols-outlined !text-sm">delete</i>
+        </div>
+        <div class="button-extra-small"><!--Placeholder--></div>
+      </div>
+      <div>
+        <input
+          type="text"
+          class="input-field-basics input-field-shard w-full"
+        />
+      </div>
+
+    </div>
+  }
+</div>

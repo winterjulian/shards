@@ -8,6 +8,8 @@ import {FileGroupListComponent} from '../file-group-list/file-group-list.compone
 import {FileListHeaderComponent} from '../file-list-header/file-list-header.component';
 import {FileListFooterComponent} from '../file-list-footer/file-list-footer.component';
 import {QuicktoolsComponent} from '../quicktools/quicktools.component';
+import {ShardService} from '../../services/shard.service';
+import {ShardsListHeaderComponent} from '../shards/shards-list-header/shards-list-header.component';
 
 @Component({
   selector: 'app-file-manager',
@@ -21,6 +23,7 @@ import {QuicktoolsComponent} from '../quicktools/quicktools.component';
     FileListHeaderComponent,
     FileListFooterComponent,
     QuicktoolsComponent,
+    ShardsListHeaderComponent,
   ],
   templateUrl: './file-manager.component.html',
   standalone: true,
@@ -29,7 +32,10 @@ import {QuicktoolsComponent} from '../quicktools/quicktools.component';
 export class FileManagerComponent {
   @ViewChild('overlay') overlay: ElementRef | undefined;
 
-  constructor(public store: StoreService,) {
+  constructor(
+    public store: StoreService,
+    public shardsService: ShardService
+  ) {
     // effect(() => {
     //   const isProcessing = this.store.isRenaming();
     //   const overlay = document.querySelector('.blocked-area');

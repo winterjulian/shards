@@ -1,8 +1,5 @@
 <div class="w-full h-full">
-  <div
-    class="flex items-center w-full h-full"
-    [ngClass]="{'tailwind-font-color-warning': file.hasInternalWarning || file.hasExternalWarning }"
-  >
+  <div class="flex items-center w-full h-full">
     <div
       (mousedown)="onNewMouseDown($event)"
       (mouseenter)="onNewMouseEnter()"
@@ -18,7 +15,9 @@
       {{ file.index + 1 }}
       <i class="material-symbols-outlined">drag_indicator</i>
     </div>
-    <div class="flex center-basics items-center w-10 pr-2">
+    <div
+      [ngClass]="{'tailwind-font-color-warning': file.hasInternalWarning || file.hasExternalWarning }"
+      class="flex center-basics items-center w-10 pr-2">
       @if (file.hasExternalWarning) {
         <i (click)="openWarning(file.externalErrorMessage)" class="material-symbols-outlined !text-lg">computer_cancel</i>
       }
@@ -46,18 +45,18 @@
         </div>
       </div>
       <div class="file-row-content" [class.expanded]="isExpanded()">
-          <div class="file-row-content-inner">
-            <div class="flex">
-              @for (shardColumn of shardsService.shardColumns(); track shardColumn; let index = $index) {
-                <div>
-                  <input
-                    type="text"
-                    class="input-field-basics input-field-shard w-full"
-                  />
-                </div>
-              }
-            </div>
+        <div class="file-row-content-inner">
+          <div class="flex">
+            @for (shardColumn of shardsService.shardColumns(); track shardColumn; let index = $index) {
+              <div>
+                <input
+                  type="text"
+                  class="input-field-basics input-field-shard w-full"
+                />
+              </div>
+            }
           </div>
+        </div>
       </div>
     </div>
     <div class="flex justify-start tailwind-font-color-light w-10">
