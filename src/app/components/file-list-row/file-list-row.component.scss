@@ -1,26 +1,17 @@
-.shards-row {
+.file-row-content {
+  display: grid;
+  grid-template-rows: 0fr;
   overflow: hidden;
-}
-
-.shards-row-inner-wrapper {
-  height: 0;
-  overflow: hidden;
-  transition: height 250ms ease;
-}
-
-/* Zustand „active“ */
-.file-name-area.shards-active .shards-row-inner-wrapper {
-  height: var(--shards-row-height);
-}
-
-.shards-row-inner {
+  transition: grid-template-rows 300ms ease-in-out, opacity 250ms ease-in-out;
   opacity: 0;
-  transform: translateY(-6px);
-  transition: opacity 180ms ease, transform 180ms ease;
-  transition-delay: 120ms;
 }
 
-.file-name-area.shards-active .shards-row-inner {
+.file-row-content.expanded {
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 300ms ease-in-out, opacity 250ms ease-in-out;
   opacity: 1;
-  transform: translateY(0);
+}
+
+.file-row-content-inner {
+  min-height: 0;
 }

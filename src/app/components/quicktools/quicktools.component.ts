@@ -1,4 +1,4 @@
-import {Component, effect, EventEmitter, inject, Output} from '@angular/core';
+import {Component, effect, ElementRef, EventEmitter, inject, Output, ViewChild} from '@angular/core';
 import { NgClass } from '@angular/common';
 import { ReplaceToolComponent } from '../quicktools_components/replace-tool/replace-tool.component';
 import { StoreService } from '../../services/store.service';
@@ -74,7 +74,9 @@ export class QuicktoolsComponent {
 
   onCancel() {
     this.workflowService.setIsProcessing(false);
-    this.store.resetFileNamesFromIntermediateSnapshot();
-    this.store.clearIntermediateSnapshot();
+    setTimeout(() => {
+      this.store.resetFileNamesFromIntermediateSnapshot();
+      this.store.clearIntermediateSnapshot();
+    }, 400)
   }
 }

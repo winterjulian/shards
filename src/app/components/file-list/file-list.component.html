@@ -16,6 +16,7 @@
             ></div>
             <app-file-list-row
               [file]="file"
+              [isSelected]="file.isSelected"
               [index]="index"
               (mouseDown)="onMouseDown($event, file)"
               (mouseEnter)="onMouseEnterFile(file)"

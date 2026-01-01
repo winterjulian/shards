@@ -1,4 +1,11 @@
-import {Component, effect, EventEmitter, HostListener, Input, Output, signal} from '@angular/core';
+import {
+  Component,
+  computed,
+  EventEmitter,
+  HostListener, input,
+  Input,
+  Output,
+} from '@angular/core';
 import {CdkDragHandle} from '@angular/cdk/drag-drop';
 import {NgClass} from '@angular/common';
 import {ExtendedFile} from '../../interfaces/extendedFile';
@@ -22,6 +29,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 })
 export class FileListRowComponent {
   @Input() file!: ExtendedFile;
+  isSelected = input.required<boolean>();
   @Input() index!: number;
 
   @Output() mouseDown = new EventEmitter<MouseEvent>();
@@ -29,6 +37,9 @@ export class FileListRowComponent {
   @Output() fileClick = new EventEmitter<MouseEvent>();
 
   public isMouseDown: boolean = false;
+  public isExpanded = computed(() =>
+    this.shardsService.isShardsActive() && this.isSelected()
+  );
 
   @HostListener('document:mouseup', ['$event'])
   onMouseUp() {
@@ -71,11 +82,5 @@ export class FileListRowComponent {
       },
       true
     )
-  }
-
-  testFunc(e: any, file: ExtendedFile){
-    e.preventDefault();
-    e.stopPropagation();
-    console.log(file);
   }
 }
