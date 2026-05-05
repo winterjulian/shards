@@ -1,0 +1,39 @@
+name: Build Shards App
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download backend release
+        uses: robinraju/release-downloader@v1
+        with:
+          repository: JulianWinter/shards-backend
+          tag: ${{ github.ref_name }}
+          fileName: backend.zip
+
+      - name: Unzip backend
+        run: unzip backend.zip -d backend
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build frontend
+        run: npm run build
+        # Angular build
+
+      - name: Build Electron AppImage
+        run: npm run electron:linux

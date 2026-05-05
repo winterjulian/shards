@@ -74,9 +74,11 @@ export class QuicktoolsComponent {
 
   onCancel() {
     this.workflowService.setIsProcessing(false);
+    this.activeTool = null;
+
     setTimeout(() => {
       this.store.resetFileNamesFromIntermediateSnapshot();
       this.store.clearIntermediateSnapshot();
-    }, 400)
+    }, 300)
   }
 }

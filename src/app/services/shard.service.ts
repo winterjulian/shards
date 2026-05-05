@@ -10,14 +10,15 @@ export class ShardService {
 
   addShardColumn(index: number = 0) {
     const newColumn = {
-      name: 'test',
-      content: '',
-      omnipresent: true
+      content: signal(''),
     };
 
     const newArray = [...this.shardColumns()];
     newArray.splice(index, 0, newColumn);
-
     this.shardColumns.set(newArray);
+  }
+
+  deleteShardColumn(index: number) {
+    this.shardColumns().splice(index, 1);
   }
 }

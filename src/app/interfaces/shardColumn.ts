@@ -1,5 +1,5 @@
+import {WritableSignal} from '@angular/core';
+
 export interface ShardColumn {
-  name: string;
-  content: string;
-  omnipresent: boolean;
+  content: WritableSignal<string>;
 }

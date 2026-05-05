@@ -1,10 +1,10 @@
 import {
   Component,
-  computed,
+  computed, effect,
   EventEmitter,
   HostListener, input,
   Input,
-  Output,
+  Output, WritableSignal,
 } from '@angular/core';
 import {CdkDragHandle} from '@angular/cdk/drag-drop';
 import {NgClass} from '@angular/common';
@@ -13,7 +13,11 @@ import {StoreService} from '../../services/store.service';
 import {FilesizePipe} from '../../pipes/file-size.pipe';
 import {DialogService} from '../../services/dialog.service';
 import {ShardService} from '../../services/shard.service';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
+export interface ShardRow {
+  value: WritableSignal<string>;
+}
 
 @Component({
   selector: 'app-file-list-row',
@@ -21,7 +25,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     CdkDragHandle,
     NgClass,
     FilesizePipe,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   standalone: true,
   templateUrl: './file-list-row.component.html',
@@ -46,16 +51,27 @@ export class FileListRowComponent {
     this.isMouseDown = false;
   }
 
+  protected componentShardColumns: Array<ShardRow> = [];
+
   constructor(
     public store: StoreService,
     public dialogService: DialogService,
     public shardsService: ShardService
-  ) {}
+  ) {
+    effect(() => {
+      const serviceShardColumns = this.shardsService.shardColumns(); // ShardColumn[]
 
-  renameFileDirectly(file: ExtendedFile) {
-    // TODO: Is debugging, remove
-    console.log(file)
+      this.componentShardColumns = serviceShardColumns.map((shardCol) => {
+        const value = shardCol.content;
+        return { value };
+      });
+    });
   }
+
+  // renameFileDirectly(file: ExtendedFile) {
+  //   // TODO: Is debugging, remove
+  //   console.log(file)
+  // }
 
   onNewMouseDown(e: any) {
     this.mouseDown.emit(e);

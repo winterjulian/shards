@@ -47,9 +47,10 @@
       <div class="file-row-content" [class.expanded]="isExpanded()">
         <div class="file-row-content-inner">
           <div class="flex">
-            @for (shardColumn of shardsService.shardColumns(); track shardColumn; let index = $index) {
+            @for (shardColumn of componentShardColumns; track shardColumn; let index = $index) {
               <div>
                 <input
+                  [value]="shardColumn.value()"
                   type="text"
                   class="input-field-basics input-field-shard w-full"
                 />
